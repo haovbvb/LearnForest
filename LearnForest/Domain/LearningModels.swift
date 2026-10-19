@@ -183,14 +183,18 @@ struct RewardCounts: Equatable {
 struct DailySnapshot: Equatable {
     var studiedHanziIds: [String]
     var unfamiliarHanziIds: [String]
+    /// 从还不熟、待复习里挑出的少数几个，最多 3 个。
     var reviewSuggestionIds: [String]
     var activeDurationSeconds: Int
+    /// 今天新写入的奖励。和结果页「这次新得到」用同一张奖励表，已经发过的不会再算进去。
+    var rewardsToday: RewardGrant
 
     static let empty = DailySnapshot(
         studiedHanziIds: [],
         unfamiliarHanziIds: [],
         reviewSuggestionIds: [],
-        activeDurationSeconds: 0
+        activeDurationSeconds: 0,
+        rewardsToday: .zero
     )
 }
 

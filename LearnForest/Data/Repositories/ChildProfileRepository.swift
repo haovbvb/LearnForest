@@ -130,19 +130,7 @@ final class ChildProfileRepository: ChildProfileStoring {
             guard try ChildProfile.fetchOne(db, key: id) != nil else {
                 throw ProfileError.missing
             }
-            let sessionIds = try LearningSession
-                .filter(Column("profileId") == id)
-                .fetchAll(db)
-                .map(\.id)
-            if !sessionIds.isEmpty {
-                try AnswerRecord
-                    .filter(sessionIds.contains(Column("sessionId")))
-                    .deleteAll(db)
-            }
-            try LearningSession.filter(Column("profileId") == id).deleteAll(db)
-            try LearningRecord.filter(Column("profileId") == id).deleteAll(db)
-            try RewardRecord.filter(Column("profileId") == id).deleteAll(db)
-            try StudyTimeRecord.filter(Column("profileId") == id).deleteAll(db)
+            try LearningRepository.deleteOwnedData(profileId: id, db: db)
             _ = try ChildProfile.deleteOne(db, key: id)
 
             if try ChildProfile.filter(Column("isActive") == true).fetchCount(db) == 0 {

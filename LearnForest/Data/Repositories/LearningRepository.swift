@@ -34,6 +34,8 @@ protocol LearningStoring: AnyObject {
     func addStudyTime(profileId: String, sessionId: String, seconds: Int, now: Date) throws
     func rewardCounts(profileId: String) throws -> RewardCounts
     func dailySnapshot(profileId: String, now: Date) throws -> DailySnapshot
+    /// 清掉该档案的学习记录、答题、进度、奖励和有效时长。不删档案，不删课程包。
+    func clearLearningData(profileId: String) throws
     func noteContentInstall(_ manifest: ContentManifest) throws
     func installedContentVersion(packageId: String) throws -> Int?
 }
@@ -387,17 +389,62 @@ final class LearningRepository: LearningStoring {
         }
     }
 
+    func clearLearningData(profileId: String) throws {
+        try queue.write { db in
+            try Self.deleteOwnedData(profileId: profileId, db: db)
+        }
+    }
+
+    /// 档案删除和「清除学习数据」共用这一段，避免两边删的范围不一致。
+    static func deleteOwnedData(profileId: String, db: Database) throws {
+        let sessionIds = try LearningSession
+            .filter(Column("profileId") == profileId)
+            .fetchAll(db)
+            .map(\.id)
+        if !sessionIds.isEmpty {
+            try AnswerRecord
+                .filter(sessionIds.contains(Column("sessionId")))
+                .deleteAll(db)
+        }
+        try AnswerRecord.filter(Column("profileId") == profileId).deleteAll(db)
+        try LearningSession.filter(Column("profileId") == profileId).deleteAll(db)
+        try LearningRecord.filter(Column("profileId") == profileId).deleteAll(db)
+        try RewardRecord.filter(Column("profileId") == profileId).deleteAll(db)
+        try StudyTimeRecord.filter(Column("profileId") == profileId).deleteAll(db)
+    }
+
     func dailySnapshot(profileId: String, now: Date) throws -> DailySnapshot {
         try queue.read { db in
             let start = Calendar.current.startOfDay(for: now)
             let records = try LearningRecord.filter(Column("profileId") == profileId).fetchAll(db)
-            let studied = records.filter { ($0.lastPracticedAt ?? .distantPast) >= start }
-            let unfamiliar = records.filter { record in
-                record.masteryLevel == .needsReview || record.incorrectCount > record.correctCount
+            let studied = records
+                .filter { ($0.lastPracticedAt ?? .distantPast) >= start }
+                .sorted { ($0.lastPracticedAt ?? .distantPast) < ($1.lastPracticedAt ?? .distantPast) }
+            let unfamiliar = records
+                .filter { record in
+                    record.masteryLevel == .needsReview || record.incorrectCount > record.correctCount
+                }
+                .sorted { lhs, rhs in
+                    let leftReview = lhs.masteryLevel == .needsReview
+                    let rightReview = rhs.masteryLevel == .needsReview
+                    if leftReview != rightReview { return leftReview }
+                    let leftGap = lhs.incorrectCount - lhs.correctCount
+                    let rightGap = rhs.incorrectCount - rhs.correctCount
+                    if leftGap != rightGap { return leftGap > rightGap }
+                    let leftDate = lhs.nextReviewAt ?? .distantFuture
+                    let rightDate = rhs.nextReviewAt ?? .distantFuture
+                    if leftDate != rightDate { return leftDate < rightDate }
+                    return lhs.hanziId < rhs.hanziId
+                }
+            let rewards = try RewardRecord.filter(Column("profileId") == profileId).fetchAll(db)
+            var grant = RewardGrant.zero
+            for row in rewards where row.createdAt >= start {
+                switch row.rewardType {
+                case .star: grant.stars += row.amount
+                case .sticker: grant.stickers += row.amount
+                case .badge: grant.badges += row.amount
+                }
             }
-            let suggestions = records
-                .filter { $0.masteryLevel == .needsReview || $0.nextReviewAt != nil }
-                .prefix(5)
             let day = StudyDay.key(for: now)
             let seconds = try StudyTimeRecord
                 .filter(Column("profileId") == profileId && Column("day") == day)
@@ -406,8 +453,9 @@ final class LearningRepository: LearningStoring {
             return DailySnapshot(
                 studiedHanziIds: studied.map(\.hanziId),
                 unfamiliarHanziIds: unfamiliar.map(\.hanziId),
-                reviewSuggestionIds: suggestions.map(\.hanziId),
-                activeDurationSeconds: seconds
+                reviewSuggestionIds: unfamiliar.prefix(3).map(\.hanziId),
+                activeDurationSeconds: seconds,
+                rewardsToday: grant
             )
         }
     }

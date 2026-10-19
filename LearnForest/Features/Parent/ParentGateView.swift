@@ -4,6 +4,7 @@ import SwiftUI
 /// 购买、外链在 V1.0 不做；若以后加上，要再验一次。
 struct ParentGateView: View {
     @Environment(\.dismiss) private var dismiss
+    @Environment(\.scenePhase) private var scenePhase
     @State private var challenge = AdultChallenge.make()
     @State private var entry = ""
     @State private var message: String?
@@ -23,6 +24,13 @@ struct ParentGateView: View {
                     Button("返回") { dismiss() }
                 }
             }
+        }
+        .onChange(of: scenePhase) { _, phase in
+            guard phase == .background else { return }
+            passed = false
+            entry = ""
+            message = nil
+            challenge = AdultChallenge.make()
         }
     }
 

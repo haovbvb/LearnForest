@@ -133,6 +133,21 @@ final class AppModel {
     func delete(id: String) {
         do {
             try profilesRepo.delete(id: id)
+            if lessonCourseId != nil, activeProfile?.id == id {
+                lessonVisible = false
+            }
+            reload()
+        } catch {
+            actionError = error.localizedDescription
+        }
+    }
+
+    /// 只清当前档案的学习数据。档案、设置和课程包都留着。
+    func clearActiveLearningData() {
+        guard let profileId = activeProfile?.id else { return }
+        do {
+            try learningRepo.clearLearningData(profileId: profileId)
+            lessonVisible = false
             reload()
         } catch {
             actionError = error.localizedDescription
