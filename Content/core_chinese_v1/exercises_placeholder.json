@@ -1,0 +1,15 @@
+{
+  "implemented": false,
+  "todo": "Sprint 3 再做听音找图、看字找图、汉字图片配对。没做完的题型不能出现在可进入的课里。",
+  "plannedTypes": [
+    "listen_and_select_image",
+    "character_to_image",
+    "character_image_matching"
+  ],
+  "notInV1": [
+    "word_building",
+    "similar_character",
+    "context",
+    "passage"
+  ]
+}

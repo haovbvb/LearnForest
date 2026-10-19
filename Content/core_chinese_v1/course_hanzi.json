@@ -1,0 +1,98 @@
+[
+  {
+    "courseId": "course_animals_01",
+    "hanziId": "hanzi_cat",
+    "sortOrder": 1,
+    "isReview": false
+  },
+  {
+    "courseId": "course_animals_01",
+    "hanziId": "hanzi_dog",
+    "sortOrder": 2,
+    "isReview": false
+  },
+  {
+    "courseId": "course_animals_01",
+    "hanziId": "hanzi_bird",
+    "sortOrder": 3,
+    "isReview": false
+  },
+  {
+    "courseId": "course_animals_01",
+    "hanziId": "hanzi_fish",
+    "sortOrder": 4,
+    "isReview": false
+  },
+  {
+    "courseId": "course_animals_02",
+    "hanziId": "hanzi_forest",
+    "sortOrder": 1,
+    "isReview": false
+  },
+  {
+    "courseId": "course_family_01",
+    "hanziId": "hanzi_ba",
+    "sortOrder": 1,
+    "isReview": false
+  },
+  {
+    "courseId": "course_family_01",
+    "hanziId": "hanzi_ma",
+    "sortOrder": 2,
+    "isReview": false
+  },
+  {
+    "courseId": "course_family_01",
+    "hanziId": "hanzi_home",
+    "sortOrder": 3,
+    "isReview": false
+  },
+  {
+    "courseId": "course_family_02",
+    "hanziId": "hanzi_meal",
+    "sortOrder": 1,
+    "isReview": false
+  },
+  {
+    "courseId": "course_family_02",
+    "hanziId": "hanzi_clothes",
+    "sortOrder": 2,
+    "isReview": false
+  },
+  {
+    "courseId": "course_nature_01",
+    "hanziId": "hanzi_sun",
+    "sortOrder": 1,
+    "isReview": false
+  },
+  {
+    "courseId": "course_nature_01",
+    "hanziId": "hanzi_moon",
+    "sortOrder": 2,
+    "isReview": false
+  },
+  {
+    "courseId": "course_nature_01",
+    "hanziId": "hanzi_mountain",
+    "sortOrder": 3,
+    "isReview": false
+  },
+  {
+    "courseId": "course_nature_01",
+    "hanziId": "hanzi_water",
+    "sortOrder": 4,
+    "isReview": false
+  },
+  {
+    "courseId": "course_nature_02",
+    "hanziId": "hanzi_wind",
+    "sortOrder": 1,
+    "isReview": false
+  },
+  {
+    "courseId": "course_nature_02",
+    "hanziId": "hanzi_rain",
+    "sortOrder": 2,
+    "isReview": false
+  }
+]

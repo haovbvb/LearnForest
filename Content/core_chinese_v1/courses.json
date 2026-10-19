@@ -1,0 +1,348 @@
+[
+  {
+    "id": "course_animals_01",
+    "themeId": "theme_animals",
+    "title": "认识常见动物",
+    "description": "看看猫、狗、鸟、鱼。",
+    "stage": "enlightenment",
+    "minRecommendedAge": 3,
+    "maxRecommendedAge": 6,
+    "difficulty": 1,
+    "learningObjectives": [
+      "recognize_theme_hanzi"
+    ],
+    "contentTypes": [
+      "hanzi",
+      "image",
+      "audio"
+    ],
+    "sortOrder": 1,
+    "contentVersion": 1,
+    "status": "placeholder",
+    "hanziIds": [
+      "hanzi_cat",
+      "hanzi_dog",
+      "hanzi_bird",
+      "hanzi_fish"
+    ],
+    "exerciseTypes": [
+      "listen_and_select_image",
+      "character_to_image",
+      "character_image_matching"
+    ]
+  },
+  {
+    "id": "course_animals_02",
+    "themeId": "theme_animals",
+    "title": "森林里的朋友",
+    "description": "认识「林」。",
+    "stage": "enlightenment",
+    "minRecommendedAge": 3,
+    "maxRecommendedAge": 6,
+    "difficulty": 1,
+    "learningObjectives": [
+      "recognize_theme_hanzi"
+    ],
+    "contentTypes": [
+      "hanzi",
+      "image",
+      "audio"
+    ],
+    "sortOrder": 2,
+    "contentVersion": 1,
+    "status": "placeholder",
+    "hanziIds": [
+      "hanzi_forest"
+    ],
+    "exerciseTypes": [
+      "listen_and_select_image",
+      "character_to_image",
+      "character_image_matching"
+    ]
+  },
+  {
+    "id": "course_animals_03",
+    "themeId": "theme_animals",
+    "title": "动物怎么叫",
+    "description": "计划中的课，字还没写进包里。",
+    "stage": "enlightenment",
+    "minRecommendedAge": 3,
+    "maxRecommendedAge": 6,
+    "difficulty": 2,
+    "learningObjectives": [
+      "recognize_theme_hanzi"
+    ],
+    "contentTypes": [
+      "hanzi",
+      "image",
+      "audio"
+    ],
+    "sortOrder": 3,
+    "contentVersion": 1,
+    "status": "planned",
+    "hanziIds": [],
+    "exerciseTypes": [
+      "listen_and_select_image",
+      "character_to_image",
+      "character_image_matching"
+    ]
+  },
+  {
+    "id": "course_animals_04",
+    "themeId": "theme_animals",
+    "title": "再认一认动物",
+    "description": "计划中的复习课。",
+    "stage": "enlightenment",
+    "minRecommendedAge": 3,
+    "maxRecommendedAge": 6,
+    "difficulty": 2,
+    "learningObjectives": [
+      "recognize_theme_hanzi"
+    ],
+    "contentTypes": [
+      "hanzi",
+      "image",
+      "audio"
+    ],
+    "sortOrder": 4,
+    "contentVersion": 1,
+    "status": "planned",
+    "hanziIds": [],
+    "exerciseTypes": [
+      "listen_and_select_image",
+      "character_to_image",
+      "character_image_matching"
+    ]
+  },
+  {
+    "id": "course_family_01",
+    "themeId": "theme_family",
+    "title": "我的家人",
+    "description": "爸爸、妈妈和家。",
+    "stage": "enlightenment",
+    "minRecommendedAge": 3,
+    "maxRecommendedAge": 6,
+    "difficulty": 1,
+    "learningObjectives": [
+      "recognize_theme_hanzi"
+    ],
+    "contentTypes": [
+      "hanzi",
+      "image",
+      "audio"
+    ],
+    "sortOrder": 1,
+    "contentVersion": 1,
+    "status": "placeholder",
+    "hanziIds": [
+      "hanzi_ba",
+      "hanzi_ma",
+      "hanzi_home"
+    ],
+    "exerciseTypes": [
+      "listen_and_select_image",
+      "character_to_image",
+      "character_image_matching"
+    ]
+  },
+  {
+    "id": "course_family_02",
+    "themeId": "theme_family",
+    "title": "吃饭穿衣",
+    "description": "饭和衣。",
+    "stage": "enlightenment",
+    "minRecommendedAge": 3,
+    "maxRecommendedAge": 6,
+    "difficulty": 1,
+    "learningObjectives": [
+      "recognize_theme_hanzi"
+    ],
+    "contentTypes": [
+      "hanzi",
+      "image",
+      "audio"
+    ],
+    "sortOrder": 2,
+    "contentVersion": 1,
+    "status": "placeholder",
+    "hanziIds": [
+      "hanzi_meal",
+      "hanzi_clothes"
+    ],
+    "exerciseTypes": [
+      "listen_and_select_image",
+      "character_to_image",
+      "character_image_matching"
+    ]
+  },
+  {
+    "id": "course_family_03",
+    "themeId": "theme_family",
+    "title": "家里的地方",
+    "description": "计划中的课。",
+    "stage": "enlightenment",
+    "minRecommendedAge": 3,
+    "maxRecommendedAge": 6,
+    "difficulty": 2,
+    "learningObjectives": [
+      "recognize_theme_hanzi"
+    ],
+    "contentTypes": [
+      "hanzi",
+      "image",
+      "audio"
+    ],
+    "sortOrder": 3,
+    "contentVersion": 1,
+    "status": "planned",
+    "hanziIds": [],
+    "exerciseTypes": [
+      "listen_and_select_image",
+      "character_to_image",
+      "character_image_matching"
+    ]
+  },
+  {
+    "id": "course_family_04",
+    "themeId": "theme_family",
+    "title": "家庭复习",
+    "description": "计划中的复习课。",
+    "stage": "enlightenment",
+    "minRecommendedAge": 3,
+    "maxRecommendedAge": 6,
+    "difficulty": 2,
+    "learningObjectives": [
+      "recognize_theme_hanzi"
+    ],
+    "contentTypes": [
+      "hanzi",
+      "image",
+      "audio"
+    ],
+    "sortOrder": 4,
+    "contentVersion": 1,
+    "status": "planned",
+    "hanziIds": [],
+    "exerciseTypes": [
+      "listen_and_select_image",
+      "character_to_image",
+      "character_image_matching"
+    ]
+  },
+  {
+    "id": "course_nature_01",
+    "themeId": "theme_nature",
+    "title": "日月山水",
+    "description": "日、月、山、水。",
+    "stage": "enlightenment",
+    "minRecommendedAge": 3,
+    "maxRecommendedAge": 6,
+    "difficulty": 1,
+    "learningObjectives": [
+      "recognize_theme_hanzi"
+    ],
+    "contentTypes": [
+      "hanzi",
+      "image",
+      "audio"
+    ],
+    "sortOrder": 1,
+    "contentVersion": 1,
+    "status": "placeholder",
+    "hanziIds": [
+      "hanzi_sun",
+      "hanzi_moon",
+      "hanzi_mountain",
+      "hanzi_water"
+    ],
+    "exerciseTypes": [
+      "listen_and_select_image",
+      "character_to_image",
+      "character_image_matching"
+    ]
+  },
+  {
+    "id": "course_nature_02",
+    "themeId": "theme_nature",
+    "title": "风雨",
+    "description": "风和雨。",
+    "stage": "enlightenment",
+    "minRecommendedAge": 3,
+    "maxRecommendedAge": 6,
+    "difficulty": 1,
+    "learningObjectives": [
+      "recognize_theme_hanzi"
+    ],
+    "contentTypes": [
+      "hanzi",
+      "image",
+      "audio"
+    ],
+    "sortOrder": 2,
+    "contentVersion": 1,
+    "status": "placeholder",
+    "hanziIds": [
+      "hanzi_wind",
+      "hanzi_rain"
+    ],
+    "exerciseTypes": [
+      "listen_and_select_image",
+      "character_to_image",
+      "character_image_matching"
+    ]
+  },
+  {
+    "id": "course_nature_03",
+    "themeId": "theme_nature",
+    "title": "花和树",
+    "description": "计划中的课。",
+    "stage": "enlightenment",
+    "minRecommendedAge": 3,
+    "maxRecommendedAge": 6,
+    "difficulty": 2,
+    "learningObjectives": [
+      "recognize_theme_hanzi"
+    ],
+    "contentTypes": [
+      "hanzi",
+      "image",
+      "audio"
+    ],
+    "sortOrder": 3,
+    "contentVersion": 1,
+    "status": "planned",
+    "hanziIds": [],
+    "exerciseTypes": [
+      "listen_and_select_image",
+      "character_to_image",
+      "character_image_matching"
+    ]
+  },
+  {
+    "id": "course_nature_04",
+    "themeId": "theme_nature",
+    "title": "自然复习",
+    "description": "计划中的复习课。",
+    "stage": "enlightenment",
+    "minRecommendedAge": 3,
+    "maxRecommendedAge": 6,
+    "difficulty": 2,
+    "learningObjectives": [
+      "recognize_theme_hanzi"
+    ],
+    "contentTypes": [
+      "hanzi",
+      "image",
+      "audio"
+    ],
+    "sortOrder": 4,
+    "contentVersion": 1,
+    "status": "planned",
+    "hanziIds": [],
+    "exerciseTypes": [
+      "listen_and_select_image",
+      "character_to_image",
+      "character_image_matching"
+    ]
+  }
+]

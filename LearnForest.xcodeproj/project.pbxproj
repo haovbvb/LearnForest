@@ -1,0 +1,606 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 56;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		A10000000000000000000011 /* GRDB in Frameworks */ = {isa = PBXBuildFile; productRef = A10000000000000000000010 /* GRDB */; };
+		75F253049ED6393F6768885F /* core_chinese_v1 in Resources */ = {isa = PBXBuildFile; fileRef = FDCE4AFF215E43B998CFCCE6 /* core_chinese_v1 */; };
+		03401DAF72D3F5684E387FDC /* AppModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 039A4E62B9F402219C5F46E1 /* AppModel.swift */; };
+		0478C3A1C37A8CA9F51D5A59 /* LearnForestApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = B81020DED77BBB5401EE4FF3 /* LearnForestApp.swift */; };
+		D933F3B1D4F5AAB954397F7A /* RootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1009FAC559F8505EA01F57AA /* RootView.swift */; };
+		7E3DE96E52A636C50BAD9236 /* ContentPackageLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 203CE910C8777FBC0FD2E9EE /* ContentPackageLoader.swift */; };
+		6DEB92CBDA2BB651513FEE3B /* AppDatabase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 032634D9D5C184BC34B66E01 /* AppDatabase.swift */; };
+		6D6F89CCA201EEC48E4F1F54 /* SchemaMigration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05F8A1CF2545EFD4DCA3B2A8 /* SchemaMigration.swift */; };
+		04A882C35A2BC399622065E7 /* PersistableRecords.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2F4F51B9BC347C6C02224FD /* PersistableRecords.swift */; };
+		96076577D68154219895282F /* ChildProfileRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13DF2AF3EDF2B5E7A4EDA87B /* ChildProfileRepository.swift */; };
+		EACC468F9B22AFA2114833CC /* LearningRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB262210733B063A812BFC06 /* LearningRepository.swift */; };
+		A4BFF14B2A156F5715E7DA44 /* ForestCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 064A1CFCE61D0098BA6952AD /* ForestCard.swift */; };
+		D361FB4627F8466DB7754E87 /* ForestPalette.swift in Sources */ = {isa = PBXBuildFile; fileRef = F370C0D4F8B9A8A4245FF4FD /* ForestPalette.swift */; };
+		4BE2651906275B10D1360C96 /* PrimaryLearningButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA0E3FB6FAC5EFD3F2BEA9E /* PrimaryLearningButton.swift */; };
+		8F1021E93F5ACB6822B5E2CF /* ChildProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D806BAF86A71F706DFA5BE1 /* ChildProfile.swift */; };
+		1C2E00F487E9DE236F0D3AAE /* ContentModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8650C107F6B09DF1B281BF4 /* ContentModels.swift */; };
+		C46F3CB77A90903A7B44DBAE /* CourseQualityGate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E209F7CCDB4E44C3D704B06 /* CourseQualityGate.swift */; };
+		CC09DF18FCA57D2CBA35307F /* ForestEnums.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2E00B8D7209D3EFECE3B694 /* ForestEnums.swift */; };
+		E18F3EF9C715B7FA25B71F8E /* LearningModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FAE9585F8A0C02608178E09 /* LearningModels.swift */; };
+		DB273EB3C5F3C0E06D1871D2 /* LearningService.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC64CF750A69477473FF2155 /* LearningService.swift */; };
+		F360DC393EF7786D5A3128A9 /* ProductIdentity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3416D3F95AE4E61E358BB0D3 /* ProductIdentity.swift */; };
+		0C8B831D76FEB7714FDB8B8F /* MyCardsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23376FD37C0A2782CD6FC4AB /* MyCardsView.swift */; };
+		F1E6797B1FC3EF4DB98B3959 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1029778FF69390C7EE4F928 /* HomeView.swift */; };
+		4A00F5ACC6CFD49F7FE033A7 /* CharacterPreviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D64525F834BEB6DE63ABD58D /* CharacterPreviewView.swift */; };
+		E782F0E7FF8E5A3AC9C5824E /* CourseListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CDC0419C77AD28F76D1B01A /* CourseListView.swift */; };
+		7B9438442833C6EC361E5274 /* LearnView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D25FD28D90C7D1B1AF488C4E /* LearnView.swift */; };
+		12E9E6671C9A351A4DD6A4EB /* LessonEntryPlaceholder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8747800CD250B41B2A3F64EE /* LessonEntryPlaceholder.swift */; };
+		2E6A23D1BA3E6C869F2AF47D /* PronunciationPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A862F1D2F9E7B79BC64390C5 /* PronunciationPlayer.swift */; };
+		A995846C144EDDEFFB7E2492 /* ParentCenterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6226D1E580FEF8C0F8AB1310 /* ParentCenterView.swift */; };
+		11AF293E34C5D83EE2A0D653 /* ParentGateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C45B951FFFB86BE58AE8A046 /* ParentGateView.swift */; };
+		319AD4A8D946A5ACB8CEE3D4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C4A2BB1C06F7C43BCE105437 /* Assets.xcassets */; };
+		FE722D559E81AAE9B990645A /* BundledCoursePack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B1F455AD8F19E29787B7306 /* BundledCoursePack.swift */; };
+		DEFA55CBA745C3062649AEB2 /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = 61C61E48F7DBDDB5D63000AD /* PrivacyInfo.xcprivacy */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		A10000000000000000000004 /* LearnForest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LearnForest.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		FDCE4AFF215E43B998CFCCE6 /* core_chinese_v1 */ = {isa = PBXFileReference; lastKnownFileType = folder; path = core_chinese_v1; sourceTree = "<group>"; };
+		CB53D1F18CA053511E6C914A /* templates */ = {isa = PBXFileReference; lastKnownFileType = folder; path = templates; sourceTree = "<group>"; };
+		039A4E62B9F402219C5F46E1 /* AppModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppModel.swift; sourceTree = "<group>"; };
+		B81020DED77BBB5401EE4FF3 /* LearnForestApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LearnForestApp.swift; sourceTree = "<group>"; };
+		1009FAC559F8505EA01F57AA /* RootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootView.swift; sourceTree = "<group>"; };
+		203CE910C8777FBC0FD2E9EE /* ContentPackageLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentPackageLoader.swift; sourceTree = "<group>"; };
+		032634D9D5C184BC34B66E01 /* AppDatabase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDatabase.swift; sourceTree = "<group>"; };
+		05F8A1CF2545EFD4DCA3B2A8 /* SchemaMigration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SchemaMigration.swift; sourceTree = "<group>"; };
+		B2F4F51B9BC347C6C02224FD /* PersistableRecords.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistableRecords.swift; sourceTree = "<group>"; };
+		13DF2AF3EDF2B5E7A4EDA87B /* ChildProfileRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChildProfileRepository.swift; sourceTree = "<group>"; };
+		AB262210733B063A812BFC06 /* LearningRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LearningRepository.swift; sourceTree = "<group>"; };
+		064A1CFCE61D0098BA6952AD /* ForestCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForestCard.swift; sourceTree = "<group>"; };
+		F370C0D4F8B9A8A4245FF4FD /* ForestPalette.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForestPalette.swift; sourceTree = "<group>"; };
+		CEA0E3FB6FAC5EFD3F2BEA9E /* PrimaryLearningButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrimaryLearningButton.swift; sourceTree = "<group>"; };
+		8D806BAF86A71F706DFA5BE1 /* ChildProfile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChildProfile.swift; sourceTree = "<group>"; };
+		C8650C107F6B09DF1B281BF4 /* ContentModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentModels.swift; sourceTree = "<group>"; };
+		3E209F7CCDB4E44C3D704B06 /* CourseQualityGate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseQualityGate.swift; sourceTree = "<group>"; };
+		D2E00B8D7209D3EFECE3B694 /* ForestEnums.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForestEnums.swift; sourceTree = "<group>"; };
+		6FAE9585F8A0C02608178E09 /* LearningModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LearningModels.swift; sourceTree = "<group>"; };
+		BC64CF750A69477473FF2155 /* LearningService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LearningService.swift; sourceTree = "<group>"; };
+		3416D3F95AE4E61E358BB0D3 /* ProductIdentity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductIdentity.swift; sourceTree = "<group>"; };
+		23376FD37C0A2782CD6FC4AB /* MyCardsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyCardsView.swift; sourceTree = "<group>"; };
+		B1029778FF69390C7EE4F928 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
+		D64525F834BEB6DE63ABD58D /* CharacterPreviewView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterPreviewView.swift; sourceTree = "<group>"; };
+		9CDC0419C77AD28F76D1B01A /* CourseListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseListView.swift; sourceTree = "<group>"; };
+		D25FD28D90C7D1B1AF488C4E /* LearnView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LearnView.swift; sourceTree = "<group>"; };
+		8747800CD250B41B2A3F64EE /* LessonEntryPlaceholder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LessonEntryPlaceholder.swift; sourceTree = "<group>"; };
+		A862F1D2F9E7B79BC64390C5 /* PronunciationPlayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PronunciationPlayer.swift; sourceTree = "<group>"; };
+		6226D1E580FEF8C0F8AB1310 /* ParentCenterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParentCenterView.swift; sourceTree = "<group>"; };
+		C45B951FFFB86BE58AE8A046 /* ParentGateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParentGateView.swift; sourceTree = "<group>"; };
+		C4A2BB1C06F7C43BCE105437 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		9B1F455AD8F19E29787B7306 /* BundledCoursePack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BundledCoursePack.swift; sourceTree = "<group>"; };
+		14CA8FCA9ABEA377B3368F77 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		61C61E48F7DBDDB5D63000AD /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		A10000000000000000000007 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A10000000000000000000011 /* GRDB in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		A10000000000000000000002 /* LearnForest project */ = {
+			isa = PBXGroup;
+			children = (
+				590254CDBFCF61CBF21ADA0A /* Content */,
+				95E9901E4D781ADC22630F99 /* LearnForest */,
+				A10000000000000000000003 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		590254CDBFCF61CBF21ADA0A /* Content */ = {
+			isa = PBXGroup;
+			children = (
+				FDCE4AFF215E43B998CFCCE6 /* core_chinese_v1 */,
+				CB53D1F18CA053511E6C914A /* templates */,
+			);
+			path = Content;
+			sourceTree = "<group>";
+		};
+		95E9901E4D781ADC22630F99 /* LearnForest */ = {
+			isa = PBXGroup;
+			children = (
+				F91C65CF7AD2F2C0FAE1F553 /* App */,
+				21624FEBA2D77F56634B0A67 /* Data */,
+				537C667D32F687CC105D4445 /* DesignSystem */,
+				51595FC2884BECB1E5967B84 /* Domain */,
+				7E515A68C45A8166900F9120 /* Features */,
+				7D519D07552EAAEF61B200D1 /* Resources */,
+			);
+			path = LearnForest;
+			sourceTree = "<group>";
+		};
+		F91C65CF7AD2F2C0FAE1F553 /* App */ = {
+			isa = PBXGroup;
+			children = (
+				039A4E62B9F402219C5F46E1 /* AppModel.swift */,
+				B81020DED77BBB5401EE4FF3 /* LearnForestApp.swift */,
+				1009FAC559F8505EA01F57AA /* RootView.swift */,
+			);
+			path = App;
+			sourceTree = "<group>";
+		};
+		21624FEBA2D77F56634B0A67 /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				6D41F229EC6DAE570941814B /* Content */,
+				E5931C0A1C3B170352E5DE17 /* Database */,
+				3945F6C0A0596A9098C382B0 /* Records */,
+				F80F9E829E11F9210AF688E2 /* Repositories */,
+			);
+			path = Data;
+			sourceTree = "<group>";
+		};
+		6D41F229EC6DAE570941814B /* Content */ = {
+			isa = PBXGroup;
+			children = (
+				203CE910C8777FBC0FD2E9EE /* ContentPackageLoader.swift */,
+			);
+			path = Content;
+			sourceTree = "<group>";
+		};
+		E5931C0A1C3B170352E5DE17 /* Database */ = {
+			isa = PBXGroup;
+			children = (
+				032634D9D5C184BC34B66E01 /* AppDatabase.swift */,
+				05F8A1CF2545EFD4DCA3B2A8 /* SchemaMigration.swift */,
+			);
+			path = Database;
+			sourceTree = "<group>";
+		};
+		3945F6C0A0596A9098C382B0 /* Records */ = {
+			isa = PBXGroup;
+			children = (
+				B2F4F51B9BC347C6C02224FD /* PersistableRecords.swift */,
+			);
+			path = Records;
+			sourceTree = "<group>";
+		};
+		F80F9E829E11F9210AF688E2 /* Repositories */ = {
+			isa = PBXGroup;
+			children = (
+				13DF2AF3EDF2B5E7A4EDA87B /* ChildProfileRepository.swift */,
+				AB262210733B063A812BFC06 /* LearningRepository.swift */,
+			);
+			path = Repositories;
+			sourceTree = "<group>";
+		};
+		537C667D32F687CC105D4445 /* DesignSystem */ = {
+			isa = PBXGroup;
+			children = (
+				064A1CFCE61D0098BA6952AD /* ForestCard.swift */,
+				F370C0D4F8B9A8A4245FF4FD /* ForestPalette.swift */,
+				CEA0E3FB6FAC5EFD3F2BEA9E /* PrimaryLearningButton.swift */,
+			);
+			path = DesignSystem;
+			sourceTree = "<group>";
+		};
+		51595FC2884BECB1E5967B84 /* Domain */ = {
+			isa = PBXGroup;
+			children = (
+				8D806BAF86A71F706DFA5BE1 /* ChildProfile.swift */,
+				C8650C107F6B09DF1B281BF4 /* ContentModels.swift */,
+				3E209F7CCDB4E44C3D704B06 /* CourseQualityGate.swift */,
+				D2E00B8D7209D3EFECE3B694 /* ForestEnums.swift */,
+				6FAE9585F8A0C02608178E09 /* LearningModels.swift */,
+				BC64CF750A69477473FF2155 /* LearningService.swift */,
+				3416D3F95AE4E61E358BB0D3 /* ProductIdentity.swift */,
+			);
+			path = Domain;
+			sourceTree = "<group>";
+		};
+		7E515A68C45A8166900F9120 /* Features */ = {
+			isa = PBXGroup;
+			children = (
+				C9E785938275C8E33F2A50FF /* Cards */,
+				DBFEE7B4169D222A6062E79D /* Home */,
+				B80C70160B1A9AF7A1144462 /* Learn */,
+				0792FA6BE76F2281DAAEE0D9 /* Parent */,
+			);
+			path = Features;
+			sourceTree = "<group>";
+		};
+		C9E785938275C8E33F2A50FF /* Cards */ = {
+			isa = PBXGroup;
+			children = (
+				23376FD37C0A2782CD6FC4AB /* MyCardsView.swift */,
+			);
+			path = Cards;
+			sourceTree = "<group>";
+		};
+		DBFEE7B4169D222A6062E79D /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				B1029778FF69390C7EE4F928 /* HomeView.swift */,
+			);
+			path = Home;
+			sourceTree = "<group>";
+		};
+		B80C70160B1A9AF7A1144462 /* Learn */ = {
+			isa = PBXGroup;
+			children = (
+				D64525F834BEB6DE63ABD58D /* CharacterPreviewView.swift */,
+				9CDC0419C77AD28F76D1B01A /* CourseListView.swift */,
+				D25FD28D90C7D1B1AF488C4E /* LearnView.swift */,
+				8747800CD250B41B2A3F64EE /* LessonEntryPlaceholder.swift */,
+				A862F1D2F9E7B79BC64390C5 /* PronunciationPlayer.swift */,
+			);
+			path = Learn;
+			sourceTree = "<group>";
+		};
+		0792FA6BE76F2281DAAEE0D9 /* Parent */ = {
+			isa = PBXGroup;
+			children = (
+				6226D1E580FEF8C0F8AB1310 /* ParentCenterView.swift */,
+				C45B951FFFB86BE58AE8A046 /* ParentGateView.swift */,
+			);
+			path = Parent;
+			sourceTree = "<group>";
+		};
+		7D519D07552EAAEF61B200D1 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				C4A2BB1C06F7C43BCE105437 /* Assets.xcassets */,
+				9B1F455AD8F19E29787B7306 /* BundledCoursePack.swift */,
+				14CA8FCA9ABEA377B3368F77 /* Info.plist */,
+				61C61E48F7DBDDB5D63000AD /* PrivacyInfo.xcprivacy */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		A10000000000000000000003 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				A10000000000000000000004 /* LearnForest.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		A10000000000000000000005 /* LearnForest */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = A1000000000000000000000A /* Build configuration list for PBXNativeTarget "LearnForest" */;
+			buildPhases = (
+				A10000000000000000000006 /* Sources */,
+				A10000000000000000000007 /* Frameworks */,
+				A10000000000000000000008 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = LearnForest;
+			packageProductDependencies = (
+				A10000000000000000000010 /* GRDB */,
+			);
+			productName = LearnForest;
+			productReference = A10000000000000000000004 /* LearnForest.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		A10000000000000000000001 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1630;
+				LastUpgradeCheck = 1630;
+				ORGANIZATIONNAME = LearnForest;
+				TargetAttributes = {
+					A10000000000000000000005 = {
+						CreatedOnToolsVersion = 16.3;
+					};
+				};
+			};
+			buildConfigurationList = A10000000000000000000009 /* Build configuration list for PBXProject "LearnForest" */;
+			developmentRegion = "zh-Hans";
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+				"zh-Hans",
+			);
+			mainGroup = A10000000000000000000002;
+			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				A1000000000000000000000F /* XCRemoteSwiftPackageReference "GRDB.swift" */,
+			);
+			preferredProjectObjectVersion = 56;
+			productRefGroup = A10000000000000000000003 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				A10000000000000000000005 /* LearnForest */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		A10000000000000000000008 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				75F253049ED6393F6768885F /* core_chinese_v1 in Resources */,
+				319AD4A8D946A5ACB8CEE3D4 /* Assets.xcassets in Resources */,
+				DEFA55CBA745C3062649AEB2 /* PrivacyInfo.xcprivacy in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		A10000000000000000000006 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				03401DAF72D3F5684E387FDC /* AppModel.swift in Sources */,
+				0478C3A1C37A8CA9F51D5A59 /* LearnForestApp.swift in Sources */,
+				D933F3B1D4F5AAB954397F7A /* RootView.swift in Sources */,
+				7E3DE96E52A636C50BAD9236 /* ContentPackageLoader.swift in Sources */,
+				6DEB92CBDA2BB651513FEE3B /* AppDatabase.swift in Sources */,
+				6D6F89CCA201EEC48E4F1F54 /* SchemaMigration.swift in Sources */,
+				04A882C35A2BC399622065E7 /* PersistableRecords.swift in Sources */,
+				96076577D68154219895282F /* ChildProfileRepository.swift in Sources */,
+				EACC468F9B22AFA2114833CC /* LearningRepository.swift in Sources */,
+				A4BFF14B2A156F5715E7DA44 /* ForestCard.swift in Sources */,
+				D361FB4627F8466DB7754E87 /* ForestPalette.swift in Sources */,
+				4BE2651906275B10D1360C96 /* PrimaryLearningButton.swift in Sources */,
+				8F1021E93F5ACB6822B5E2CF /* ChildProfile.swift in Sources */,
+				1C2E00F487E9DE236F0D3AAE /* ContentModels.swift in Sources */,
+				C46F3CB77A90903A7B44DBAE /* CourseQualityGate.swift in Sources */,
+				CC09DF18FCA57D2CBA35307F /* ForestEnums.swift in Sources */,
+				E18F3EF9C715B7FA25B71F8E /* LearningModels.swift in Sources */,
+				DB273EB3C5F3C0E06D1871D2 /* LearningService.swift in Sources */,
+				F360DC393EF7786D5A3128A9 /* ProductIdentity.swift in Sources */,
+				0C8B831D76FEB7714FDB8B8F /* MyCardsView.swift in Sources */,
+				F1E6797B1FC3EF4DB98B3959 /* HomeView.swift in Sources */,
+				4A00F5ACC6CFD49F7FE033A7 /* CharacterPreviewView.swift in Sources */,
+				E782F0E7FF8E5A3AC9C5824E /* CourseListView.swift in Sources */,
+				7B9438442833C6EC361E5274 /* LearnView.swift in Sources */,
+				12E9E6671C9A351A4DD6A4EB /* LessonEntryPlaceholder.swift in Sources */,
+				2E6A23D1BA3E6C869F2AF47D /* PronunciationPlayer.swift in Sources */,
+				A995846C144EDDEFFB7E2492 /* ParentCenterView.swift in Sources */,
+				11AF293E34C5D83EE2A0D653 /* ParentGateView.swift in Sources */,
+				FE722D559E81AAE9B990645A /* BundledCoursePack.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		A1000000000000000000000B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 2;
+			};
+			name = Debug;
+		};
+		A1000000000000000000000C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 2;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		A1000000000000000000000D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = "";
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = LearnForest/Resources/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.learnforest.shizi;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 2;
+			};
+			name = Debug;
+		};
+		A1000000000000000000000E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = "";
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = LearnForest/Resources/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.learnforest.shizi;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 2;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		A10000000000000000000009 /* Build configuration list for PBXProject "LearnForest" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A1000000000000000000000B /* Debug */,
+				A1000000000000000000000C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		A1000000000000000000000A /* Build configuration list for PBXNativeTarget "LearnForest" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A1000000000000000000000D /* Debug */,
+				A1000000000000000000000E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		A1000000000000000000000F /* XCRemoteSwiftPackageReference "GRDB.swift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/groue/GRDB.swift";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 7.11.1;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		A10000000000000000000010 /* GRDB */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = A1000000000000000000000F /* XCRemoteSwiftPackageReference "GRDB.swift" */;
+			productName = GRDB;
+		};
+/* End XCSwiftPackageProductDependency section */
+	};
+	rootObject = A10000000000000000000001 /* Project object */;
+}

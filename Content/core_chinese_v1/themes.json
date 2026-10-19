@@ -1,0 +1,29 @@
+[
+  {
+    "id": "theme_animals",
+    "title": "动物世界",
+    "coverAssetId": "cover_animals",
+    "sortOrder": 1,
+    "contentVersion": 1,
+    "isAvailable": true,
+    "summary": "从常见动物开始认字。"
+  },
+  {
+    "id": "theme_family",
+    "title": "家庭生活",
+    "coverAssetId": "cover_family",
+    "sortOrder": 2,
+    "contentVersion": 1,
+    "isAvailable": true,
+    "summary": "家里天天会碰到的字。"
+  },
+  {
+    "id": "theme_nature",
+    "title": "自然世界",
+    "coverAssetId": "cover_nature",
+    "sortOrder": 3,
+    "contentVersion": 1,
+    "isAvailable": true,
+    "summary": "日月山水和风雨。"
+  }
+]

@@ -1,0 +1,398 @@
+[
+  {
+    "strokeCount": 11,
+    "strokeDataId": null,
+    "wordExamples": [
+      "小猫",
+      "猫咪"
+    ],
+    "sentenceExamples": [
+      "小猫在睡觉。"
+    ],
+    "relatedHanziIds": [
+      "hanzi_dog"
+    ],
+    "difficulty": 1,
+    "contentVersion": 1,
+    "isPublished": false,
+    "id": "hanzi_cat",
+    "character": "猫",
+    "pinyin": "māo",
+    "definition": "一种常见的小动物，会喵喵叫。",
+    "audioAssetId": "audio_cat",
+    "imageAssetId": "image_cat",
+    "tags": [
+      "animal"
+    ]
+  },
+  {
+    "strokeCount": 8,
+    "strokeDataId": null,
+    "wordExamples": [
+      "小狗",
+      "狗狗"
+    ],
+    "sentenceExamples": [
+      "小狗跑过来。"
+    ],
+    "relatedHanziIds": [
+      "hanzi_cat"
+    ],
+    "difficulty": 1,
+    "contentVersion": 1,
+    "isPublished": false,
+    "id": "hanzi_dog",
+    "character": "狗",
+    "pinyin": "gǒu",
+    "definition": "一种常见的小动物，会汪汪叫。",
+    "audioAssetId": "audio_dog",
+    "imageAssetId": "image_dog",
+    "tags": [
+      "animal"
+    ]
+  },
+  {
+    "strokeCount": 5,
+    "strokeDataId": null,
+    "wordExamples": [
+      "小鸟"
+    ],
+    "sentenceExamples": [
+      "小鸟在树上。"
+    ],
+    "relatedHanziIds": null,
+    "difficulty": 1,
+    "contentVersion": 1,
+    "isPublished": false,
+    "id": "hanzi_bird",
+    "character": "鸟",
+    "pinyin": "niǎo",
+    "definition": "有羽毛、常常会飞的动物。",
+    "audioAssetId": "audio_bird",
+    "imageAssetId": "image_bird",
+    "tags": [
+      "animal"
+    ]
+  },
+  {
+    "strokeCount": 8,
+    "strokeDataId": null,
+    "wordExamples": [
+      "小鱼"
+    ],
+    "sentenceExamples": [
+      "小鱼在水里游。"
+    ],
+    "relatedHanziIds": null,
+    "difficulty": 1,
+    "contentVersion": 1,
+    "isPublished": false,
+    "id": "hanzi_fish",
+    "character": "鱼",
+    "pinyin": "yú",
+    "definition": "生活在水里的动物。",
+    "audioAssetId": "audio_fish",
+    "imageAssetId": "image_fish",
+    "tags": [
+      "animal"
+    ]
+  },
+  {
+    "strokeCount": 8,
+    "strokeDataId": null,
+    "wordExamples": [
+      "森林",
+      "树林"
+    ],
+    "sentenceExamples": [
+      "森林里有许多树。"
+    ],
+    "relatedHanziIds": null,
+    "difficulty": 1,
+    "contentVersion": 1,
+    "isPublished": false,
+    "id": "hanzi_forest",
+    "character": "林",
+    "pinyin": "lín",
+    "definition": "很多树长在一起的地方。",
+    "audioAssetId": "audio_forest",
+    "imageAssetId": "image_forest",
+    "tags": [
+      "animal",
+      "nature"
+    ]
+  },
+  {
+    "strokeCount": 8,
+    "strokeDataId": null,
+    "wordExamples": [
+      "爸爸"
+    ],
+    "sentenceExamples": [
+      "爸爸回家了。"
+    ],
+    "relatedHanziIds": [
+      "hanzi_ma"
+    ],
+    "difficulty": 1,
+    "contentVersion": 1,
+    "isPublished": false,
+    "id": "hanzi_ba",
+    "character": "爸",
+    "pinyin": "bà",
+    "definition": "爸爸。",
+    "audioAssetId": "audio_ba",
+    "imageAssetId": "image_ba",
+    "tags": [
+      "family"
+    ]
+  },
+  {
+    "strokeCount": 6,
+    "strokeDataId": null,
+    "wordExamples": [
+      "妈妈"
+    ],
+    "sentenceExamples": [
+      "妈妈在做饭。"
+    ],
+    "relatedHanziIds": [
+      "hanzi_ba"
+    ],
+    "difficulty": 1,
+    "contentVersion": 1,
+    "isPublished": false,
+    "id": "hanzi_ma",
+    "character": "妈",
+    "pinyin": "mā",
+    "definition": "妈妈。",
+    "audioAssetId": "audio_ma",
+    "imageAssetId": "image_ma",
+    "tags": [
+      "family"
+    ]
+  },
+  {
+    "strokeCount": 10,
+    "strokeDataId": null,
+    "wordExamples": [
+      "家庭",
+      "家里"
+    ],
+    "sentenceExamples": [
+      "我家有爸爸和妈妈。"
+    ],
+    "relatedHanziIds": null,
+    "difficulty": 1,
+    "contentVersion": 1,
+    "isPublished": false,
+    "id": "hanzi_home",
+    "character": "家",
+    "pinyin": "jiā",
+    "definition": "和家人一起住的地方。",
+    "audioAssetId": "audio_home",
+    "imageAssetId": "image_home",
+    "tags": [
+      "family"
+    ]
+  },
+  {
+    "strokeCount": 7,
+    "strokeDataId": null,
+    "wordExamples": [
+      "吃饭",
+      "米饭"
+    ],
+    "sentenceExamples": [
+      "该吃饭了。"
+    ],
+    "relatedHanziIds": null,
+    "difficulty": 1,
+    "contentVersion": 1,
+    "isPublished": false,
+    "id": "hanzi_meal",
+    "character": "饭",
+    "pinyin": "fàn",
+    "definition": "吃的饭菜。",
+    "audioAssetId": "audio_meal",
+    "imageAssetId": "image_meal",
+    "tags": [
+      "family"
+    ]
+  },
+  {
+    "strokeCount": 6,
+    "strokeDataId": null,
+    "wordExamples": [
+      "衣服"
+    ],
+    "sentenceExamples": [
+      "我穿上衣服。"
+    ],
+    "relatedHanziIds": null,
+    "difficulty": 1,
+    "contentVersion": 1,
+    "isPublished": false,
+    "id": "hanzi_clothes",
+    "character": "衣",
+    "pinyin": "yī",
+    "definition": "穿在身上的衣服。",
+    "audioAssetId": "audio_clothes",
+    "imageAssetId": "image_clothes",
+    "tags": [
+      "family"
+    ]
+  },
+  {
+    "strokeCount": 4,
+    "strokeDataId": null,
+    "wordExamples": [
+      "日子",
+      "日光"
+    ],
+    "sentenceExamples": [
+      "太阳出来了。"
+    ],
+    "relatedHanziIds": [
+      "hanzi_moon"
+    ],
+    "difficulty": 1,
+    "contentVersion": 1,
+    "isPublished": false,
+    "id": "hanzi_sun",
+    "character": "日",
+    "pinyin": "rì",
+    "definition": "太阳。也可以指一天。",
+    "audioAssetId": "audio_sun",
+    "imageAssetId": "image_sun",
+    "tags": [
+      "nature"
+    ]
+  },
+  {
+    "strokeCount": 4,
+    "strokeDataId": null,
+    "wordExamples": [
+      "月亮",
+      "月光"
+    ],
+    "sentenceExamples": [
+      "月亮挂在天上。"
+    ],
+    "relatedHanziIds": [
+      "hanzi_sun"
+    ],
+    "difficulty": 1,
+    "contentVersion": 1,
+    "isPublished": false,
+    "id": "hanzi_moon",
+    "character": "月",
+    "pinyin": "yuè",
+    "definition": "月亮。",
+    "audioAssetId": "audio_moon",
+    "imageAssetId": "image_moon",
+    "tags": [
+      "nature"
+    ]
+  },
+  {
+    "strokeCount": 3,
+    "strokeDataId": null,
+    "wordExamples": [
+      "大山",
+      "山上"
+    ],
+    "sentenceExamples": [
+      "远远看见一座山。"
+    ],
+    "relatedHanziIds": null,
+    "difficulty": 1,
+    "contentVersion": 1,
+    "isPublished": false,
+    "id": "hanzi_mountain",
+    "character": "山",
+    "pinyin": "shān",
+    "definition": "高出地面的大地。",
+    "audioAssetId": "audio_mountain",
+    "imageAssetId": "image_mountain",
+    "tags": [
+      "nature"
+    ]
+  },
+  {
+    "strokeCount": 4,
+    "strokeDataId": null,
+    "wordExamples": [
+      "喝水",
+      "河水"
+    ],
+    "sentenceExamples": [
+      "我要喝水。"
+    ],
+    "relatedHanziIds": null,
+    "difficulty": 1,
+    "contentVersion": 1,
+    "isPublished": false,
+    "id": "hanzi_water",
+    "character": "水",
+    "pinyin": "shuǐ",
+    "definition": "可以喝、也会流动的液体。",
+    "audioAssetId": "audio_water",
+    "imageAssetId": "image_water",
+    "tags": [
+      "nature"
+    ]
+  },
+  {
+    "strokeCount": 4,
+    "strokeDataId": null,
+    "wordExamples": [
+      "大风",
+      "风吹"
+    ],
+    "sentenceExamples": [
+      "今天有风。"
+    ],
+    "relatedHanziIds": [
+      "hanzi_rain"
+    ],
+    "difficulty": 1,
+    "contentVersion": 1,
+    "isPublished": false,
+    "id": "hanzi_wind",
+    "character": "风",
+    "pinyin": "fēng",
+    "definition": "流动的空气。",
+    "audioAssetId": "audio_wind",
+    "imageAssetId": "image_wind",
+    "tags": [
+      "nature"
+    ]
+  },
+  {
+    "strokeCount": 8,
+    "strokeDataId": null,
+    "wordExamples": [
+      "下雨",
+      "雨天"
+    ],
+    "sentenceExamples": [
+      "下雨了，带上伞。"
+    ],
+    "relatedHanziIds": [
+      "hanzi_wind"
+    ],
+    "difficulty": 1,
+    "contentVersion": 1,
+    "isPublished": false,
+    "id": "hanzi_rain",
+    "character": "雨",
+    "pinyin": "yǔ",
+    "definition": "从天上落下来的水。",
+    "audioAssetId": "audio_rain",
+    "imageAssetId": "image_rain",
+    "tags": [
+      "nature"
+    ]
+  }
+]
