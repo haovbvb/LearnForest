@@ -16,6 +16,9 @@ enum SchemaMigration {
             try createRewardRecord(db)
             try createContentInstallState(db)
         }
+        migrator.registerMigration("v2_study_time") { db in
+            try createStudyTime(db)
+        }
         return migrator
     }
 
@@ -165,5 +168,26 @@ enum SchemaMigration {
             table.column("syncStatus", .text).notNull().defaults(to: SyncReservation.localOnly)
             table.column("deviceId", .text)
         }
+    }
+
+    /// 按档案和本地日历日记有效学习秒数。远程同步仍不上传。
+    private static func createStudyTime(_ db: Database) throws {
+        try db.create(table: "studyTime") { table in
+            table.primaryKey("id", .text)
+            table.column("profileId", .text).notNull()
+            table.column("day", .text).notNull()
+            table.column("durationSeconds", .integer).notNull().defaults(to: 0)
+            table.column("updatedAt", .datetime).notNull()
+            table.column("syncStatus", .text).notNull().defaults(to: SyncReservation.localOnly)
+            table.column("schemaVersion", .integer).notNull().defaults(to: schemaVersion)
+            table.column("deviceId", .text)
+            table.column("deletedAt", .datetime)
+        }
+        try db.create(
+            index: "studyTime_profile_day",
+            on: "studyTime",
+            columns: ["profileId", "day"],
+            unique: true
+        )
     }
 }

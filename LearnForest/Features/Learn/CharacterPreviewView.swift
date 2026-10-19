@@ -51,8 +51,9 @@ struct CharacterPreviewView: View {
 
 struct CharacterDetailPlaceholder: View {
     @Environment(AppModel.self) private var model
+    @Environment(\.scenePhase) private var scenePhase
     let hanzi: Hanzi
-    @State private var audioMessage: String?
+    @State private var player = PronunciationPlayer()
 
     var body: some View {
         ZStack {
@@ -73,23 +74,16 @@ struct CharacterDetailPlaceholder: View {
         .navigationTitle(hanzi.character)
         .navigationBarTitleDisplayMode(.inline)
         .toolbar(.visible, for: .navigationBar)
+        .onDisappear { player.stop(deactivateSession: true) }
+        .onChange(of: scenePhase) { _, phase in
+            if phase != .active {
+                player.stop(deactivateSession: true)
+            }
+        }
     }
 
     private var illustration: some View {
-        RoundedRectangle(cornerRadius: 32, style: .continuous)
-            .fill(ForestPalette.sky.opacity(0.35))
-            .frame(maxWidth: .infinity, minHeight: 280)
-            .overlay {
-                VStack(spacing: 8) {
-                    Image(systemName: "photo")
-                        .font(.largeTitle)
-                    Text("插画占位")
-                        .font(.title3.weight(.semibold))
-                    Text(hanzi.imageAssetId)
-                        .font(.caption)
-                }
-                .foregroundStyle(ForestPalette.inkSoft)
-            }
+        HanziPicture(assetId: hanzi.imageAssetId, imageURL: model.bundledImageURL(hanzi.imageAssetId))
     }
 
     private var details: some View {
@@ -106,15 +100,15 @@ struct CharacterDetailPlaceholder: View {
                 .font(.title2)
                 .foregroundStyle(ForestPalette.ink)
             Button {
-                audioMessage = PronunciationPlayer.unavailableMessage(assetId: hanzi.audioAssetId)
+                _ = player.play(assetId: hanzi.audioAssetId, profile: model.activeProfile, userInitiated: true)
             } label: {
-                Label("听一听", systemImage: "speaker.wave.2.fill")
+                Label(player.isPlaying ? "正在读" : "听一听", systemImage: "speaker.wave.2.fill")
                     .font(.title3.weight(.semibold))
-                    .frame(minWidth: 160, minHeight: 64)
+                    .frame(minWidth: 160, minHeight: ForestSpacing.minTouch)
             }
             .buttonStyle(.borderedProminent)
             .tint(ForestPalette.leaf)
-            if let audioMessage {
+            if let audioMessage = player.lastMessage {
                 Text(audioMessage)
                     .font(.body)
                     .foregroundStyle(ForestPalette.inkSoft)

@@ -21,6 +21,10 @@ extension RewardRecord: FetchableRecord, PersistableRecord {
     static let databaseTableName = "rewardRecord"
 }
 
+extension StudyTimeRecord: FetchableRecord, PersistableRecord {
+    static let databaseTableName = "studyTime"
+}
+
 struct ContentInstallRecord: Codable, FetchableRecord, PersistableRecord, Equatable {
     static let databaseTableName = "contentInstallState"
 

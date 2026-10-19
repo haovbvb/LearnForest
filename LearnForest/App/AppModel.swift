@@ -18,7 +18,10 @@ final class AppModel {
     var dailySnapshot = DailySnapshot.empty
     var hasInProgressSession = false
     var activeSession: LearningSession?
+    var sessions: [LearningSession] = []
     var learningRecords: [LearningRecord] = []
+    var lessonCourseId: String?
+    var lessonVisible = false
     var installedContentVersion: Int?
 
     var primaryLearningTitle: String {
@@ -89,6 +92,7 @@ final class AppModel {
             guard let profileId = activeProfile?.id else { return }
             hasInProgressSession = try learningRepo.hasInProgressSession(profileId: profileId)
             activeSession = try learningRepo.inProgressSession(profileId: profileId)
+            sessions = try learningRepo.sessions(profileId: profileId)
             learningRecords = try learningRepo.records(profileId: profileId)
             rewardCounts = try learningRepo.rewardCounts(profileId: profileId)
             dailySnapshot = try learningRepo.dailySnapshot(profileId: profileId, now: Date())
@@ -143,69 +147,137 @@ final class AppModel {
     }
 
     func showsPinyin(for profile: ChildProfile? = nil) -> Bool {
-        (profile ?? activeProfile)?.pinyinMode != .hidden
+        PinyinStrategy.presentation(mode: (profile ?? activeProfile)?.pinyinMode ?? .showWeak).showsPinyin
     }
 
     func pinyinIsSecondary(for profile: ChildProfile? = nil) -> Bool {
-        (profile ?? activeProfile)?.pinyinMode != .show
+        PinyinStrategy.presentation(mode: (profile ?? activeProfile)?.pinyinMode ?? .showWeak).isSecondary
     }
 
-    /// 打开本机占位预习。没有网络请求。资源不完整的课仍然不能当成正式课。
-    func beginPlaceholderLesson() {
-        guard let profileId = activeProfile?.id else { return }
-        guard let courseId = placeholderCourseId() else {
-            actionError = "这台 iPad 上还没有可以预习的汉字。"
+    func hasBundledImage(_ assetId: String) -> Bool {
+        LocalAssetLocator.hasImage(assetId: assetId)
+    }
+
+    func hasBundledAudio(_ assetId: String) -> Bool {
+        LocalAssetLocator.hasAudio(assetId: assetId)
+    }
+
+    func bundledImageURL(_ assetId: String) -> URL? {
+        LocalAssetLocator.imageURL(assetId: assetId)
+    }
+
+    func savedSession(courseId: String) -> LearningSession? {
+        let matches = sessions.filter { $0.courseId == courseId }
+        if let active = matches.first(where: { $0.status == .inProgress }) {
+            return active
+        }
+        return matches.max { $0.updatedAt < $1.updatedAt }
+    }
+
+    /// 打开学习准备页。真正的会话要等孩子点「开始认字」才写。
+    func presentLesson(courseId: String?) {
+        guard let courseId, contentPackage?.course(id: courseId) != nil else {
+            actionError = "这台 iPad 上还没有可以认的字。"
             return
         }
+        lessonCourseId = courseId
+        lessonVisible = true
+    }
+
+    func dismissLesson() {
+        guard lessonVisible else { return }
+        lessonVisible = false
+        reload()
+    }
+
+    func beginCharacterLesson(courseId: String) {
+        guard let profileId = activeProfile?.id else { return }
         do {
-            _ = try learningRepo.startOrResume(profileId: profileId, courseId: courseId, now: Date())
-            reload()
+            let session = try learningRepo.beginCharacterLesson(profileId: profileId, courseId: courseId, now: Date())
+            activeSession = session
+            hasInProgressSession = true
+            if let row = sessions.firstIndex(where: { $0.id == session.id }) {
+                sessions[row] = session
+            } else {
+                sessions.insert(session, at: 0)
+            }
+            for index in sessions.indices where sessions[index].id != session.id && sessions[index].status == .inProgress {
+                sessions[index].status = .interrupted
+            }
         } catch {
             actionError = error.localizedDescription
         }
     }
 
-    func notePlaceholderIndex(_ index: Int) {
-        guard let session = activeSession else { return }
+    func rememberLessonIndex(_ index: Int) {
+        guard let sessionId = activeSession?.id else { return }
         do {
-            try learningRepo.updateIndex(sessionId: session.id, currentIndex: index, now: Date())
-            reload()
+            let now = Date()
+            try learningRepo.updateIndex(sessionId: sessionId, currentIndex: index, now: now)
+            activeSession?.currentIndex = index
+            activeSession?.updatedAt = now
+            if let row = sessions.firstIndex(where: { $0.id == sessionId }) {
+                sessions[row].currentIndex = index
+                sessions[row].updatedAt = now
+            }
         } catch {
             actionError = error.localizedDescription
         }
     }
 
-    func notePlaceholderStep(hanziId: String, index: Int) {
-        guard let profileId = activeProfile?.id, let session = activeSession else { return }
+    func noteCharacterContact(hanziId: String, index: Int) {
+        guard let profileId = activeProfile?.id, activeSession != nil else { return }
         let existing = learningRecords.first { $0.hanziId == hanziId }?.masteryLevel
-        let mastery = learningService.masteryAfterPlaceholderContact(existing: existing)
+        let mastery = learningService.masteryAfterCharacterContact(existing: existing)
+        let now = Date()
         do {
-            try learningRepo.touchForPlaceholder(
+            try learningRepo.noteCharacterContact(
                 profileId: profileId,
                 hanziId: hanziId,
                 mastery: mastery,
-                now: Date()
+                now: now
             )
-            try learningRepo.updateIndex(sessionId: session.id, currentIndex: index, now: Date())
-            reload()
+            rememberLessonIndex(index)
+            if let row = learningRecords.firstIndex(where: { $0.hanziId == hanziId }) {
+                learningRecords[row].masteryLevel = mastery
+                learningRecords[row].lastPracticedAt = now
+            } else {
+                learningRecords.append(
+                    LearningRecord.placeholderContact(
+                        profileId: profileId,
+                        hanziId: hanziId,
+                        mastery: mastery,
+                        now: now
+                    )
+                )
+            }
+            if !dailySnapshot.studiedHanziIds.contains(hanziId) {
+                dailySnapshot.studiedHanziIds.append(hanziId)
+            }
         } catch {
             actionError = error.localizedDescription
         }
     }
 
-    func placeholderCourse() -> Course? {
-        guard let package = contentPackage else { return nil }
-        if let courseId = activeSession?.courseId, let course = package.course(id: courseId) {
-            return course
+    /// 只记字卡页处于前台的秒数，写到当前档案的当日时长和这节课的会话上。
+    func recordStudyTime(seconds: Int) {
+        guard seconds > 0, let profileId = activeProfile?.id, var session = activeSession else { return }
+        do {
+            try learningRepo.addStudyTime(
+                profileId: profileId,
+                sessionId: session.id,
+                seconds: seconds,
+                now: Date()
+            )
+            session.activeDurationSeconds += seconds
+            activeSession = session
+            dailySnapshot.activeDurationSeconds += seconds
+            if let row = sessions.firstIndex(where: { $0.id == session.id }) {
+                sessions[row].activeDurationSeconds += seconds
+            }
+        } catch {
+            actionError = error.localizedDescription
         }
-        return package.localPreviewCourses.first
-    }
-
-    private func placeholderCourseId() -> String? {
-        if let courseId = activeSession?.courseId, contentPackage?.course(id: courseId) != nil {
-            return courseId
-        }
-        return contentPackage?.localPreviewCourses.first?.id
     }
 
     func updateActive(_ body: (inout ChildProfile) -> Void) {

@@ -71,7 +71,7 @@ struct ParentCenterView: View {
                     .foregroundStyle(.secondary)
             }
             Section("还没做") {
-                Text("练习引擎、真实录音和插画、账号、内购、远程更新。")
+                Text("练习引擎、真实录音和插画、掌握结算、贴纸发放、账号、内购、远程更新。")
                     .font(.footnote)
                     .foregroundStyle(.secondary)
             }
@@ -162,7 +162,7 @@ struct ParentCenterView: View {
                         Text(mode.title).tag(mode)
                     }
                 }
-                Text("改年龄或阶段不会清掉已学的字。到点温和结束、安静模式的声音策略还没接到学习流程。默认时长上限待确认。")
+                Text("改年龄或阶段不会清掉已学的字。认字到点会温和结束，并把有效时长记在当前档案。安静模式默认要自己点发音。默认时长上限仍待确认，现在是关闭。")
                     .font(.footnote)
                     .foregroundStyle(.secondary)
             }

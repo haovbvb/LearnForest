@@ -1,14 +1,16 @@
 import Foundation
 import GRDB
 
-/// 占位预习会写下「学习中」和课程序号。答题、掌握升级和发奖留到 Sprint 3。
+/// 认字会写下「学习中」、课程序号和有效时长。答题、掌握升级和发奖留到 Sprint 3。
 protocol LearningStoring: AnyObject {
     func hasInProgressSession(profileId: String) throws -> Bool
     func inProgressSession(profileId: String) throws -> LearningSession?
+    func sessions(profileId: String) throws -> [LearningSession]
     func records(profileId: String) throws -> [LearningRecord]
-    func startOrResume(profileId: String, courseId: String, now: Date) throws -> LearningSession
-    func touchForPlaceholder(profileId: String, hanziId: String, mastery: MasteryLevel, now: Date) throws
+    func beginCharacterLesson(profileId: String, courseId: String, now: Date) throws -> LearningSession
+    func noteCharacterContact(profileId: String, hanziId: String, mastery: MasteryLevel, now: Date) throws
     func updateIndex(sessionId: String, currentIndex: Int, now: Date) throws
+    func addStudyTime(profileId: String, sessionId: String, seconds: Int, now: Date) throws
     func rewardCounts(profileId: String) throws -> RewardCounts
     func dailySnapshot(profileId: String, now: Date) throws -> DailySnapshot
     func noteContentInstall(_ manifest: ContentManifest) throws
@@ -35,6 +37,15 @@ final class LearningRepository: LearningStoring {
         }
     }
 
+    func sessions(profileId: String) throws -> [LearningSession] {
+        try queue.read { db in
+            try LearningSession
+                .filter(Column("profileId") == profileId)
+                .order(Column("updatedAt").desc)
+                .fetchAll(db)
+        }
+    }
+
     func records(profileId: String) throws -> [LearningRecord] {
         try queue.read { db in
             try LearningRecord
@@ -43,34 +54,52 @@ final class LearningRepository: LearningStoring {
         }
     }
 
-    func startOrResume(profileId: String, courseId: String, now: Date) throws -> LearningSession {
-        if let existing = try inProgressSession(profileId: profileId) {
-            return existing
-        }
-        let session = LearningSession(
-            id: UUID().uuidString,
-            profileId: profileId,
-            courseId: courseId,
-            sessionType: .newLearning,
-            status: .inProgress,
-            currentIndex: 0,
-            startedAt: now,
-            completedAt: nil,
-            activeDurationSeconds: 0,
-            updatedAt: now,
-            syncStatus: SyncReservation.localOnly,
-            schemaVersion: SyncReservation.schemaVersion,
-            deviceId: nil,
-            deletedAt: nil
-        )
+    /// 同一课接着上次的字。别的进行中的课改成中断，序号留着，方便以后再打开。
+    func beginCharacterLesson(profileId: String, courseId: String, now: Date) throws -> LearningSession {
         try queue.write { db in
+            let all = try LearningSession
+                .filter(Column("profileId") == profileId)
+                .fetchAll(db)
+            let forCourse = all.filter { $0.courseId == courseId }
+            let candidate = forCourse.filter { $0.status == .inProgress }.max { $0.updatedAt < $1.updatedAt }
+                ?? forCourse.filter { $0.status == .interrupted }.max { $0.updatedAt < $1.updatedAt }
+
+            for var session in all where session.status == .inProgress && session.id != candidate?.id {
+                session.status = .interrupted
+                session.updatedAt = now
+                try session.update(db)
+            }
+
+            if var existing = candidate {
+                existing.status = .inProgress
+                existing.updatedAt = now
+                try existing.update(db)
+                return existing
+            }
+
+            let session = LearningSession(
+                id: UUID().uuidString,
+                profileId: profileId,
+                courseId: courseId,
+                sessionType: .newLearning,
+                status: .inProgress,
+                currentIndex: 0,
+                startedAt: now,
+                completedAt: nil,
+                activeDurationSeconds: 0,
+                updatedAt: now,
+                syncStatus: SyncReservation.localOnly,
+                schemaVersion: SyncReservation.schemaVersion,
+                deviceId: nil,
+                deletedAt: nil
+            )
             try session.insert(db)
+            return session
         }
-        return session
     }
 
     /// 只记录「接触过」。掌握等级由 LearningService 决定，这里不升到初步掌握。
-    func touchForPlaceholder(profileId: String, hanziId: String, mastery: MasteryLevel, now: Date) throws {
+    func noteCharacterContact(profileId: String, hanziId: String, mastery: MasteryLevel, now: Date) throws {
         try queue.write { db in
             if var existing = try LearningRecord
                 .filter(Column("profileId") == profileId && Column("hanziId") == hanziId)
@@ -89,6 +118,26 @@ final class LearningRepository: LearningStoring {
                     mastery: mastery,
                     now: now
                 ).insert(db)
+            }
+        }
+    }
+
+    func addStudyTime(profileId: String, sessionId: String, seconds: Int, now: Date) throws {
+        guard seconds > 0 else { return }
+        try queue.write { db in
+            if var session = try LearningSession.fetchOne(db, key: sessionId) {
+                session.activeDurationSeconds += seconds
+                session.updatedAt = now
+                try session.update(db)
+            }
+            let day = StudyDay.key(for: now)
+            let id = "\(profileId)#\(day)"
+            if var row = try StudyTimeRecord.fetchOne(db, key: id) {
+                row.durationSeconds += seconds
+                row.updatedAt = now
+                try row.update(db)
+            } else {
+                try StudyTimeRecord.make(profileId: profileId, day: day, seconds: seconds, now: now).insert(db)
             }
         }
     }
@@ -128,10 +177,11 @@ final class LearningRepository: LearningStoring {
             let suggestions = records
                 .filter { $0.masteryLevel == .needsReview || $0.nextReviewAt != nil }
                 .prefix(5)
-            let sessions = try LearningSession.filter(Column("profileId") == profileId).fetchAll(db)
-            let seconds = sessions
-                .filter { $0.startedAt >= start }
-                .reduce(0) { $0 + $1.activeDurationSeconds }
+            let day = StudyDay.key(for: now)
+            let seconds = try StudyTimeRecord
+                .filter(Column("profileId") == profileId && Column("day") == day)
+                .fetchOne(db)?
+                .durationSeconds ?? 0
             return DailySnapshot(
                 studiedHanziIds: studied.map(\.hanziId),
                 unfamiliarHanziIds: unfamiliar.map(\.hanziId),

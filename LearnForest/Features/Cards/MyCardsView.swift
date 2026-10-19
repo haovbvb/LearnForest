@@ -110,7 +110,7 @@ struct MyCardsView: View {
         case .all:
             "还没有样例字。"
         case .learning:
-            "还没有学过的字。从首页「今日学习」翻一张，就会出现在这里。"
+            "还没有学过的字。从首页「今日学习」认一个字，就会出现在这里。"
         case .needsReview, .emerging, .stable:
             "还没有「\(filter.title)」的字。练习做好之前，不会出现在这里。"
         }

@@ -36,13 +36,18 @@
 		4A00F5ACC6CFD49F7FE033A7 /* CharacterPreviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D64525F834BEB6DE63ABD58D /* CharacterPreviewView.swift */; };
 		E782F0E7FF8E5A3AC9C5824E /* CourseListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CDC0419C77AD28F76D1B01A /* CourseListView.swift */; };
 		7B9438442833C6EC361E5274 /* LearnView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D25FD28D90C7D1B1AF488C4E /* LearnView.swift */; };
-		12E9E6671C9A351A4DD6A4EB /* LessonEntryPlaceholder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8747800CD250B41B2A3F64EE /* LessonEntryPlaceholder.swift */; };
 		2E6A23D1BA3E6C869F2AF47D /* PronunciationPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A862F1D2F9E7B79BC64390C5 /* PronunciationPlayer.swift */; };
 		A995846C144EDDEFFB7E2492 /* ParentCenterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6226D1E580FEF8C0F8AB1310 /* ParentCenterView.swift */; };
 		11AF293E34C5D83EE2A0D653 /* ParentGateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C45B951FFFB86BE58AE8A046 /* ParentGateView.swift */; };
 		319AD4A8D946A5ACB8CEE3D4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C4A2BB1C06F7C43BCE105437 /* Assets.xcassets */; };
 		FE722D559E81AAE9B990645A /* BundledCoursePack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B1F455AD8F19E29787B7306 /* BundledCoursePack.swift */; };
 		DEFA55CBA745C3062649AEB2 /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = 61C61E48F7DBDDB5D63000AD /* PrivacyInfo.xcprivacy */; };
+		A688EF8D8C56D9E3C2CD3673 /* CoursePrepView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94494CB3F79C61C6268AFD49 /* CoursePrepView.swift */; };
+		1C35CBAFA7E0A1AD9565483F /* CharacterCardLessonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03AC602A277EEBD64775FA87 /* CharacterCardLessonView.swift */; };
+		58111E0B6954947EF5EB16C0 /* LessonRestView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04128567D65C3B1121F57474 /* LessonRestView.swift */; };
+		634C84EC6B02D3E2006F0748 /* StudyTimeLimit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87E427D345CF664620572DA7 /* StudyTimeLimit.swift */; };
+		8665978D36CCC352ABECD738 /* PinyinStrategy.swift in Sources */ = {isa = PBXBuildFile; fileRef = E91F5EF908F0401A60973F92 /* PinyinStrategy.swift */; };
+		B390B809F4B79BAC5E88B4B3 /* LocalAssetLocator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13C931DD0AC8E1F8A0979928 /* LocalAssetLocator.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -76,7 +81,6 @@
 		D64525F834BEB6DE63ABD58D /* CharacterPreviewView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterPreviewView.swift; sourceTree = "<group>"; };
 		9CDC0419C77AD28F76D1B01A /* CourseListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseListView.swift; sourceTree = "<group>"; };
 		D25FD28D90C7D1B1AF488C4E /* LearnView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LearnView.swift; sourceTree = "<group>"; };
-		8747800CD250B41B2A3F64EE /* LessonEntryPlaceholder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LessonEntryPlaceholder.swift; sourceTree = "<group>"; };
 		A862F1D2F9E7B79BC64390C5 /* PronunciationPlayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PronunciationPlayer.swift; sourceTree = "<group>"; };
 		6226D1E580FEF8C0F8AB1310 /* ParentCenterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParentCenterView.swift; sourceTree = "<group>"; };
 		C45B951FFFB86BE58AE8A046 /* ParentGateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParentGateView.swift; sourceTree = "<group>"; };
@@ -84,6 +88,12 @@
 		9B1F455AD8F19E29787B7306 /* BundledCoursePack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BundledCoursePack.swift; sourceTree = "<group>"; };
 		14CA8FCA9ABEA377B3368F77 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		61C61E48F7DBDDB5D63000AD /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
+		94494CB3F79C61C6268AFD49 /* CoursePrepView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoursePrepView.swift; sourceTree = "<group>"; };
+		03AC602A277EEBD64775FA87 /* CharacterCardLessonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterCardLessonView.swift; sourceTree = "<group>"; };
+		04128567D65C3B1121F57474 /* LessonRestView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LessonRestView.swift; sourceTree = "<group>"; };
+		87E427D345CF664620572DA7 /* StudyTimeLimit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudyTimeLimit.swift; sourceTree = "<group>"; };
+		E91F5EF908F0401A60973F92 /* PinyinStrategy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PinyinStrategy.swift; sourceTree = "<group>"; };
+		13C931DD0AC8E1F8A0979928 /* LocalAssetLocator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalAssetLocator.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -153,6 +163,7 @@
 		6D41F229EC6DAE570941814B /* Content */ = {
 			isa = PBXGroup;
 			children = (
+				13C931DD0AC8E1F8A0979928 /* LocalAssetLocator.swift */,
 				203CE910C8777FBC0FD2E9EE /* ContentPackageLoader.swift */,
 			);
 			path = Content;
@@ -199,6 +210,8 @@
 		51595FC2884BECB1E5967B84 /* Domain */ = {
 			isa = PBXGroup;
 			children = (
+				E91F5EF908F0401A60973F92 /* PinyinStrategy.swift */,
+				87E427D345CF664620572DA7 /* StudyTimeLimit.swift */,
 				8D806BAF86A71F706DFA5BE1 /* ChildProfile.swift */,
 				C8650C107F6B09DF1B281BF4 /* ContentModels.swift */,
 				3E209F7CCDB4E44C3D704B06 /* CourseQualityGate.swift */,
@@ -241,10 +254,12 @@
 		B80C70160B1A9AF7A1144462 /* Learn */ = {
 			isa = PBXGroup;
 			children = (
+				04128567D65C3B1121F57474 /* LessonRestView.swift */,
+				03AC602A277EEBD64775FA87 /* CharacterCardLessonView.swift */,
+				94494CB3F79C61C6268AFD49 /* CoursePrepView.swift */,
 				D64525F834BEB6DE63ABD58D /* CharacterPreviewView.swift */,
 				9CDC0419C77AD28F76D1B01A /* CourseListView.swift */,
 				D25FD28D90C7D1B1AF488C4E /* LearnView.swift */,
-				8747800CD250B41B2A3F64EE /* LessonEntryPlaceholder.swift */,
 				A862F1D2F9E7B79BC64390C5 /* PronunciationPlayer.swift */,
 			);
 			path = Learn;
@@ -358,6 +373,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B390B809F4B79BAC5E88B4B3 /* LocalAssetLocator.swift in Sources */,
+				8665978D36CCC352ABECD738 /* PinyinStrategy.swift in Sources */,
+				634C84EC6B02D3E2006F0748 /* StudyTimeLimit.swift in Sources */,
+				58111E0B6954947EF5EB16C0 /* LessonRestView.swift in Sources */,
+				1C35CBAFA7E0A1AD9565483F /* CharacterCardLessonView.swift in Sources */,
+				A688EF8D8C56D9E3C2CD3673 /* CoursePrepView.swift in Sources */,
 				243C7F80D09BB154D116DDE8 /* ManifestCheck.swift in Sources */,
 				696CE6520205B5CB172D0519 /* HanziCard.swift in Sources */,
 				3DA51B12DD1239E22C608937 /* ForestMetrics.swift in Sources */,
@@ -385,7 +406,6 @@
 				4A00F5ACC6CFD49F7FE033A7 /* CharacterPreviewView.swift in Sources */,
 				E782F0E7FF8E5A3AC9C5824E /* CourseListView.swift in Sources */,
 				7B9438442833C6EC361E5274 /* LearnView.swift in Sources */,
-				12E9E6671C9A351A4DD6A4EB /* LessonEntryPlaceholder.swift in Sources */,
 				2E6A23D1BA3E6C869F2AF47D /* PronunciationPlayer.swift in Sources */,
 				A995846C144EDDEFFB7E2492 /* ParentCenterView.swift in Sources */,
 				11AF293E34C5D83EE2A0D653 /* ParentGateView.swift in Sources */,

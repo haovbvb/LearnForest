@@ -99,6 +99,33 @@ struct RewardRecord: Codable, Equatable, Identifiable {
     var deletedAt: Date?
 }
 
+/// 某个档案在本地日历日里的有效学习秒数。只累计字卡页前台时间。
+struct StudyTimeRecord: Codable, Equatable, Identifiable {
+    var id: String
+    var profileId: String
+    var day: String
+    var durationSeconds: Int
+    var updatedAt: Date
+    var syncStatus: String
+    var schemaVersion: Int
+    var deviceId: String?
+    var deletedAt: Date?
+
+    static func make(profileId: String, day: String, seconds: Int, now: Date) -> StudyTimeRecord {
+        StudyTimeRecord(
+            id: "\(profileId)#\(day)",
+            profileId: profileId,
+            day: day,
+            durationSeconds: seconds,
+            updatedAt: now,
+            syncStatus: SyncReservation.localOnly,
+            schemaVersion: SyncReservation.schemaVersion,
+            deviceId: nil,
+            deletedAt: nil
+        )
+    }
+}
+
 struct RewardCounts: Equatable {
     var stars: Int
     var stickers: Int

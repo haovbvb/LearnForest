@@ -12,7 +12,6 @@ struct RootView: View {
     @Environment(\.scenePhase) private var scenePhase
 
     @State private var tab: ChildTab = .home
-    @State private var showLesson = false
     @State private var showParent = false
 
     private var navMode: ChildNavMode {
@@ -27,8 +26,13 @@ struct RootView: View {
                 tabShell
             }
         }
-        .fullScreenCover(isPresented: $showLesson) {
-            LessonEntryPlaceholder()
+        .fullScreenCover(
+            isPresented: Binding(
+                get: { model.lessonVisible },
+                set: { if !$0 { model.dismissLesson() } }
+            )
+        ) {
+            CoursePrepView(courseId: model.lessonCourseId ?? "")
                 .environment(model)
         }
         .sheet(isPresented: $showParent, onDismiss: { model.reload() }) {
@@ -84,7 +88,9 @@ struct RootView: View {
                 navMode: .homeCardsOnly,
                 onSelectLearnTab: {},
                 onSelectCardsTab: {},
-                onStartLearning: { showLesson = true },
+                onStartLearning: {
+                    model.presentLesson(courseId: model.activeSession?.courseId ?? model.contentPackage?.localPreviewCourses.first?.id)
+                },
                 onOpenParent: { showParent = true }
             )
         }
@@ -96,7 +102,9 @@ struct RootView: View {
                 navMode: .tabWithHero,
                 onSelectLearnTab: { tab = .learn },
                 onSelectCardsTab: { tab = .cards },
-                onStartLearning: { showLesson = true },
+                onStartLearning: {
+                    model.presentLesson(courseId: model.activeSession?.courseId ?? model.contentPackage?.localPreviewCourses.first?.id)
+                },
                 onOpenParent: { showParent = true }
             )
         }

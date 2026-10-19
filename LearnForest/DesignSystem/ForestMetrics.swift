@@ -18,6 +18,7 @@ enum ForestSpacing {
 enum ForestType {
     static let hero = Font.system(size: 40, weight: .bold, design: .rounded)
     static let glyph = Font.system(size: 88, weight: .medium, design: .rounded)
+    static let lessonGlyph = Font.system(size: 120, weight: .medium, design: .rounded)
     static let glyphCompact = Font.system(size: 48, weight: .medium, design: .rounded)
     static let screenTitle = Font.largeTitle.weight(.bold)
 }

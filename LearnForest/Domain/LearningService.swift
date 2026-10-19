@@ -5,20 +5,20 @@ import Foundation
 protocol LearningService {
     var skeletonNote: String { get }
     func recordedMastery(of record: LearningRecord) -> MasteryLevel
-    /// 占位预习只把「未学习」记成「学习中」。不升到初步掌握或稳定掌握，也不降级。
-    func masteryAfterPlaceholderContact(existing: MasteryLevel?) -> MasteryLevel
+    /// 认字只把「未学习」记成「学习中」。不升到初步掌握或稳定掌握，也不降级。
+    func masteryAfterCharacterContact(existing: MasteryLevel?) -> MasteryLevel
 }
 
 struct UnimplementedLearningService: LearningService {
     var skeletonNote: String {
-        "翻过的字会记成「学习中」，不会记成掌握。换一个档案看不到这些进度。"
+        "翻过的字会记成「学习中」，不会记成掌握。换一个档案看不到这些进度。到点只是休息，不扣奖励。"
     }
 
     func recordedMastery(of record: LearningRecord) -> MasteryLevel {
         record.masteryLevel
     }
 
-    func masteryAfterPlaceholderContact(existing: MasteryLevel?) -> MasteryLevel {
+    func masteryAfterCharacterContact(existing: MasteryLevel?) -> MasteryLevel {
         switch existing {
         case .some(let level) where level != .notStarted && level != .learning:
             level

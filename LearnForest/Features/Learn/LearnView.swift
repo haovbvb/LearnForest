@@ -7,11 +7,11 @@ struct LearnView: View {
         ZStack {
             ForestPalette.cream.ignoresSafeArea()
             ScrollView {
-                VStack(alignment: .leading, spacing: 18) {
+                VStack(alignment: .leading, spacing: ForestSpacing.medium) {
                     Text("认字")
-                        .font(.largeTitle.weight(.bold))
+                        .font(ForestType.screenTitle)
                         .foregroundStyle(ForestPalette.ink)
-                    Text("先把三个主题做完整。现在看到的是样例，还不能当正式课。")
+                    Text("点进一节课做学习准备，再认字。没有配图的课不能开始正式学习。")
                         .font(.title3)
                         .foregroundStyle(ForestPalette.inkSoft)
                     if let package = model.contentPackage {
@@ -33,7 +33,7 @@ struct LearnView: View {
                         }
                     }
                 }
-                .padding(32)
+                .padding(ForestSpacing.screen)
                 .frame(maxWidth: 900, alignment: .leading)
                 .frame(maxWidth: .infinity)
             }

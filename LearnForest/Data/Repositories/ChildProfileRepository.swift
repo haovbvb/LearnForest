@@ -119,7 +119,7 @@ final class ChildProfileRepository: ChildProfileStoring {
         }
     }
 
-    /// 硬删除该档案下的学习记录、答题、会话和奖励。不删除课程包。
+    /// 硬删除该档案下的学习记录、答题、会话、奖励和有效时长。不删除课程包。
     /// 调用方必须先做家长验证和二次确认。V1.0 没有云备份。
     func delete(id: String) throws {
         try queue.write { db in
@@ -142,6 +142,7 @@ final class ChildProfileRepository: ChildProfileStoring {
             try LearningSession.filter(Column("profileId") == id).deleteAll(db)
             try LearningRecord.filter(Column("profileId") == id).deleteAll(db)
             try RewardRecord.filter(Column("profileId") == id).deleteAll(db)
+            try StudyTimeRecord.filter(Column("profileId") == id).deleteAll(db)
             _ = try ChildProfile.deleteOne(db, key: id)
 
             if try ChildProfile.filter(Column("isActive") == true).fetchCount(db) == 0 {
