@@ -371,6 +371,72 @@ final class AppModel {
         }
     }
 
+    var openReview: LearningSession? {
+        sessions
+            .filter { $0.sessionType == .review && ($0.status == .inProgress || $0.status == .interrupted) }
+            .max { $0.updatedAt < $1.updatedAt }
+    }
+
+    func reviewCandidateIds() -> [String] {
+        if let open = openReview {
+            let stored = ReviewQueue.ids(in: open.reviewTargets)
+            if !stored.isEmpty, open.practiceIndex < stored.count {
+                return stored
+            }
+        }
+        return ReviewQueue.pick(records: learningRecords)
+    }
+
+    /// 打开复习时把当前会话指到这一轮，离开时再把「继续学习」交回认字课。
+    func beginReview() -> Bool {
+        guard let profileId = activeProfile?.id else { return false }
+        do {
+            guard let session = try learningRepo.beginReview(
+                profileId: profileId,
+                targetIds: ReviewQueue.pick(records: learningRecords),
+                now: Date()
+            ) else { return false }
+            activeSession = session
+            for index in sessions.indices where sessions[index].sessionType == .review && sessions[index].id != session.id {
+                let ids = ReviewQueue.ids(in: sessions[index].reviewTargets)
+                let done = ids.isEmpty || sessions[index].practiceIndex >= ids.count
+                if done && (sessions[index].status == .inProgress || sessions[index].status == .interrupted) {
+                    sessions[index].status = .completed
+                }
+            }
+            if let row = sessions.firstIndex(where: { $0.id == session.id }) {
+                sessions[row] = session
+            } else {
+                sessions.insert(session, at: 0)
+            }
+            return true
+        } catch {
+            actionError = "这轮复习没有开始，再点一次就好。"
+            return false
+        }
+    }
+
+    func finishReview(questionCount: Int) {
+        guard let sessionId = activeSession?.id, activeSession?.sessionType == .review else { return }
+        do {
+            try learningRepo.completeReview(sessionId: sessionId, questionCount: questionCount, now: Date())
+            if let row = sessions.firstIndex(where: { $0.id == sessionId }) {
+                sessions[row].status = .completed
+                sessions[row].practiceIndex = questionCount
+                sessions[row].completedAt = Date()
+            }
+        } catch {
+            return
+        }
+        unfocusReview()
+    }
+
+    func unfocusReview() {
+        guard activeSession?.sessionType == .review else { return }
+        activeSession = sessions.first { $0.status == .inProgress && $0.sessionType != .review }
+        hasInProgressSession = activeSession != nil
+    }
+
     private func store(_ record: LearningRecord) {
         if let row = learningRecords.firstIndex(where: { $0.hanziId == record.hanziId }) {
             learningRecords[row] = record

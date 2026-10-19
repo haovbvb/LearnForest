@@ -33,12 +33,13 @@ python3 Content/templates/validate_package.py
 
 `published` 只给已经有图、录音、字义和至少一种已实现练习的课。缺任何一项就不要标成可学。
 
-当前打进 App 的样例包用演示色块图和短提示音，让有汉字的课能把练习跑通。重新生成：
+当前打进 App 的是家庭试用包：12 节课、90 个字，图和声音是演示占位。重新生成：
 
 ```bash
-python3 Content/templates/make_demo_assets.py
+python3 Content/templates/build_family_trial_pack.py
+python3 Content/templates/validate_package.py
 ```
 
-正式插画和标准普通话仍按 `imageAssetId`、`audioAssetId` 替换这些文件。字的 `id` 一旦发给孩子用过，就不要改。
+`build_family_trial_pack.py` 会补齐汉字和课程关联，再调用 `make_demo_assets.py`。正式插画和标准普通话仍按 `imageAssetId`、`audioAssetId` 替换这些文件。字的 `id` 一旦发给孩子用过，就不要改。缺图、缺音的课不能开始正式学习。
 
 `manifest.json` 不从 CSV 来。远程更新字段 `remoteUpdate.enabled` 在 V1.0 保持 `false`。

@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""生成 Sprint 3 演示用的色块图和短提示音，并标出可以进正式练习的样例课。
+"""生成家庭试用用的色块图和短提示音，并标出可以进正式练习的课。
 
 这些不是正式插画，也不是标准普通话。正式资源仍以 Excel/CSV → JSON 管线替换同名 assetId。
 """
@@ -103,11 +103,12 @@ def main() -> None:
             course["status"] = "planned" if not ids else course["status"]
 
     manifest["demoAssets"] = True
-    manifest["assetsManifestVersion"] = 2
+    manifest["assetsManifestVersion"] = 3
+    manifest["sampleHanziCount"] = len(hanzi)
     manifest["notes"] = (
-        "样例包。有汉字的课带演示色块图和短提示音，并标成 published，方便把三种练习跑通。"
-        "这些不是正式插画和标准普通话。空课仍然是计划中，不能进正式学习。"
-        "远程更新只保留字段，V1.0 不下载。"
+        "家庭试用包。课里的汉字带演示色块图和短提示音，可以走通认字、练习和复习。"
+        "这些不是正式插画和标准普通话。正式资源按 imageAssetId / audioAssetId 替换，不要改汉字 id。"
+        "缺图、缺音或未上架的课仍然不能开始正式学习。远程更新只保留字段，V1.0 不下载。"
     )
     exercises["implemented"] = True
     exercises["todo"] = "三种核心题型已在 App 里实现。组词、形近字不在 V1.0。图和录音仍是演示占位。"

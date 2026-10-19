@@ -59,6 +59,19 @@ enum ExerciseBuilder {
         return questions
     }
 
+    /// 复习只用看字找图。目标顺序由调用方固定，避免做到一半题目列表变掉。
+    static func reviewQuestions(targetIds: [String], pool: [Hanzi]) -> [PracticeQuestion] {
+        let byId = Dictionary(uniqueKeysWithValues: pool.map { ($0.id, $0) })
+        let targets = targetIds.compactMap { byId[$0] }.filter { !$0.character.isEmpty && !$0.imageAssetId.isEmpty }
+        guard !targets.isEmpty else { return [] }
+        return chooseQuestions(
+            courseId: ReviewQueue.courseId,
+            prompt: .character,
+            targets: targets,
+            pool: pool
+        )
+    }
+
     private static func chooseQuestions(
         courseId: String,
         prompt: PracticePrompt,
@@ -92,5 +105,37 @@ enum ExerciseBuilder {
             value &*= 1099511628211
         }
         return value
+    }
+}
+
+/// 从待复习和错得比较多的字里挑一小轮。页面不自己改掌握。
+enum ReviewQueue {
+    static let courseId = "local_review"
+    static let roundSize = 8
+
+    static func ids(in targets: String) -> [String] {
+        targets.split(separator: ",").map(String.init).filter { !$0.isEmpty }
+    }
+
+    static func joined(_ ids: [String]) -> String {
+        ids.joined(separator: ",")
+    }
+
+    static func pick(records: [LearningRecord], limit: Int = roundSize) -> [String] {
+        let ranked = records
+            .filter { $0.masteryLevel == .needsReview || $0.incorrectCount > $0.correctCount }
+            .sorted { lhs, rhs in
+                let leftReview = lhs.masteryLevel == .needsReview
+                let rightReview = rhs.masteryLevel == .needsReview
+                if leftReview != rightReview { return leftReview }
+                let leftGap = lhs.incorrectCount - lhs.correctCount
+                let rightGap = rhs.incorrectCount - rhs.correctCount
+                if leftGap != rightGap { return leftGap > rightGap }
+                let leftDate = lhs.nextReviewAt ?? .distantFuture
+                let rightDate = rhs.nextReviewAt ?? .distantFuture
+                if leftDate != rightDate { return leftDate < rightDate }
+                return lhs.hanziId < rhs.hanziId
+            }
+        return Array(ranked.prefix(limit)).map(\.hanziId)
     }
 }

@@ -69,6 +69,12 @@ def main() -> int:
         if theme["title"] not in EXPECTED_THEMES:
             errors.append(f"意外主题 {theme['title']}")
 
+    glyphs = [item.get("character") for item in hanzi]
+    if len(glyphs) != len(set(glyphs)):
+        errors.append("汉字字形有重复，家庭试用包里每个字只出现一次")
+    if not 80 <= len(hanzi) <= 100:
+        errors.append(f"家庭试用字数应在 80～100，实际 {len(hanzi)}")
+
     required = ["id", "character", "pinyin", "definition", "audioAssetId", "imageAssetId"]
     for item in hanzi:
         for key in required:

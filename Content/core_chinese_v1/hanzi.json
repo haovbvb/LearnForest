@@ -394,5 +394,1741 @@
     "tags": [
       "nature"
     ]
+  },
+  {
+    "id": "hanzi_horse",
+    "character": "马",
+    "pinyin": "mǎ",
+    "definition": "会跑的大动物，可以骑。",
+    "audioAssetId": "audio_horse",
+    "imageAssetId": "image_horse",
+    "difficulty": 1,
+    "tags": [
+      "animal"
+    ],
+    "contentVersion": 1,
+    "isPublished": true,
+    "strokeCount": 3,
+    "strokeDataId": null,
+    "wordExamples": [
+      "小马",
+      "马车"
+    ],
+    "sentenceExamples": [
+      "小马在草地上跑。"
+    ],
+    "relatedHanziIds": null
+  },
+  {
+    "id": "hanzi_cow",
+    "character": "牛",
+    "pinyin": "niú",
+    "definition": "会耕田的大动物，会哞哞叫。",
+    "audioAssetId": "audio_cow",
+    "imageAssetId": "image_cow",
+    "difficulty": 1,
+    "tags": [
+      "animal"
+    ],
+    "contentVersion": 1,
+    "isPublished": true,
+    "strokeCount": 4,
+    "strokeDataId": null,
+    "wordExamples": [
+      "水牛",
+      "牛奶"
+    ],
+    "sentenceExamples": [
+      "牛在田边吃草。"
+    ],
+    "relatedHanziIds": null
+  },
+  {
+    "id": "hanzi_sheep",
+    "character": "羊",
+    "pinyin": "yáng",
+    "definition": "身上有毛，常常成群走。",
+    "audioAssetId": "audio_sheep",
+    "imageAssetId": "image_sheep",
+    "difficulty": 1,
+    "tags": [
+      "animal"
+    ],
+    "contentVersion": 1,
+    "isPublished": true,
+    "strokeCount": 6,
+    "strokeDataId": null,
+    "wordExamples": [
+      "小羊",
+      "羊毛"
+    ],
+    "sentenceExamples": [
+      "小羊跟着妈妈。"
+    ],
+    "relatedHanziIds": null
+  },
+  {
+    "id": "hanzi_rabbit",
+    "character": "兔",
+    "pinyin": "tù",
+    "definition": "耳朵长，一下一下地跳。",
+    "audioAssetId": "audio_rabbit",
+    "imageAssetId": "image_rabbit",
+    "difficulty": 1,
+    "tags": [
+      "animal"
+    ],
+    "contentVersion": 1,
+    "isPublished": true,
+    "strokeCount": 8,
+    "strokeDataId": null,
+    "wordExamples": [
+      "小兔",
+      "白兔"
+    ],
+    "sentenceExamples": [
+      "小兔在菜园里跳。"
+    ],
+    "relatedHanziIds": null
+  },
+  {
+    "id": "hanzi_tiger",
+    "character": "虎",
+    "pinyin": "hǔ",
+    "definition": "额头有花纹的大猫。",
+    "audioAssetId": "audio_tiger",
+    "imageAssetId": "image_tiger",
+    "difficulty": 2,
+    "tags": [
+      "animal"
+    ],
+    "contentVersion": 1,
+    "isPublished": true,
+    "strokeCount": 8,
+    "strokeDataId": null,
+    "wordExamples": [
+      "老虎",
+      "虎仔"
+    ],
+    "sentenceExamples": [
+      "老虎住在林子里。"
+    ],
+    "relatedHanziIds": null
+  },
+  {
+    "id": "hanzi_bear",
+    "character": "熊",
+    "pinyin": "xióng",
+    "definition": "身体壮，很喜欢蜂蜜。",
+    "audioAssetId": "audio_bear",
+    "imageAssetId": "image_bear",
+    "difficulty": 2,
+    "tags": [
+      "animal"
+    ],
+    "contentVersion": 1,
+    "isPublished": true,
+    "strokeCount": 14,
+    "strokeDataId": null,
+    "wordExamples": [
+      "小熊",
+      "黑熊"
+    ],
+    "sentenceExamples": [
+      "小熊爬上树找蜂蜜。"
+    ],
+    "relatedHanziIds": null
+  },
+  {
+    "id": "hanzi_wolf",
+    "character": "狼",
+    "pinyin": "láng",
+    "definition": "样子像狗，常常成群。",
+    "audioAssetId": "audio_wolf",
+    "imageAssetId": "image_wolf",
+    "difficulty": 2,
+    "tags": [
+      "animal"
+    ],
+    "contentVersion": 1,
+    "isPublished": true,
+    "strokeCount": 10,
+    "strokeDataId": null,
+    "wordExamples": [
+      "狼群"
+    ],
+    "sentenceExamples": [
+      "狼在夜里叫。"
+    ],
+    "relatedHanziIds": null
+  },
+  {
+    "id": "hanzi_monkey",
+    "character": "猴",
+    "pinyin": "hóu",
+    "definition": "会爬树，动作很快。",
+    "audioAssetId": "audio_monkey",
+    "imageAssetId": "image_monkey",
+    "difficulty": 1,
+    "tags": [
+      "animal"
+    ],
+    "contentVersion": 1,
+    "isPublished": true,
+    "strokeCount": 12,
+    "strokeDataId": null,
+    "wordExamples": [
+      "猴子",
+      "小猴"
+    ],
+    "sentenceExamples": [
+      "猴子在树上荡来荡去。"
+    ],
+    "relatedHanziIds": null
+  },
+  {
+    "id": "hanzi_elephant",
+    "character": "象",
+    "pinyin": "xiàng",
+    "definition": "鼻子长，耳朵也很大。",
+    "audioAssetId": "audio_elephant",
+    "imageAssetId": "image_elephant",
+    "difficulty": 2,
+    "tags": [
+      "animal"
+    ],
+    "contentVersion": 1,
+    "isPublished": true,
+    "strokeCount": 12,
+    "strokeDataId": null,
+    "wordExamples": [
+      "大象"
+    ],
+    "sentenceExamples": [
+      "大象用鼻子喝水。"
+    ],
+    "relatedHanziIds": null
+  },
+  {
+    "id": "hanzi_deer",
+    "character": "鹿",
+    "pinyin": "lù",
+    "definition": "腿长，跑起来很快。",
+    "audioAssetId": "audio_deer",
+    "imageAssetId": "image_deer",
+    "difficulty": 2,
+    "tags": [
+      "animal"
+    ],
+    "contentVersion": 1,
+    "isPublished": true,
+    "strokeCount": 11,
+    "strokeDataId": null,
+    "wordExamples": [
+      "小鹿",
+      "梅花鹿"
+    ],
+    "sentenceExamples": [
+      "小鹿在林间走路。"
+    ],
+    "relatedHanziIds": null
+  },
+  {
+    "id": "hanzi_snake",
+    "character": "蛇",
+    "pinyin": "shé",
+    "definition": "没有脚，身体长长的。",
+    "audioAssetId": "audio_snake",
+    "imageAssetId": "image_snake",
+    "difficulty": 2,
+    "tags": [
+      "animal"
+    ],
+    "contentVersion": 1,
+    "isPublished": true,
+    "strokeCount": 11,
+    "strokeDataId": null,
+    "wordExamples": [
+      "长蛇"
+    ],
+    "sentenceExamples": [
+      "蛇慢慢爬过草地。"
+    ],
+    "relatedHanziIds": null
+  },
+  {
+    "id": "hanzi_chicken",
+    "character": "鸡",
+    "pinyin": "jī",
+    "definition": "家里常见，清早会叫。",
+    "audioAssetId": "audio_chicken",
+    "imageAssetId": "image_chicken",
+    "difficulty": 1,
+    "tags": [
+      "animal"
+    ],
+    "contentVersion": 1,
+    "isPublished": true,
+    "strokeCount": 7,
+    "strokeDataId": null,
+    "wordExamples": [
+      "小鸡",
+      "公鸡"
+    ],
+    "sentenceExamples": [
+      "小鸡跟着母鸡找虫。"
+    ],
+    "relatedHanziIds": null
+  },
+  {
+    "id": "hanzi_duck",
+    "character": "鸭",
+    "pinyin": "yā",
+    "definition": "嘴巴扁扁的，喜欢水。",
+    "audioAssetId": "audio_duck",
+    "imageAssetId": "image_duck",
+    "difficulty": 1,
+    "tags": [
+      "animal"
+    ],
+    "contentVersion": 1,
+    "isPublished": true,
+    "strokeCount": 16,
+    "strokeDataId": null,
+    "wordExamples": [
+      "小鸭",
+      "鸭子"
+    ],
+    "sentenceExamples": [
+      "小鸭在池塘里游。"
+    ],
+    "relatedHanziIds": null
+  },
+  {
+    "id": "hanzi_goose",
+    "character": "鹅",
+    "pinyin": "é",
+    "definition": "脖子长，叫声很响。",
+    "audioAssetId": "audio_goose",
+    "imageAssetId": "image_goose",
+    "difficulty": 1,
+    "tags": [
+      "animal"
+    ],
+    "contentVersion": 1,
+    "isPublished": true,
+    "strokeCount": 12,
+    "strokeDataId": null,
+    "wordExamples": [
+      "大鹅"
+    ],
+    "sentenceExamples": [
+      "大鹅摇摇摆摆地走。"
+    ],
+    "relatedHanziIds": null
+  },
+  {
+    "id": "hanzi_frog",
+    "character": "蛙",
+    "pinyin": "wā",
+    "definition": "会跳，常常待在水边。",
+    "audioAssetId": "audio_frog",
+    "imageAssetId": "image_frog",
+    "difficulty": 1,
+    "tags": [
+      "animal"
+    ],
+    "contentVersion": 1,
+    "isPublished": true,
+    "strokeCount": 12,
+    "strokeDataId": null,
+    "wordExamples": [
+      "青蛙"
+    ],
+    "sentenceExamples": [
+      "青蛙坐在荷叶上。"
+    ],
+    "relatedHanziIds": null
+  },
+  {
+    "id": "hanzi_bee",
+    "character": "蜂",
+    "pinyin": "fēng",
+    "definition": "会飞，忙着在花上采蜜。",
+    "audioAssetId": "audio_bee",
+    "imageAssetId": "image_bee",
+    "difficulty": 2,
+    "tags": [
+      "animal"
+    ],
+    "contentVersion": 1,
+    "isPublished": true,
+    "strokeCount": 13,
+    "strokeDataId": null,
+    "wordExamples": [
+      "蜜蜂"
+    ],
+    "sentenceExamples": [
+      "蜜蜂飞到花心里。"
+    ],
+    "relatedHanziIds": null
+  },
+  {
+    "id": "hanzi_bug",
+    "character": "虫",
+    "pinyin": "chóng",
+    "definition": "小小的，种类很多。",
+    "audioAssetId": "audio_bug",
+    "imageAssetId": "image_bug",
+    "difficulty": 1,
+    "tags": [
+      "animal"
+    ],
+    "contentVersion": 1,
+    "isPublished": true,
+    "strokeCount": 6,
+    "strokeDataId": null,
+    "wordExamples": [
+      "小虫",
+      "虫子"
+    ],
+    "sentenceExamples": [
+      "小虫爬上叶子。"
+    ],
+    "relatedHanziIds": null
+  },
+  {
+    "id": "hanzi_shrimp",
+    "character": "虾",
+    "pinyin": "xiā",
+    "definition": "生活在水里，身子会弯。",
+    "audioAssetId": "audio_shrimp",
+    "imageAssetId": "image_shrimp",
+    "difficulty": 2,
+    "tags": [
+      "animal"
+    ],
+    "contentVersion": 1,
+    "isPublished": true,
+    "strokeCount": 9,
+    "strokeDataId": null,
+    "wordExamples": [
+      "小虾"
+    ],
+    "sentenceExamples": [
+      "小虾藏在水草边。"
+    ],
+    "relatedHanziIds": null
+  },
+  {
+    "id": "hanzi_fox",
+    "character": "狐",
+    "pinyin": "hú",
+    "definition": "尾巴大，耳朵尖尖的。",
+    "audioAssetId": "audio_fox",
+    "imageAssetId": "image_fox",
+    "difficulty": 2,
+    "tags": [
+      "animal"
+    ],
+    "contentVersion": 1,
+    "isPublished": true,
+    "strokeCount": 8,
+    "strokeDataId": null,
+    "wordExamples": [
+      "狐狸"
+    ],
+    "sentenceExamples": [
+      "狐狸从树后探出头。"
+    ],
+    "relatedHanziIds": null
+  },
+  {
+    "id": "hanzi_mouse",
+    "character": "鼠",
+    "pinyin": "shǔ",
+    "definition": "个子小，门牙会一直长。",
+    "audioAssetId": "audio_mouse",
+    "imageAssetId": "image_mouse",
+    "difficulty": 2,
+    "tags": [
+      "animal"
+    ],
+    "contentVersion": 1,
+    "isPublished": true,
+    "strokeCount": 13,
+    "strokeDataId": null,
+    "wordExamples": [
+      "老鼠"
+    ],
+    "sentenceExamples": [
+      "老鼠悄悄走过。"
+    ],
+    "relatedHanziIds": null
+  },
+  {
+    "id": "hanzi_pig",
+    "character": "猪",
+    "pinyin": "zhū",
+    "definition": "鼻子圆圆的，常在猪圈里。",
+    "audioAssetId": "audio_pig",
+    "imageAssetId": "image_pig",
+    "difficulty": 1,
+    "tags": [
+      "animal"
+    ],
+    "contentVersion": 1,
+    "isPublished": true,
+    "strokeCount": 11,
+    "strokeDataId": null,
+    "wordExamples": [
+      "小猪"
+    ],
+    "sentenceExamples": [
+      "小猪在泥里玩。"
+    ],
+    "relatedHanziIds": null
+  },
+  {
+    "id": "hanzi_turtle",
+    "character": "龟",
+    "pinyin": "guī",
+    "definition": "背上有壳，走得很慢。",
+    "audioAssetId": "audio_turtle",
+    "imageAssetId": "image_turtle",
+    "difficulty": 1,
+    "tags": [
+      "animal"
+    ],
+    "contentVersion": 1,
+    "isPublished": true,
+    "strokeCount": 7,
+    "strokeDataId": null,
+    "wordExamples": [
+      "乌龟"
+    ],
+    "sentenceExamples": [
+      "乌龟慢慢爬到水边。"
+    ],
+    "relatedHanziIds": null
+  },
+  {
+    "id": "hanzi_dragon",
+    "character": "龙",
+    "pinyin": "lóng",
+    "definition": "故事里会飞的动物。",
+    "audioAssetId": "audio_dragon",
+    "imageAssetId": "image_dragon",
+    "difficulty": 2,
+    "tags": [
+      "animal"
+    ],
+    "contentVersion": 1,
+    "isPublished": true,
+    "strokeCount": 16,
+    "strokeDataId": null,
+    "wordExamples": [
+      "长龙"
+    ],
+    "sentenceExamples": [
+      "故事里的龙在云上飞。"
+    ],
+    "relatedHanziIds": null
+  },
+  {
+    "id": "hanzi_lion",
+    "character": "狮",
+    "pinyin": "shī",
+    "definition": "头上有一圈毛，叫声大。",
+    "audioAssetId": "audio_lion",
+    "imageAssetId": "image_lion",
+    "difficulty": 2,
+    "tags": [
+      "animal"
+    ],
+    "contentVersion": 1,
+    "isPublished": true,
+    "strokeCount": 9,
+    "strokeDataId": null,
+    "wordExamples": [
+      "狮子"
+    ],
+    "sentenceExamples": [
+      "狮子站在高高的石头上。"
+    ],
+    "relatedHanziIds": null
+  },
+  {
+    "id": "hanzi_eagle",
+    "character": "鹰",
+    "pinyin": "yīng",
+    "definition": "翅膀宽，飞得很高。",
+    "audioAssetId": "audio_eagle",
+    "imageAssetId": "image_eagle",
+    "difficulty": 2,
+    "tags": [
+      "animal"
+    ],
+    "contentVersion": 1,
+    "isPublished": true,
+    "strokeCount": 18,
+    "strokeDataId": null,
+    "wordExamples": [
+      "老鹰"
+    ],
+    "sentenceExamples": [
+      "老鹰在天上盘旋。"
+    ],
+    "relatedHanziIds": null
+  },
+  {
+    "id": "hanzi_grandpa",
+    "character": "爷",
+    "pinyin": "yé",
+    "definition": "爸爸的爸爸，常常疼孩子。",
+    "audioAssetId": "audio_grandpa",
+    "imageAssetId": "image_grandpa",
+    "difficulty": 1,
+    "tags": [
+      "family"
+    ],
+    "contentVersion": 1,
+    "isPublished": true,
+    "strokeCount": 6,
+    "strokeDataId": null,
+    "wordExamples": [
+      "爷爷"
+    ],
+    "sentenceExamples": [
+      "爷爷牵着我的手。"
+    ],
+    "relatedHanziIds": null
+  },
+  {
+    "id": "hanzi_grandma",
+    "character": "奶",
+    "pinyin": "nǎi",
+    "definition": "爸爸或妈妈的妈妈。",
+    "audioAssetId": "audio_grandma",
+    "imageAssetId": "image_grandma",
+    "difficulty": 1,
+    "tags": [
+      "family"
+    ],
+    "contentVersion": 1,
+    "isPublished": true,
+    "strokeCount": 5,
+    "strokeDataId": null,
+    "wordExamples": [
+      "奶奶",
+      "牛奶"
+    ],
+    "sentenceExamples": [
+      "奶奶在厨房忙。"
+    ],
+    "relatedHanziIds": null
+  },
+  {
+    "id": "hanzi_brother",
+    "character": "哥",
+    "pinyin": "gē",
+    "definition": "比自己大的男孩。",
+    "audioAssetId": "audio_brother",
+    "imageAssetId": "image_brother",
+    "difficulty": 1,
+    "tags": [
+      "family"
+    ],
+    "contentVersion": 1,
+    "isPublished": true,
+    "strokeCount": 10,
+    "strokeDataId": null,
+    "wordExamples": [
+      "哥哥"
+    ],
+    "sentenceExamples": [
+      "哥哥帮我拿书包。"
+    ],
+    "relatedHanziIds": null
+  },
+  {
+    "id": "hanzi_sister",
+    "character": "姐",
+    "pinyin": "jiě",
+    "definition": "比自己大的女孩。",
+    "audioAssetId": "audio_sister",
+    "imageAssetId": "image_sister",
+    "difficulty": 1,
+    "tags": [
+      "family"
+    ],
+    "contentVersion": 1,
+    "isPublished": true,
+    "strokeCount": 8,
+    "strokeDataId": null,
+    "wordExamples": [
+      "姐姐"
+    ],
+    "sentenceExamples": [
+      "姐姐给我读故事。"
+    ],
+    "relatedHanziIds": null
+  },
+  {
+    "id": "hanzi_younger_brother",
+    "character": "弟",
+    "pinyin": "dì",
+    "definition": "比自己小的男孩。",
+    "audioAssetId": "audio_younger_brother",
+    "imageAssetId": "image_younger_brother",
+    "difficulty": 1,
+    "tags": [
+      "family"
+    ],
+    "contentVersion": 1,
+    "isPublished": true,
+    "strokeCount": 7,
+    "strokeDataId": null,
+    "wordExamples": [
+      "弟弟"
+    ],
+    "sentenceExamples": [
+      "弟弟在门口等我。"
+    ],
+    "relatedHanziIds": null
+  },
+  {
+    "id": "hanzi_younger_sister",
+    "character": "妹",
+    "pinyin": "mèi",
+    "definition": "比自己小的女孩。",
+    "audioAssetId": "audio_younger_sister",
+    "imageAssetId": "image_younger_sister",
+    "difficulty": 1,
+    "tags": [
+      "family"
+    ],
+    "contentVersion": 1,
+    "isPublished": true,
+    "strokeCount": 8,
+    "strokeDataId": null,
+    "wordExamples": [
+      "妹妹"
+    ],
+    "sentenceExamples": [
+      "妹妹抱着布娃娃。"
+    ],
+    "relatedHanziIds": null
+  },
+  {
+    "id": "hanzi_rice",
+    "character": "米",
+    "pinyin": "mǐ",
+    "definition": "做米饭用的一粒一粒。",
+    "audioAssetId": "audio_rice",
+    "imageAssetId": "image_rice",
+    "difficulty": 1,
+    "tags": [
+      "family"
+    ],
+    "contentVersion": 1,
+    "isPublished": true,
+    "strokeCount": 6,
+    "strokeDataId": null,
+    "wordExamples": [
+      "大米",
+      "米饭"
+    ],
+    "sentenceExamples": [
+      "锅里的米饭香香的。"
+    ],
+    "relatedHanziIds": null
+  },
+  {
+    "id": "hanzi_noodle",
+    "character": "面",
+    "pinyin": "miàn",
+    "definition": "可以做成面条。",
+    "audioAssetId": "audio_noodle",
+    "imageAssetId": "image_noodle",
+    "difficulty": 1,
+    "tags": [
+      "family"
+    ],
+    "contentVersion": 1,
+    "isPublished": true,
+    "strokeCount": 9,
+    "strokeDataId": null,
+    "wordExamples": [
+      "面条"
+    ],
+    "sentenceExamples": [
+      "碗里盛着热面条。"
+    ],
+    "relatedHanziIds": null
+  },
+  {
+    "id": "hanzi_bowl",
+    "character": "碗",
+    "pinyin": "wǎn",
+    "definition": "用来盛饭盛汤。",
+    "audioAssetId": "audio_bowl",
+    "imageAssetId": "image_bowl",
+    "difficulty": 1,
+    "tags": [
+      "family"
+    ],
+    "contentVersion": 1,
+    "isPublished": true,
+    "strokeCount": 13,
+    "strokeDataId": null,
+    "wordExamples": [
+      "饭碗"
+    ],
+    "sentenceExamples": [
+      "我把碗洗干净。"
+    ],
+    "relatedHanziIds": null
+  },
+  {
+    "id": "hanzi_cup",
+    "character": "杯",
+    "pinyin": "bēi",
+    "definition": "用来喝水。",
+    "audioAssetId": "audio_cup",
+    "imageAssetId": "image_cup",
+    "difficulty": 1,
+    "tags": [
+      "family"
+    ],
+    "contentVersion": 1,
+    "isPublished": true,
+    "strokeCount": 8,
+    "strokeDataId": null,
+    "wordExamples": [
+      "水杯"
+    ],
+    "sentenceExamples": [
+      "杯子里有温水。"
+    ],
+    "relatedHanziIds": null
+  },
+  {
+    "id": "hanzi_tea",
+    "character": "茶",
+    "pinyin": "chá",
+    "definition": "用叶子泡的饮料。",
+    "audioAssetId": "audio_tea",
+    "imageAssetId": "image_tea",
+    "difficulty": 2,
+    "tags": [
+      "family"
+    ],
+    "contentVersion": 1,
+    "isPublished": true,
+    "strokeCount": 9,
+    "strokeDataId": null,
+    "wordExamples": [
+      "茶水",
+      "喝茶"
+    ],
+    "sentenceExamples": [
+      "爷爷爱喝茶。"
+    ],
+    "relatedHanziIds": null
+  },
+  {
+    "id": "hanzi_door",
+    "character": "门",
+    "pinyin": "mén",
+    "definition": "进出房间要经过它。",
+    "audioAssetId": "audio_door",
+    "imageAssetId": "image_door",
+    "difficulty": 1,
+    "tags": [
+      "family"
+    ],
+    "contentVersion": 1,
+    "isPublished": true,
+    "strokeCount": 3,
+    "strokeDataId": null,
+    "wordExamples": [
+      "大门",
+      "开门"
+    ],
+    "sentenceExamples": [
+      "请随手关门。"
+    ],
+    "relatedHanziIds": null
+  },
+  {
+    "id": "hanzi_window",
+    "character": "窗",
+    "pinyin": "chuāng",
+    "definition": "墙上透进光的地方。",
+    "audioAssetId": "audio_window",
+    "imageAssetId": "image_window",
+    "difficulty": 1,
+    "tags": [
+      "family"
+    ],
+    "contentVersion": 1,
+    "isPublished": true,
+    "strokeCount": 12,
+    "strokeDataId": null,
+    "wordExamples": [
+      "窗户"
+    ],
+    "sentenceExamples": [
+      "窗户打开了，风进来了。"
+    ],
+    "relatedHanziIds": null
+  },
+  {
+    "id": "hanzi_bed",
+    "character": "床",
+    "pinyin": "chuáng",
+    "definition": "晚上睡觉的地方。",
+    "audioAssetId": "audio_bed",
+    "imageAssetId": "image_bed",
+    "difficulty": 1,
+    "tags": [
+      "family"
+    ],
+    "contentVersion": 1,
+    "isPublished": true,
+    "strokeCount": 7,
+    "strokeDataId": null,
+    "wordExamples": [
+      "小床"
+    ],
+    "sentenceExamples": [
+      "我按时上床睡觉。"
+    ],
+    "relatedHanziIds": null
+  },
+  {
+    "id": "hanzi_table",
+    "character": "桌",
+    "pinyin": "zhuō",
+    "definition": "可以在上面吃饭、画画。",
+    "audioAssetId": "audio_table",
+    "imageAssetId": "image_table",
+    "difficulty": 1,
+    "tags": [
+      "family"
+    ],
+    "contentVersion": 1,
+    "isPublished": true,
+    "strokeCount": 10,
+    "strokeDataId": null,
+    "wordExamples": [
+      "桌子"
+    ],
+    "sentenceExamples": [
+      "书放在桌子上。"
+    ],
+    "relatedHanziIds": null
+  },
+  {
+    "id": "hanzi_chair",
+    "character": "椅",
+    "pinyin": "yǐ",
+    "definition": "坐下来用的。",
+    "audioAssetId": "audio_chair",
+    "imageAssetId": "image_chair",
+    "difficulty": 1,
+    "tags": [
+      "family"
+    ],
+    "contentVersion": 1,
+    "isPublished": true,
+    "strokeCount": 12,
+    "strokeDataId": null,
+    "wordExamples": [
+      "椅子"
+    ],
+    "sentenceExamples": [
+      "我把椅子摆好。"
+    ],
+    "relatedHanziIds": null
+  },
+  {
+    "id": "hanzi_lamp",
+    "character": "灯",
+    "pinyin": "dēng",
+    "definition": "天黑了用来照明。",
+    "audioAssetId": "audio_lamp",
+    "imageAssetId": "image_lamp",
+    "difficulty": 1,
+    "tags": [
+      "family"
+    ],
+    "contentVersion": 1,
+    "isPublished": true,
+    "strokeCount": 6,
+    "strokeDataId": null,
+    "wordExamples": [
+      "电灯"
+    ],
+    "sentenceExamples": [
+      "天黑了，灯亮了。"
+    ],
+    "relatedHanziIds": null
+  },
+  {
+    "id": "hanzi_wall",
+    "character": "墙",
+    "pinyin": "qiáng",
+    "definition": "房子四周用来挡风。",
+    "audioAssetId": "audio_wall",
+    "imageAssetId": "image_wall",
+    "difficulty": 2,
+    "tags": [
+      "family"
+    ],
+    "contentVersion": 1,
+    "isPublished": true,
+    "strokeCount": 14,
+    "strokeDataId": null,
+    "wordExamples": [
+      "墙壁"
+    ],
+    "sentenceExamples": [
+      "墙上挂着一幅画。"
+    ],
+    "relatedHanziIds": null
+  },
+  {
+    "id": "hanzi_book",
+    "character": "书",
+    "pinyin": "shū",
+    "definition": "一页一页，可以读。",
+    "audioAssetId": "audio_book",
+    "imageAssetId": "image_book",
+    "difficulty": 1,
+    "tags": [
+      "family"
+    ],
+    "contentVersion": 1,
+    "isPublished": true,
+    "strokeCount": 4,
+    "strokeDataId": null,
+    "wordExamples": [
+      "书本",
+      "看书"
+    ],
+    "sentenceExamples": [
+      "我每天看一会儿书。"
+    ],
+    "relatedHanziIds": null
+  },
+  {
+    "id": "hanzi_pen",
+    "character": "笔",
+    "pinyin": "bǐ",
+    "definition": "用来写字、画画。",
+    "audioAssetId": "audio_pen",
+    "imageAssetId": "image_pen",
+    "difficulty": 1,
+    "tags": [
+      "family"
+    ],
+    "contentVersion": 1,
+    "isPublished": true,
+    "strokeCount": 10,
+    "strokeDataId": null,
+    "wordExamples": [
+      "铅笔",
+      "毛笔"
+    ],
+    "sentenceExamples": [
+      "铅笔削好了。"
+    ],
+    "relatedHanziIds": null
+  },
+  {
+    "id": "hanzi_paper",
+    "character": "纸",
+    "pinyin": "zhǐ",
+    "definition": "写字画画用的。",
+    "audioAssetId": "audio_paper",
+    "imageAssetId": "image_paper",
+    "difficulty": 1,
+    "tags": [
+      "family"
+    ],
+    "contentVersion": 1,
+    "isPublished": true,
+    "strokeCount": 7,
+    "strokeDataId": null,
+    "wordExamples": [
+      "纸张",
+      "白纸"
+    ],
+    "sentenceExamples": [
+      "我在白纸上画画。"
+    ],
+    "relatedHanziIds": null
+  },
+  {
+    "id": "hanzi_draw",
+    "character": "画",
+    "pinyin": "huà",
+    "definition": "用笔把看到的记下来。",
+    "audioAssetId": "audio_draw",
+    "imageAssetId": "image_draw",
+    "difficulty": 1,
+    "tags": [
+      "family"
+    ],
+    "contentVersion": 1,
+    "isPublished": true,
+    "strokeCount": 8,
+    "strokeDataId": null,
+    "wordExamples": [
+      "画画",
+      "图画"
+    ],
+    "sentenceExamples": [
+      "我画了一只小鸟。"
+    ],
+    "relatedHanziIds": null
+  },
+  {
+    "id": "hanzi_ball",
+    "character": "球",
+    "pinyin": "qiú",
+    "definition": "圆圆的，可以拍，也可以踢。",
+    "audioAssetId": "audio_ball",
+    "imageAssetId": "image_ball",
+    "difficulty": 1,
+    "tags": [
+      "family"
+    ],
+    "contentVersion": 1,
+    "isPublished": true,
+    "strokeCount": 11,
+    "strokeDataId": null,
+    "wordExamples": [
+      "皮球"
+    ],
+    "sentenceExamples": [
+      "我们在院子里拍球。"
+    ],
+    "relatedHanziIds": null
+  },
+  {
+    "id": "hanzi_car",
+    "character": "车",
+    "pinyin": "chē",
+    "definition": "有轮子，用来出行。",
+    "audioAssetId": "audio_car",
+    "imageAssetId": "image_car",
+    "difficulty": 1,
+    "tags": [
+      "family"
+    ],
+    "contentVersion": 1,
+    "isPublished": true,
+    "strokeCount": 4,
+    "strokeDataId": null,
+    "wordExamples": [
+      "小车",
+      "开车"
+    ],
+    "sentenceExamples": [
+      "爸爸开车去买菜。"
+    ],
+    "relatedHanziIds": null
+  },
+  {
+    "id": "hanzi_bag",
+    "character": "包",
+    "pinyin": "bāo",
+    "definition": "可以装书和用具。",
+    "audioAssetId": "audio_bag",
+    "imageAssetId": "image_bag",
+    "difficulty": 1,
+    "tags": [
+      "family"
+    ],
+    "contentVersion": 1,
+    "isPublished": true,
+    "strokeCount": 5,
+    "strokeDataId": null,
+    "wordExamples": [
+      "书包"
+    ],
+    "sentenceExamples": [
+      "书包里有铅笔。"
+    ],
+    "relatedHanziIds": null
+  },
+  {
+    "id": "hanzi_sky",
+    "character": "天",
+    "pinyin": "tiān",
+    "definition": "头顶上宽宽的一片。",
+    "audioAssetId": "audio_sky",
+    "imageAssetId": "image_sky",
+    "difficulty": 1,
+    "tags": [
+      "nature"
+    ],
+    "contentVersion": 1,
+    "isPublished": true,
+    "strokeCount": 4,
+    "strokeDataId": null,
+    "wordExamples": [
+      "天空",
+      "白天"
+    ],
+    "sentenceExamples": [
+      "今天的天空很蓝。"
+    ],
+    "relatedHanziIds": null
+  },
+  {
+    "id": "hanzi_cloud",
+    "character": "云",
+    "pinyin": "yún",
+    "definition": "天上白白软软的一团。",
+    "audioAssetId": "audio_cloud",
+    "imageAssetId": "image_cloud",
+    "difficulty": 1,
+    "tags": [
+      "nature"
+    ],
+    "contentVersion": 1,
+    "isPublished": true,
+    "strokeCount": 4,
+    "strokeDataId": null,
+    "wordExamples": [
+      "白云",
+      "云朵"
+    ],
+    "sentenceExamples": [
+      "白云慢慢飘过去。"
+    ],
+    "relatedHanziIds": null
+  },
+  {
+    "id": "hanzi_star",
+    "character": "星",
+    "pinyin": "xīng",
+    "definition": "夜里天上的小亮点。",
+    "audioAssetId": "audio_star",
+    "imageAssetId": "image_star",
+    "difficulty": 1,
+    "tags": [
+      "nature"
+    ],
+    "contentVersion": 1,
+    "isPublished": true,
+    "strokeCount": 9,
+    "strokeDataId": null,
+    "wordExamples": [
+      "星星"
+    ],
+    "sentenceExamples": [
+      "夜里能看见星星。"
+    ],
+    "relatedHanziIds": null
+  },
+  {
+    "id": "hanzi_fire",
+    "character": "火",
+    "pinyin": "huǒ",
+    "definition": "会发光发热，要小心。",
+    "audioAssetId": "audio_fire",
+    "imageAssetId": "image_fire",
+    "difficulty": 2,
+    "tags": [
+      "nature"
+    ],
+    "contentVersion": 1,
+    "isPublished": true,
+    "strokeCount": 4,
+    "strokeDataId": null,
+    "wordExamples": [
+      "火焰",
+      "大火"
+    ],
+    "sentenceExamples": [
+      "火不能随便玩。"
+    ],
+    "relatedHanziIds": null
+  },
+  {
+    "id": "hanzi_snow",
+    "character": "雪",
+    "pinyin": "xuě",
+    "definition": "天冷时落下的白花。",
+    "audioAssetId": "audio_snow",
+    "imageAssetId": "image_snow",
+    "difficulty": 1,
+    "tags": [
+      "nature"
+    ],
+    "contentVersion": 1,
+    "isPublished": true,
+    "strokeCount": 11,
+    "strokeDataId": null,
+    "wordExamples": [
+      "下雪",
+      "雪花"
+    ],
+    "sentenceExamples": [
+      "雪花落在手上。"
+    ],
+    "relatedHanziIds": null
+  },
+  {
+    "id": "hanzi_thunder",
+    "character": "雷",
+    "pinyin": "léi",
+    "definition": "下雨时很响的声音。",
+    "audioAssetId": "audio_thunder",
+    "imageAssetId": "image_thunder",
+    "difficulty": 2,
+    "tags": [
+      "nature"
+    ],
+    "contentVersion": 1,
+    "isPublished": true,
+    "strokeCount": 13,
+    "strokeDataId": null,
+    "wordExamples": [
+      "打雷"
+    ],
+    "sentenceExamples": [
+      "打雷的时候待在屋里。"
+    ],
+    "relatedHanziIds": null
+  },
+  {
+    "id": "hanzi_lightning",
+    "character": "电",
+    "pinyin": "diàn",
+    "definition": "雷雨里亮亮的一闪。",
+    "audioAssetId": "audio_lightning",
+    "imageAssetId": "image_lightning",
+    "difficulty": 2,
+    "tags": [
+      "nature"
+    ],
+    "contentVersion": 1,
+    "isPublished": true,
+    "strokeCount": 5,
+    "strokeDataId": null,
+    "wordExamples": [
+      "闪电"
+    ],
+    "sentenceExamples": [
+      "闪电照亮了夜空。"
+    ],
+    "relatedHanziIds": null
+  },
+  {
+    "id": "hanzi_rainbow",
+    "character": "虹",
+    "pinyin": "hóng",
+    "definition": "雨后天上的彩色桥。",
+    "audioAssetId": "audio_rainbow",
+    "imageAssetId": "image_rainbow",
+    "difficulty": 2,
+    "tags": [
+      "nature"
+    ],
+    "contentVersion": 1,
+    "isPublished": true,
+    "strokeCount": 9,
+    "strokeDataId": null,
+    "wordExamples": [
+      "彩虹"
+    ],
+    "sentenceExamples": [
+      "雨停后出了彩虹。"
+    ],
+    "relatedHanziIds": null
+  },
+  {
+    "id": "hanzi_dew",
+    "character": "露",
+    "pinyin": "lù",
+    "definition": "清晨叶子上的小水珠。",
+    "audioAssetId": "audio_dew",
+    "imageAssetId": "image_dew",
+    "difficulty": 2,
+    "tags": [
+      "nature"
+    ],
+    "contentVersion": 1,
+    "isPublished": true,
+    "strokeCount": 21,
+    "strokeDataId": null,
+    "wordExamples": [
+      "露水"
+    ],
+    "sentenceExamples": [
+      "清晨的叶子上有露水。"
+    ],
+    "relatedHanziIds": null
+  },
+  {
+    "id": "hanzi_frost",
+    "character": "霜",
+    "pinyin": "shuāng",
+    "definition": "很冷时地上白茫茫的一层。",
+    "audioAssetId": "audio_frost",
+    "imageAssetId": "image_frost",
+    "difficulty": 2,
+    "tags": [
+      "nature"
+    ],
+    "contentVersion": 1,
+    "isPublished": true,
+    "strokeCount": 17,
+    "strokeDataId": null,
+    "wordExamples": [
+      "霜冻"
+    ],
+    "sentenceExamples": [
+      "清晨地面上有一层霜。"
+    ],
+    "relatedHanziIds": null
+  },
+  {
+    "id": "hanzi_flower",
+    "character": "花",
+    "pinyin": "huā",
+    "definition": "植物开出的彩色部分。",
+    "audioAssetId": "audio_flower",
+    "imageAssetId": "image_flower",
+    "difficulty": 1,
+    "tags": [
+      "nature"
+    ],
+    "contentVersion": 1,
+    "isPublished": true,
+    "strokeCount": 7,
+    "strokeDataId": null,
+    "wordExamples": [
+      "花朵",
+      "红花"
+    ],
+    "sentenceExamples": [
+      "花开了，真好看。"
+    ],
+    "relatedHanziIds": null
+  },
+  {
+    "id": "hanzi_grass",
+    "character": "草",
+    "pinyin": "cǎo",
+    "definition": "地上矮矮的绿叶子。",
+    "audioAssetId": "audio_grass",
+    "imageAssetId": "image_grass",
+    "difficulty": 1,
+    "tags": [
+      "nature"
+    ],
+    "contentVersion": 1,
+    "isPublished": true,
+    "strokeCount": 9,
+    "strokeDataId": null,
+    "wordExamples": [
+      "小草",
+      "青草"
+    ],
+    "sentenceExamples": [
+      "小草从土里钻出来。"
+    ],
+    "relatedHanziIds": null
+  },
+  {
+    "id": "hanzi_bamboo",
+    "character": "竹",
+    "pinyin": "zhú",
+    "definition": "一节一节，长得高高的。",
+    "audioAssetId": "audio_bamboo",
+    "imageAssetId": "image_bamboo",
+    "difficulty": 1,
+    "tags": [
+      "nature"
+    ],
+    "contentVersion": 1,
+    "isPublished": true,
+    "strokeCount": 6,
+    "strokeDataId": null,
+    "wordExamples": [
+      "竹子"
+    ],
+    "sentenceExamples": [
+      "竹子在风里轻轻摇。"
+    ],
+    "relatedHanziIds": null
+  },
+  {
+    "id": "hanzi_leaf",
+    "character": "叶",
+    "pinyin": "yè",
+    "definition": "长在枝上的绿片。",
+    "audioAssetId": "audio_leaf",
+    "imageAssetId": "image_leaf",
+    "difficulty": 1,
+    "tags": [
+      "nature"
+    ],
+    "contentVersion": 1,
+    "isPublished": true,
+    "strokeCount": 5,
+    "strokeDataId": null,
+    "wordExamples": [
+      "树叶",
+      "叶子"
+    ],
+    "sentenceExamples": [
+      "树叶落下来了。"
+    ],
+    "relatedHanziIds": null
+  },
+  {
+    "id": "hanzi_fruit",
+    "character": "果",
+    "pinyin": "guǒ",
+    "definition": "植物结出来、有的可以吃。",
+    "audioAssetId": "audio_fruit",
+    "imageAssetId": "image_fruit",
+    "difficulty": 1,
+    "tags": [
+      "nature"
+    ],
+    "contentVersion": 1,
+    "isPublished": true,
+    "strokeCount": 8,
+    "strokeDataId": null,
+    "wordExamples": [
+      "水果",
+      "果子"
+    ],
+    "sentenceExamples": [
+      "树上结了果子。"
+    ],
+    "relatedHanziIds": null
+  },
+  {
+    "id": "hanzi_tree",
+    "character": "树",
+    "pinyin": "shù",
+    "definition": "有树干，也有很多叶子。",
+    "audioAssetId": "audio_tree",
+    "imageAssetId": "image_tree",
+    "difficulty": 1,
+    "tags": [
+      "nature"
+    ],
+    "contentVersion": 1,
+    "isPublished": true,
+    "strokeCount": 9,
+    "strokeDataId": null,
+    "wordExamples": [
+      "大树",
+      "树苗"
+    ],
+    "sentenceExamples": [
+      "我们在大树下乘凉。"
+    ],
+    "relatedHanziIds": null
+  },
+  {
+    "id": "hanzi_wood",
+    "character": "木",
+    "pinyin": "mù",
+    "definition": "树干可以做成木头。",
+    "audioAssetId": "audio_wood",
+    "imageAssetId": "image_wood",
+    "difficulty": 1,
+    "tags": [
+      "nature"
+    ],
+    "contentVersion": 1,
+    "isPublished": true,
+    "strokeCount": 4,
+    "strokeDataId": null,
+    "wordExamples": [
+      "木头",
+      "木桌"
+    ],
+    "sentenceExamples": [
+      "这张桌子是木头做的。"
+    ],
+    "relatedHanziIds": null
+  },
+  {
+    "id": "hanzi_stone",
+    "character": "石",
+    "pinyin": "shí",
+    "definition": "硬硬的，山上常见。",
+    "audioAssetId": "audio_stone",
+    "imageAssetId": "image_stone",
+    "difficulty": 1,
+    "tags": [
+      "nature"
+    ],
+    "contentVersion": 1,
+    "isPublished": true,
+    "strokeCount": 5,
+    "strokeDataId": null,
+    "wordExamples": [
+      "石头",
+      "石子"
+    ],
+    "sentenceExamples": [
+      "小石子躺在河边。"
+    ],
+    "relatedHanziIds": null
+  },
+  {
+    "id": "hanzi_field",
+    "character": "田",
+    "pinyin": "tián",
+    "definition": "种庄稼的一块地。",
+    "audioAssetId": "audio_field",
+    "imageAssetId": "image_field",
+    "difficulty": 1,
+    "tags": [
+      "nature"
+    ],
+    "contentVersion": 1,
+    "isPublished": true,
+    "strokeCount": 5,
+    "strokeDataId": null,
+    "wordExamples": [
+      "水田",
+      "田地"
+    ],
+    "sentenceExamples": [
+      "田里长着绿苗。"
+    ],
+    "relatedHanziIds": null
+  },
+  {
+    "id": "hanzi_soil",
+    "character": "土",
+    "pinyin": "tǔ",
+    "definition": "脚下松松的泥土。",
+    "audioAssetId": "audio_soil",
+    "imageAssetId": "image_soil",
+    "difficulty": 1,
+    "tags": [
+      "nature"
+    ],
+    "contentVersion": 1,
+    "isPublished": true,
+    "strokeCount": 3,
+    "strokeDataId": null,
+    "wordExamples": [
+      "泥土",
+      "土地"
+    ],
+    "sentenceExamples": [
+      "种子埋进泥土里。"
+    ],
+    "relatedHanziIds": null
+  },
+  {
+    "id": "hanzi_river",
+    "character": "河",
+    "pinyin": "hé",
+    "definition": "长长的流水。",
+    "audioAssetId": "audio_river",
+    "imageAssetId": "image_river",
+    "difficulty": 1,
+    "tags": [
+      "nature"
+    ],
+    "contentVersion": 1,
+    "isPublished": true,
+    "strokeCount": 8,
+    "strokeDataId": null,
+    "wordExamples": [
+      "小河",
+      "河水"
+    ],
+    "sentenceExamples": [
+      "小河向远方流去。"
+    ],
+    "relatedHanziIds": null
+  },
+  {
+    "id": "hanzi_sea",
+    "character": "海",
+    "pinyin": "hǎi",
+    "definition": "很大很宽的水。",
+    "audioAssetId": "audio_sea",
+    "imageAssetId": "image_sea",
+    "difficulty": 1,
+    "tags": [
+      "nature"
+    ],
+    "contentVersion": 1,
+    "isPublished": true,
+    "strokeCount": 10,
+    "strokeDataId": null,
+    "wordExamples": [
+      "大海"
+    ],
+    "sentenceExamples": [
+      "大海一眼望不到边。"
+    ],
+    "relatedHanziIds": null
+  },
+  {
+    "id": "hanzi_lake",
+    "character": "湖",
+    "pinyin": "hú",
+    "definition": "四周是岸的一片水。",
+    "audioAssetId": "audio_lake",
+    "imageAssetId": "image_lake",
+    "difficulty": 2,
+    "tags": [
+      "nature"
+    ],
+    "contentVersion": 1,
+    "isPublished": true,
+    "strokeCount": 12,
+    "strokeDataId": null,
+    "wordExamples": [
+      "湖水"
+    ],
+    "sentenceExamples": [
+      "湖水静静的。"
+    ],
+    "relatedHanziIds": null
+  },
+  {
+    "id": "hanzi_spring",
+    "character": "泉",
+    "pinyin": "quán",
+    "definition": "从地下冒出来的水。",
+    "audioAssetId": "audio_spring",
+    "imageAssetId": "image_spring",
+    "difficulty": 2,
+    "tags": [
+      "nature"
+    ],
+    "contentVersion": 1,
+    "isPublished": true,
+    "strokeCount": 9,
+    "strokeDataId": null,
+    "wordExamples": [
+      "泉水"
+    ],
+    "sentenceExamples": [
+      "泉水清清的。"
+    ],
+    "relatedHanziIds": null
   }
 ]

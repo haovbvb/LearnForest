@@ -31,6 +31,8 @@ protocol LearningStoring: AnyObject {
         characterNames: [String: String],
         now: Date
     ) throws -> PracticeReport
+    func beginReview(profileId: String, targetIds: [String], now: Date) throws -> LearningSession?
+    func completeReview(sessionId: String, questionCount: Int, now: Date) throws
     func addStudyTime(profileId: String, sessionId: String, seconds: Int, now: Date) throws
     func rewardCounts(profileId: String) throws -> RewardCounts
     func dailySnapshot(profileId: String, now: Date) throws -> DailySnapshot
@@ -54,7 +56,11 @@ final class LearningRepository: LearningStoring {
     func inProgressSession(profileId: String) throws -> LearningSession? {
         try queue.read { db in
             try LearningSession
-                .filter(Column("profileId") == profileId && Column("status") == SessionStatus.inProgress.rawValue)
+                .filter(
+                    Column("profileId") == profileId
+                        && Column("status") == SessionStatus.inProgress.rawValue
+                        && Column("sessionType") != SessionType.review.rawValue
+                )
                 .order(Column("updatedAt").desc)
                 .fetchOne(db)
         }
@@ -111,6 +117,7 @@ final class LearningRepository: LearningStoring {
                 completedAt: nil,
                 activeDurationSeconds: 0,
                 practiceIndex: 0,
+                reviewTargets: "",
                 updatedAt: now,
                 syncStatus: SyncReservation.localOnly,
                 schemaVersion: SyncReservation.schemaVersion,
@@ -163,6 +170,73 @@ final class LearningRepository: LearningStoring {
             } else {
                 try StudyTimeRecord.make(profileId: profileId, day: day, seconds: seconds, now: now).insert(db)
             }
+        }
+    }
+
+    /// 不打断正在认的课。有未做完的复习就接着那一轮，做完的才另开一轮。
+    func beginReview(profileId: String, targetIds: [String], now: Date) throws -> LearningSession? {
+        try queue.write { db in
+            let rows = try LearningSession
+                .filter(Column("profileId") == profileId && Column("sessionType") == SessionType.review.rawValue)
+                .fetchAll(db)
+            let candidate = rows.filter { $0.status == .inProgress }.max { $0.updatedAt < $1.updatedAt }
+                ?? rows.filter { $0.status == .interrupted }.max { $0.updatedAt < $1.updatedAt }
+            if var existing = candidate {
+                let stored = ReviewQueue.ids(in: existing.reviewTargets)
+                let unfinished = !stored.isEmpty && existing.practiceIndex < stored.count
+                if unfinished {
+                    existing.status = .inProgress
+                    existing.updatedAt = now
+                    try existing.update(db)
+                    return existing
+                }
+                if stored.isEmpty && !targetIds.isEmpty {
+                    existing.reviewTargets = ReviewQueue.joined(targetIds)
+                    existing.practiceIndex = 0
+                    existing.status = .inProgress
+                    existing.updatedAt = now
+                    try existing.update(db)
+                    return existing
+                }
+                if existing.status != .completed {
+                    existing.status = .completed
+                    existing.completedAt = now
+                    existing.updatedAt = now
+                    try existing.update(db)
+                }
+            }
+            guard !targetIds.isEmpty else { return nil }
+            let session = LearningSession(
+                id: UUID().uuidString,
+                profileId: profileId,
+                courseId: ReviewQueue.courseId,
+                sessionType: .review,
+                status: .inProgress,
+                currentIndex: 0,
+                startedAt: now,
+                completedAt: nil,
+                activeDurationSeconds: 0,
+                practiceIndex: 0,
+                reviewTargets: ReviewQueue.joined(targetIds),
+                updatedAt: now,
+                syncStatus: SyncReservation.localOnly,
+                schemaVersion: SyncReservation.schemaVersion,
+                deviceId: nil,
+                deletedAt: nil
+            )
+            try session.insert(db)
+            return session
+        }
+    }
+
+    func completeReview(sessionId: String, questionCount: Int, now: Date) throws {
+        try queue.write { db in
+            guard var session = try LearningSession.fetchOne(db, key: sessionId) else { return }
+            session.status = .completed
+            session.practiceIndex = questionCount
+            session.completedAt = now
+            session.updatedAt = now
+            try session.update(db)
         }
     }
 

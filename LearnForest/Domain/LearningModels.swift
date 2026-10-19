@@ -60,6 +60,8 @@ struct LearningSession: Codable, Equatable, Identifiable {
     var currentIndex: Int
     /// 练习题做到第几题。认字卡片仍用 currentIndex。
     var practiceIndex: Int
+    /// 复习一轮锁定的汉字 id，逗号分开。普通认字课留空。
+    var reviewTargets: String
     var startedAt: Date
     var completedAt: Date?
     var activeDurationSeconds: Int

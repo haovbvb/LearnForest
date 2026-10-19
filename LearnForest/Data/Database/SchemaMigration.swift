@@ -42,6 +42,11 @@ enum SchemaMigration {
                 columns: ["profileId"]
             )
         }
+        migrator.registerMigration("v4_review_targets") { db in
+            try db.alter(table: "learningSession") { table in
+                table.add(column: "reviewTargets", .text).notNull().defaults(to: "")
+            }
+        }
         return migrator
     }
 
