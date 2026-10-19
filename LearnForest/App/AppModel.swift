@@ -17,6 +17,8 @@ final class AppModel {
     var rewardCounts = RewardCounts.zero
     var dailySnapshot = DailySnapshot.empty
     var hasInProgressSession = false
+    var activeSession: LearningSession?
+    var learningRecords: [LearningRecord] = []
     var installedContentVersion: Int?
 
     var primaryLearningTitle: String {
@@ -24,7 +26,15 @@ final class AppModel {
     }
 
     var primaryLearningSubtitle: String {
-        hasInProgressSession ? "接着上次的进度" : "点这里开始"
+        if hasInProgressSession, let title = continueCourseTitle {
+            return "接着「\(title)」"
+        }
+        return "点这里开始"
+    }
+
+    var continueCourseTitle: String? {
+        guard let courseId = activeSession?.courseId else { return nil }
+        return contentPackage?.course(id: courseId)?.title
     }
 
     var progressCaption: String {
@@ -78,6 +88,8 @@ final class AppModel {
             activeProfile = try profilesRepo.active()
             guard let profileId = activeProfile?.id else { return }
             hasInProgressSession = try learningRepo.hasInProgressSession(profileId: profileId)
+            activeSession = try learningRepo.inProgressSession(profileId: profileId)
+            learningRecords = try learningRepo.records(profileId: profileId)
             rewardCounts = try learningRepo.rewardCounts(profileId: profileId)
             dailySnapshot = try learningRepo.dailySnapshot(profileId: profileId, now: Date())
         } catch {
@@ -121,6 +133,79 @@ final class AppModel {
         } catch {
             actionError = error.localizedDescription
         }
+    }
+
+    func mastery(for hanziId: String) -> MasteryLevel {
+        guard let record = learningRecords.first(where: { $0.hanziId == hanziId }) else {
+            return .notStarted
+        }
+        return learningService.recordedMastery(of: record)
+    }
+
+    func showsPinyin(for profile: ChildProfile? = nil) -> Bool {
+        (profile ?? activeProfile)?.pinyinMode != .hidden
+    }
+
+    func pinyinIsSecondary(for profile: ChildProfile? = nil) -> Bool {
+        (profile ?? activeProfile)?.pinyinMode != .show
+    }
+
+    /// 打开本机占位预习。没有网络请求。资源不完整的课仍然不能当成正式课。
+    func beginPlaceholderLesson() {
+        guard let profileId = activeProfile?.id else { return }
+        guard let courseId = placeholderCourseId() else {
+            actionError = "这台 iPad 上还没有可以预习的汉字。"
+            return
+        }
+        do {
+            _ = try learningRepo.startOrResume(profileId: profileId, courseId: courseId, now: Date())
+            reload()
+        } catch {
+            actionError = error.localizedDescription
+        }
+    }
+
+    func notePlaceholderIndex(_ index: Int) {
+        guard let session = activeSession else { return }
+        do {
+            try learningRepo.updateIndex(sessionId: session.id, currentIndex: index, now: Date())
+            reload()
+        } catch {
+            actionError = error.localizedDescription
+        }
+    }
+
+    func notePlaceholderStep(hanziId: String, index: Int) {
+        guard let profileId = activeProfile?.id, let session = activeSession else { return }
+        let existing = learningRecords.first { $0.hanziId == hanziId }?.masteryLevel
+        let mastery = learningService.masteryAfterPlaceholderContact(existing: existing)
+        do {
+            try learningRepo.touchForPlaceholder(
+                profileId: profileId,
+                hanziId: hanziId,
+                mastery: mastery,
+                now: Date()
+            )
+            try learningRepo.updateIndex(sessionId: session.id, currentIndex: index, now: Date())
+            reload()
+        } catch {
+            actionError = error.localizedDescription
+        }
+    }
+
+    func placeholderCourse() -> Course? {
+        guard let package = contentPackage else { return nil }
+        if let courseId = activeSession?.courseId, let course = package.course(id: courseId) {
+            return course
+        }
+        return package.localPreviewCourses.first
+    }
+
+    private func placeholderCourseId() -> String? {
+        if let courseId = activeSession?.courseId, contentPackage?.course(id: courseId) != nil {
+            return courseId
+        }
+        return contentPackage?.localPreviewCourses.first?.id
     }
 
     func updateActive(_ body: (inout ChildProfile) -> Void) {

@@ -121,4 +121,11 @@ struct ContentPackage: Equatable {
         let map = hanziById
         return course.hanziIds.compactMap { map[$0] }
     }
+
+    /// 本机已经有汉字正文的课，按主题和课序排列。没有网络也能列出来。
+    var localPreviewCourses: [Course] {
+        themesSorted.flatMap { theme in
+            courses(in: theme.id).filter { !hanziList(for: $0).isEmpty }
+        }
+    }
 }

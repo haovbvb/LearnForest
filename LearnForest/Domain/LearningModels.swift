@@ -20,6 +20,35 @@ struct LearningRecord: Codable, Equatable, Identifiable {
     var schemaVersion: Int
     var deviceId: String?
     var deletedAt: Date?
+
+    static func placeholderContact(
+        profileId: String,
+        hanziId: String,
+        mastery: MasteryLevel,
+        now: Date
+    ) -> LearningRecord {
+        LearningRecord(
+            id: "\(profileId)#\(hanziId)",
+            profileId: profileId,
+            hanziId: hanziId,
+            firstLearnedAt: now,
+            lastPracticedAt: now,
+            correctCount: 0,
+            incorrectCount: 0,
+            masteryLevel: mastery,
+            nextReviewAt: nil,
+            recognitionAccuracy: nil,
+            pronunciationRecognitionAccuracy: nil,
+            wordRecognitionAccuracy: nil,
+            contextRecognitionAccuracy: nil,
+            skillUpdatedAt: nil,
+            updatedAt: now,
+            syncStatus: SyncReservation.localOnly,
+            schemaVersion: SyncReservation.schemaVersion,
+            deviceId: nil,
+            deletedAt: nil
+        )
+    }
 }
 
 struct LearningSession: Codable, Equatable, Identifiable {

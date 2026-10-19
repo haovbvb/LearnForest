@@ -1,9 +1,14 @@
 import Foundation
 import GRDB
 
-/// 学习记录只读查询。答题结算、掌握状态和发奖留到 Sprint 3，避免半成品被页面误用。
+/// 占位预习会写下「学习中」和课程序号。答题、掌握升级和发奖留到 Sprint 3。
 protocol LearningStoring: AnyObject {
     func hasInProgressSession(profileId: String) throws -> Bool
+    func inProgressSession(profileId: String) throws -> LearningSession?
+    func records(profileId: String) throws -> [LearningRecord]
+    func startOrResume(profileId: String, courseId: String, now: Date) throws -> LearningSession
+    func touchForPlaceholder(profileId: String, hanziId: String, mastery: MasteryLevel, now: Date) throws
+    func updateIndex(sessionId: String, currentIndex: Int, now: Date) throws
     func rewardCounts(profileId: String) throws -> RewardCounts
     func dailySnapshot(profileId: String, now: Date) throws -> DailySnapshot
     func noteContentInstall(_ manifest: ContentManifest) throws
@@ -18,10 +23,82 @@ final class LearningRepository: LearningStoring {
     }
 
     func hasInProgressSession(profileId: String) throws -> Bool {
+        try inProgressSession(profileId: profileId) != nil
+    }
+
+    func inProgressSession(profileId: String) throws -> LearningSession? {
         try queue.read { db in
             try LearningSession
                 .filter(Column("profileId") == profileId && Column("status") == SessionStatus.inProgress.rawValue)
-                .fetchCount(db) > 0
+                .order(Column("updatedAt").desc)
+                .fetchOne(db)
+        }
+    }
+
+    func records(profileId: String) throws -> [LearningRecord] {
+        try queue.read { db in
+            try LearningRecord
+                .filter(Column("profileId") == profileId)
+                .fetchAll(db)
+        }
+    }
+
+    func startOrResume(profileId: String, courseId: String, now: Date) throws -> LearningSession {
+        if let existing = try inProgressSession(profileId: profileId) {
+            return existing
+        }
+        let session = LearningSession(
+            id: UUID().uuidString,
+            profileId: profileId,
+            courseId: courseId,
+            sessionType: .newLearning,
+            status: .inProgress,
+            currentIndex: 0,
+            startedAt: now,
+            completedAt: nil,
+            activeDurationSeconds: 0,
+            updatedAt: now,
+            syncStatus: SyncReservation.localOnly,
+            schemaVersion: SyncReservation.schemaVersion,
+            deviceId: nil,
+            deletedAt: nil
+        )
+        try queue.write { db in
+            try session.insert(db)
+        }
+        return session
+    }
+
+    /// 只记录「接触过」。掌握等级由 LearningService 决定，这里不升到初步掌握。
+    func touchForPlaceholder(profileId: String, hanziId: String, mastery: MasteryLevel, now: Date) throws {
+        try queue.write { db in
+            if var existing = try LearningRecord
+                .filter(Column("profileId") == profileId && Column("hanziId") == hanziId)
+                .fetchOne(db) {
+                if existing.firstLearnedAt == nil {
+                    existing.firstLearnedAt = now
+                }
+                existing.lastPracticedAt = now
+                existing.masteryLevel = mastery
+                existing.updatedAt = now
+                try existing.update(db)
+            } else {
+                try LearningRecord.placeholderContact(
+                    profileId: profileId,
+                    hanziId: hanziId,
+                    mastery: mastery,
+                    now: now
+                ).insert(db)
+            }
+        }
+    }
+
+    func updateIndex(sessionId: String, currentIndex: Int, now: Date) throws {
+        try queue.write { db in
+            guard var session = try LearningSession.fetchOne(db, key: sessionId) else { return }
+            session.currentIndex = currentIndex
+            session.updatedAt = now
+            try session.update(db)
         }
     }
 

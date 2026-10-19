@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3DA51B12DD1239E22C608937 /* ForestMetrics.swift in Sources */ = {isa = PBXBuildFile; fileRef = 044CF5B4A159F2FFBB36CAC8 /* ForestMetrics.swift */; };
+		696CE6520205B5CB172D0519 /* HanziCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE778B23FBB1B88616FF39A9 /* HanziCard.swift */; };
+		243C7F80D09BB154D116DDE8 /* ManifestCheck.swift in Sources */ = {isa = PBXBuildFile; fileRef = 110759D60AA103EBA8015F43 /* ManifestCheck.swift */; };
 		A10000000000000000000011 /* GRDB in Frameworks */ = {isa = PBXBuildFile; productRef = A10000000000000000000010 /* GRDB */; };
 		75F253049ED6393F6768885F /* core_chinese_v1 in Resources */ = {isa = PBXBuildFile; fileRef = FDCE4AFF215E43B998CFCCE6 /* core_chinese_v1 */; };
 		03401DAF72D3F5684E387FDC /* AppModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 039A4E62B9F402219C5F46E1 /* AppModel.swift */; };
@@ -43,6 +46,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		044CF5B4A159F2FFBB36CAC8 /* ForestMetrics.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForestMetrics.swift; sourceTree = "<group>"; };
+		DE778B23FBB1B88616FF39A9 /* HanziCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HanziCard.swift; sourceTree = "<group>"; };
+		110759D60AA103EBA8015F43 /* ManifestCheck.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManifestCheck.swift; sourceTree = "<group>"; };
 		A10000000000000000000004 /* LearnForest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LearnForest.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FDCE4AFF215E43B998CFCCE6 /* core_chinese_v1 */ = {isa = PBXFileReference; lastKnownFileType = folder; path = core_chinese_v1; sourceTree = "<group>"; };
 		CB53D1F18CA053511E6C914A /* templates */ = {isa = PBXFileReference; lastKnownFileType = folder; path = templates; sourceTree = "<group>"; };
@@ -182,7 +188,9 @@
 			isa = PBXGroup;
 			children = (
 				064A1CFCE61D0098BA6952AD /* ForestCard.swift */,
+				044CF5B4A159F2FFBB36CAC8 /* ForestMetrics.swift */,
 				F370C0D4F8B9A8A4245FF4FD /* ForestPalette.swift */,
+				DE778B23FBB1B88616FF39A9 /* HanziCard.swift */,
 				CEA0E3FB6FAC5EFD3F2BEA9E /* PrimaryLearningButton.swift */,
 			);
 			path = DesignSystem;
@@ -194,6 +202,7 @@
 				8D806BAF86A71F706DFA5BE1 /* ChildProfile.swift */,
 				C8650C107F6B09DF1B281BF4 /* ContentModels.swift */,
 				3E209F7CCDB4E44C3D704B06 /* CourseQualityGate.swift */,
+				110759D60AA103EBA8015F43 /* ManifestCheck.swift */,
 				D2E00B8D7209D3EFECE3B694 /* ForestEnums.swift */,
 				6FAE9585F8A0C02608178E09 /* LearningModels.swift */,
 				BC64CF750A69477473FF2155 /* LearningService.swift */,
@@ -349,6 +358,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				243C7F80D09BB154D116DDE8 /* ManifestCheck.swift in Sources */,
+				696CE6520205B5CB172D0519 /* HanziCard.swift in Sources */,
+				3DA51B12DD1239E22C608937 /* ForestMetrics.swift in Sources */,
 				03401DAF72D3F5684E387FDC /* AppModel.swift in Sources */,
 				0478C3A1C37A8CA9F51D5A59 /* LearnForestApp.swift in Sources */,
 				D933F3B1D4F5AAB954397F7A /* RootView.swift in Sources */,

@@ -12,7 +12,7 @@ struct HomeView: View {
     var body: some View {
         ZStack {
             ForestPalette.cream.ignoresSafeArea()
-            VStack(alignment: .leading, spacing: 24) {
+            VStack(alignment: .leading, spacing: ForestSpacing.large) {
                 header
                 if let bootstrapError = model.bootstrapError {
                     ForestCard(background: ForestPalette.gentleAlert.opacity(0.25)) {
@@ -40,7 +40,7 @@ struct HomeView: View {
                         .foregroundStyle(ForestPalette.inkSoft)
                         .frame(maxWidth: .infinity)
                 }
-                .frame(maxWidth: 720)
+                .frame(maxWidth: ForestSpacing.readingWidth)
                 .frame(maxWidth: .infinity)
                 Spacer(minLength: 0)
                 secondaryEntries
@@ -50,7 +50,7 @@ struct HomeView: View {
                     .foregroundStyle(ForestPalette.inkSoft)
                     .frame(maxWidth: .infinity, alignment: .center)
             }
-            .padding(32)
+            .padding(ForestSpacing.screen)
         }
         .toolbar(.hidden, for: .navigationBar)
     }
@@ -125,7 +125,7 @@ struct HomeView: View {
             Text(title)
                 .lineLimit(1)
         }
-        .frame(maxWidth: .infinity, minHeight: 64)
+        .frame(maxWidth: .infinity, minHeight: ForestSpacing.minTouch)
         .padding(.horizontal, 12)
         .background(ForestPalette.card.opacity(0.7), in: RoundedRectangle(cornerRadius: 20, style: .continuous))
     }

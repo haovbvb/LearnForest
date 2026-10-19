@@ -6,7 +6,7 @@ enum CourseAvailability: Equatable {
 }
 
 /// 上架门槛见 PRD §7.4：图、标准音、字义、至少一种已实现的练习。
-/// 骨架没有练习引擎，因此目前没有任何课程可进入。
+/// 占位预习可以打开本机文字，但这里返回 blocked 的课不能当成正式学习。
 enum CourseQualityGate {
     /// TODO(Sprint 3): 三种核心题型实现后，把对应 id 放进这个集合。
     static let implementedExerciseTypes: Set<String> = []

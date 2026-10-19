@@ -11,9 +11,9 @@ struct ForestCard<Content: View>: View {
 
     var body: some View {
         content
-            .padding(20)
+            .padding(ForestSpacing.medium)
             .frame(maxWidth: .infinity, alignment: .leading)
-            .background(background, in: RoundedRectangle(cornerRadius: 28, style: .continuous))
+            .background(background, in: RoundedRectangle(cornerRadius: ForestSpacing.cardRadius, style: .continuous))
     }
 }
 
@@ -27,7 +27,7 @@ struct CornerIconButton: View {
             Image(systemName: systemImage)
                 .font(.title2.weight(.semibold))
                 .foregroundStyle(ForestPalette.ink)
-                .frame(width: 64, height: 64)
+                .frame(width: ForestSpacing.cornerIcon, height: ForestSpacing.cornerIcon)
                 .background(ForestPalette.card, in: Circle())
         }
         .accessibilityLabel(accessibilityLabel)

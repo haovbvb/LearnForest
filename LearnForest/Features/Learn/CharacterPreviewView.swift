@@ -21,7 +21,15 @@ struct CharacterPreviewView: View {
                         NavigationLink {
                             CharacterDetailPlaceholder(hanzi: hanzi)
                         } label: {
-                            row(hanzi)
+                            HanziCard(
+                                character: hanzi.character,
+                                pinyin: hanzi.pinyin,
+                                showsPinyin: model.showsPinyin(),
+                                pinyinIsSecondary: model.pinyinIsSecondary(),
+                                definition: hanzi.definition,
+                                statusTitle: model.mastery(for: hanzi.id).title,
+                                compact: true
+                            )
                         }
                         .buttonStyle(.plain)
                     }
@@ -38,31 +46,6 @@ struct CharacterPreviewView: View {
 
     private var characters: [Hanzi] {
         hanziIds.compactMap { model.contentPackage?.hanzi(id: $0) }
-    }
-
-    private func row(_ hanzi: Hanzi) -> some View {
-        ForestCard {
-            HStack(spacing: 18) {
-                Text(hanzi.character)
-                    .font(.system(size: 56, weight: .medium, design: .rounded))
-                    .foregroundStyle(ForestPalette.ink)
-                    .frame(width: 88, height: 88)
-                VStack(alignment: .leading, spacing: 4) {
-                    if model.activeProfile?.pinyinMode != .hidden {
-                        Text(hanzi.pinyin)
-                            .font(.title3)
-                            .foregroundStyle(ForestPalette.inkSoft)
-                    }
-                    Text(hanzi.definition)
-                        .font(.body)
-                        .foregroundStyle(ForestPalette.ink)
-                    Text(MasteryLevel.notStarted.title)
-                        .font(.callout.weight(.semibold))
-                        .foregroundStyle(ForestPalette.leaf)
-                }
-                Spacer()
-            }
-        }
     }
 }
 

@@ -12,7 +12,7 @@ struct PrimaryLearningButton: View {
         Button(action: action) {
             VStack(spacing: 8) {
                 Text(title)
-                    .font(.system(size: 40, weight: .bold, design: .rounded))
+                    .font(ForestType.hero)
                 if let subtitle {
                     Text(subtitle)
                         .font(.title3.weight(.medium))
@@ -21,10 +21,10 @@ struct PrimaryLearningButton: View {
             }
             .foregroundStyle(ForestPalette.ink)
             .frame(maxWidth: .infinity)
-            .frame(minHeight: 148)
-            .padding(.horizontal, 28)
-            .padding(.vertical, 12)
-            .background(ForestPalette.sun, in: RoundedRectangle(cornerRadius: 36, style: .continuous))
+            .frame(minHeight: ForestSpacing.heroMinHeight)
+            .padding(.horizontal, ForestSpacing.large)
+            .padding(.vertical, ForestSpacing.small)
+            .background(ForestPalette.sun, in: RoundedRectangle(cornerRadius: ForestSpacing.heroRadius, style: .continuous))
         }
         .buttonStyle(ForestPressStyle(reduceMotion: reduceMotion))
         .accessibilityLabel(title)
