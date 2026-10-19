@@ -31,8 +31,14 @@ python3 Content/templates/validate_package.py
 | `hanzi.csv` | `hanzi.json` | 汉字。`id` 稳定，不要用行号 |
 | `course_hanzi.csv` | `course_hanzi.json` | 课和字的关联，`courseId + hanziId` 唯一 |
 
-`published` 只给已经有图、标准普通话录音、字义和至少一种已实现练习的课。缺任何一项就不要标成可学。
+`published` 只给已经有图、录音、字义和至少一种已实现练习的课。缺任何一项就不要标成可学。
 
-字的 `id` 一旦发给孩子用过，就不要改。插画和录音文件以后按 `imageAssetId`、`audioAssetId` 放进包，这一步还没做。
+当前打进 App 的样例包用演示色块图和短提示音，让有汉字的课能把练习跑通。重新生成：
+
+```bash
+python3 Content/templates/make_demo_assets.py
+```
+
+正式插画和标准普通话仍按 `imageAssetId`、`audioAssetId` 替换这些文件。字的 `id` 一旦发给孩子用过，就不要改。
 
 `manifest.json` 不从 CSV 来。远程更新字段 `remoteUpdate.enabled` 在 V1.0 保持 `false`。

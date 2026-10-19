@@ -57,7 +57,7 @@ final class AppModel {
     init(database: AppDatabase) {
         profilesRepo = ChildProfileRepository(queue: database.queue)
         learningRepo = LearningRepository(queue: database.queue)
-        learningService = UnimplementedLearningService()
+        learningService = ForestLearningService()
         loadContent()
         reload()
     }
@@ -259,7 +259,115 @@ final class AppModel {
         }
     }
 
-    /// 只记字卡页处于前台的秒数，写到当前档案的当日时长和这节课的会话上。
+    func practiceQuestions(for courseId: String) -> [PracticeQuestion] {
+        guard let package = contentPackage, let course = package.course(id: courseId) else { return [] }
+        return ExerciseBuilder.questions(
+            course: course,
+            courseHanzi: package.hanziList(for: course),
+            pool: package.hanzi
+        )
+    }
+
+    func isFormalCourse(_ courseId: String) -> Bool {
+        guard let course = contentPackage?.course(id: courseId) else { return false }
+        if case .enterable = CourseQualityGate.availability(
+            course: course,
+            hanziById: contentPackage?.hanziById ?? [:],
+            imageOnDisk: { self.hasBundledImage($0) },
+            audioOnDisk: { self.hasBundledAudio($0) }
+        ) {
+            return true
+        }
+        return false
+    }
+
+    func rememberPracticeIndex(_ index: Int) {
+        guard let sessionId = activeSession?.id else { return }
+        do {
+            let now = Date()
+            try learningRepo.updatePracticeIndex(sessionId: sessionId, practiceIndex: index, now: now)
+            activeSession?.practiceIndex = index
+            activeSession?.updatedAt = now
+            if let row = sessions.firstIndex(where: { $0.id == sessionId }) {
+                sessions[row].practiceIndex = index
+                sessions[row].updatedAt = now
+            }
+        } catch {
+            return
+        }
+    }
+
+    func submitPracticeAnswer(
+        questionId: String,
+        questionSessionId: String,
+        targetHanziId: String,
+        selectedAnswer: String,
+        isCorrect: Bool,
+        attemptIndex: Int
+    ) -> PracticeSubmitResult {
+        guard let profileId = activeProfile?.id, let sessionId = activeSession?.id else {
+            return .failed("还没有开始这节课。")
+        }
+        do {
+            let save = try learningRepo.recordAnswer(
+                profileId: profileId,
+                sessionId: sessionId,
+                questionId: questionId,
+                questionSessionId: questionSessionId,
+                targetHanziId: targetHanziId,
+                selectedAnswer: selectedAnswer,
+                isCorrect: isCorrect,
+                attemptIndex: attemptIndex,
+                now: Date()
+            )
+            switch save {
+            case .duplicate:
+                return .duplicate
+            case .saved(let record):
+                store(record)
+                return .saved
+            }
+        } catch {
+            return .failed("这次没记下，再点一次就好。")
+        }
+    }
+
+    func finishPractice(courseId: String) -> PracticeReport? {
+        guard let profileId = activeProfile?.id, let sessionId = activeSession?.id else { return nil }
+        guard let course = contentPackage?.course(id: courseId) else { return nil }
+        let hanzi = contentPackage?.hanziList(for: course) ?? []
+        let names = Dictionary(uniqueKeysWithValues: hanzi.map { ($0.id, $0.character) })
+        let questionCount = practiceQuestions(for: courseId).count
+        do {
+            let report = try learningRepo.finishPractice(
+                profileId: profileId,
+                sessionId: sessionId,
+                courseId: courseId,
+                hanziIds: hanzi.map(\.id),
+                questionCount: questionCount,
+                characterNames: names,
+                now: Date()
+            )
+            reload()
+            lessonVisible = true
+            return report
+        } catch {
+            return nil
+        }
+    }
+
+    private func store(_ record: LearningRecord) {
+        if let row = learningRecords.firstIndex(where: { $0.hanziId == record.hanziId }) {
+            learningRecords[row] = record
+        } else {
+            learningRecords.append(record)
+        }
+        if !dailySnapshot.studiedHanziIds.contains(record.hanziId) {
+            dailySnapshot.studiedHanziIds.append(record.hanziId)
+        }
+    }
+
+    /// 只记字卡和练习页处于前台的秒数，写到当前档案的当日时长和这节课的会话上。
     func recordStudyTime(seconds: Int) {
         guard seconds > 0, let profileId = activeProfile?.id, var session = activeSession else { return }
         do {

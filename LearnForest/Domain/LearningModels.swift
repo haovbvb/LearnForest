@@ -58,6 +58,8 @@ struct LearningSession: Codable, Equatable, Identifiable {
     var sessionType: SessionType
     var status: SessionStatus
     var currentIndex: Int
+    /// 练习题做到第几题。认字卡片仍用 currentIndex。
+    var practiceIndex: Int
     var startedAt: Date
     var completedAt: Date?
     var activeDurationSeconds: Int
@@ -71,6 +73,7 @@ struct LearningSession: Codable, Equatable, Identifiable {
 struct AnswerRecord: Codable, Equatable, Identifiable {
     var id: String
     var sessionId: String
+    var profileId: String
     var questionId: String
     /// 同一道题的一次出场。重复点击不得再次累计。Sprint 3 使用。
     var questionSessionId: String
@@ -99,7 +102,7 @@ struct RewardRecord: Codable, Equatable, Identifiable {
     var deletedAt: Date?
 }
 
-/// 某个档案在本地日历日里的有效学习秒数。只累计字卡页前台时间。
+/// 某个档案在本地日历日里的有效学习秒数。只累计字卡和练习页的前台时间。
 struct StudyTimeRecord: Codable, Equatable, Identifiable {
     var id: String
     var profileId: String
@@ -124,6 +127,49 @@ struct StudyTimeRecord: Codable, Equatable, Identifiable {
             deletedAt: nil
         )
     }
+}
+
+struct RewardGrant: Equatable {
+    var stars: Int
+    var stickers: Int
+    var badges: Int
+
+    static let zero = RewardGrant(stars: 0, stickers: 0, badges: 0)
+}
+
+enum RewardSource {
+    static let hanziEmerging = "hanzi_emerging"
+    static let hanziStable = "hanzi_stable"
+    static let coursePractice = "course_practice"
+}
+
+enum AnswerSave: Equatable {
+    case duplicate
+    case saved(LearningRecord)
+}
+
+enum PracticeSubmitResult: Equatable {
+    case duplicate
+    case saved
+    case failed(String)
+}
+
+struct PracticeReport: Equatable {
+    var correctAnswers: Int
+    var answerCount: Int
+    var emergingCharacters: [String]
+    var stableCharacters: [String]
+    var reviewCharacters: [String]
+    var grant: RewardGrant
+
+    static let empty = PracticeReport(
+        correctAnswers: 0,
+        answerCount: 0,
+        emergingCharacters: [],
+        stableCharacters: [],
+        reviewCharacters: [],
+        grant: .zero
+    )
 }
 
 struct RewardCounts: Equatable {

@@ -19,6 +19,8 @@ struct ContentManifest: Codable, Equatable {
     var plannedHanziCount: Int
     var sampleHanziCount: Int
     var notes: String
+    /// 为真时，图和录音是演示占位，不是正式插画和标准普通话。
+    var demoAssets: Bool
     var remoteUpdate: RemoteUpdateReservation
 }
 

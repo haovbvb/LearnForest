@@ -1,7 +1,7 @@
 import Foundation
 import GRDB
 
-/// 认字会写下「学习中」、课程序号和有效时长。答题、掌握升级和发奖留到 Sprint 3。
+/// 认字记下「学习中」。练习答题会升级掌握，并在做完后发放星星、贴纸、徽章。
 protocol LearningStoring: AnyObject {
     func hasInProgressSession(profileId: String) throws -> Bool
     func inProgressSession(profileId: String) throws -> LearningSession?
@@ -10,6 +10,27 @@ protocol LearningStoring: AnyObject {
     func beginCharacterLesson(profileId: String, courseId: String, now: Date) throws -> LearningSession
     func noteCharacterContact(profileId: String, hanziId: String, mastery: MasteryLevel, now: Date) throws
     func updateIndex(sessionId: String, currentIndex: Int, now: Date) throws
+    func updatePracticeIndex(sessionId: String, practiceIndex: Int, now: Date) throws
+    func recordAnswer(
+        profileId: String,
+        sessionId: String,
+        questionId: String,
+        questionSessionId: String,
+        targetHanziId: String,
+        selectedAnswer: String,
+        isCorrect: Bool,
+        attemptIndex: Int,
+        now: Date
+    ) throws -> AnswerSave
+    func finishPractice(
+        profileId: String,
+        sessionId: String,
+        courseId: String,
+        hanziIds: [String],
+        questionCount: Int,
+        characterNames: [String: String],
+        now: Date
+    ) throws -> PracticeReport
     func addStudyTime(profileId: String, sessionId: String, seconds: Int, now: Date) throws
     func rewardCounts(profileId: String) throws -> RewardCounts
     func dailySnapshot(profileId: String, now: Date) throws -> DailySnapshot
@@ -87,6 +108,7 @@ final class LearningRepository: LearningStoring {
                 startedAt: now,
                 completedAt: nil,
                 activeDurationSeconds: 0,
+                practiceIndex: 0,
                 updatedAt: now,
                 syncStatus: SyncReservation.localOnly,
                 schemaVersion: SyncReservation.schemaVersion,
@@ -139,6 +161,205 @@ final class LearningRepository: LearningStoring {
             } else {
                 try StudyTimeRecord.make(profileId: profileId, day: day, seconds: seconds, now: now).insert(db)
             }
+        }
+    }
+
+    func updatePracticeIndex(sessionId: String, practiceIndex: Int, now: Date) throws {
+        try queue.write { db in
+            guard var session = try LearningSession.fetchOne(db, key: sessionId) else { return }
+            session.practiceIndex = practiceIndex
+            session.updatedAt = now
+            try session.update(db)
+        }
+    }
+
+    func recordAnswer(
+        profileId: String,
+        sessionId: String,
+        questionId: String,
+        questionSessionId: String,
+        targetHanziId: String,
+        selectedAnswer: String,
+        isCorrect: Bool,
+        attemptIndex: Int,
+        now: Date
+    ) throws -> AnswerSave {
+        try queue.write { db in
+            let already = try AnswerRecord
+                .filter(Column("questionSessionId") == questionSessionId && Column("attemptIndex") == attemptIndex)
+                .fetchOne(db)
+            if already != nil {
+                return .duplicate
+            }
+            let answer = AnswerRecord(
+                id: UUID().uuidString,
+                sessionId: sessionId,
+                profileId: profileId,
+                questionId: questionId,
+                questionSessionId: questionSessionId,
+                targetHanziId: targetHanziId,
+                selectedAnswer: selectedAnswer,
+                isCorrect: isCorrect,
+                attemptIndex: attemptIndex,
+                answeredAt: now,
+                syncStatus: SyncReservation.localOnly,
+                schemaVersion: SyncReservation.schemaVersion,
+                deviceId: nil,
+                deletedAt: nil
+            )
+            do {
+                try answer.insert(db)
+            } catch let error as DatabaseError where error.resultCode == .SQLITE_CONSTRAINT {
+                return .duplicate
+            }
+            let record = try upsertMastery(
+                db: db,
+                profileId: profileId,
+                hanziId: targetHanziId,
+                isCorrect: isCorrect,
+                now: now
+            )
+            return .saved(record)
+        }
+    }
+
+    func finishPractice(
+        profileId: String,
+        sessionId: String,
+        courseId: String,
+        hanziIds: [String],
+        questionCount: Int,
+        characterNames: [String: String],
+        now: Date
+    ) throws -> PracticeReport {
+        try queue.write { db in
+            if var session = try LearningSession.fetchOne(db, key: sessionId) {
+                session.practiceIndex = questionCount
+                session.updatedAt = now
+                try session.update(db)
+            }
+            let records = try LearningRecord
+                .filter(Column("profileId") == profileId)
+                .fetchAll(db)
+                .filter { hanziIds.contains($0.hanziId) }
+            var grant = RewardGrant.zero
+            for record in records {
+                if record.masteryLevel == .emerging || record.masteryLevel == .stable {
+                    if try insertReward(
+                        db: db,
+                        profileId: profileId,
+                        sourceType: RewardSource.hanziEmerging,
+                        sourceId: record.hanziId,
+                        rewardType: .star,
+                        now: now
+                    ) {
+                        grant.stars += 1
+                    }
+                }
+                if record.masteryLevel == .stable {
+                    if try insertReward(
+                        db: db,
+                        profileId: profileId,
+                        sourceType: RewardSource.hanziStable,
+                        sourceId: record.hanziId,
+                        rewardType: .badge,
+                        now: now
+                    ) {
+                        grant.badges += 1
+                    }
+                }
+            }
+            if try insertReward(
+                db: db,
+                profileId: profileId,
+                sourceType: RewardSource.coursePractice,
+                sourceId: courseId,
+                rewardType: .sticker,
+                now: now
+            ) {
+                grant.stickers += 1
+            }
+            let answers = try AnswerRecord
+                .filter(Column("profileId") == profileId && Column("sessionId") == sessionId)
+                .fetchAll(db)
+            return PracticeReport(
+                correctAnswers: answers.filter(\.isCorrect).count,
+                answerCount: answers.count,
+                emergingCharacters: records.filter { $0.masteryLevel == .emerging }.map { characterNames[$0.hanziId] ?? $0.hanziId },
+                stableCharacters: records.filter { $0.masteryLevel == .stable }.map { characterNames[$0.hanziId] ?? $0.hanziId },
+                reviewCharacters: records.filter { $0.masteryLevel == .needsReview }.map { characterNames[$0.hanziId] ?? $0.hanziId },
+                grant: grant
+            )
+        }
+    }
+
+    private func upsertMastery(
+        db: Database,
+        profileId: String,
+        hanziId: String,
+        isCorrect: Bool,
+        now: Date
+    ) throws -> LearningRecord {
+        var record = try LearningRecord
+            .filter(Column("profileId") == profileId && Column("hanziId") == hanziId)
+            .fetchOne(db)
+            ?? LearningRecord.placeholderContact(
+                profileId: profileId,
+                hanziId: hanziId,
+                mastery: .learning,
+                now: now
+            )
+        let previous = record.masteryLevel
+        if isCorrect {
+            record.correctCount += 1
+        } else {
+            record.incorrectCount += 1
+        }
+        record.masteryLevel = MasteryRules.afterAnswer(
+            previous: previous,
+            correctCount: record.correctCount,
+            incorrectCount: record.incorrectCount,
+            lastWasCorrect: isCorrect
+        )
+        let total = record.correctCount + record.incorrectCount
+        record.recognitionAccuracy = total == 0 ? nil : Double(record.correctCount) / Double(total)
+        record.lastPracticedAt = now
+        record.updatedAt = now
+        if record.masteryLevel == .needsReview {
+            record.nextReviewAt = Calendar.current.date(byAdding: .day, value: 1, to: now)
+        } else if record.masteryLevel == .stable || record.masteryLevel == .emerging {
+            record.nextReviewAt = nil
+        }
+        try record.save(db)
+        return record
+    }
+
+    private func insertReward(
+        db: Database,
+        profileId: String,
+        sourceType: String,
+        sourceId: String,
+        rewardType: RewardType,
+        now: Date
+    ) throws -> Bool {
+        let reward = RewardRecord(
+            id: "\(profileId)#\(sourceType)#\(sourceId)#\(rewardType.rawValue)",
+            profileId: profileId,
+            sourceType: sourceType,
+            sourceId: sourceId,
+            rewardType: rewardType,
+            amount: 1,
+            createdAt: now,
+            syncStatus: SyncReservation.localOnly,
+            schemaVersion: SyncReservation.schemaVersion,
+            deviceId: nil,
+            deletedAt: nil
+        )
+        do {
+            try reward.insert(db)
+            return true
+        } catch let error as DatabaseError where error.resultCode == .SQLITE_CONSTRAINT {
+            return false
         }
     }
 

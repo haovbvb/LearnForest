@@ -11,7 +11,7 @@ struct LearnView: View {
                     Text("认字")
                         .font(ForestType.screenTitle)
                         .foregroundStyle(ForestPalette.ink)
-                    Text("点进一节课做学习准备，再认字。没有配图的课不能开始正式学习。")
+                    Text("有演示图和声音的课可以认字并做练习。还没写进包里的课不能开始正式学习。")
                         .font(.title3)
                         .foregroundStyle(ForestPalette.inkSoft)
                     if let package = model.contentPackage {

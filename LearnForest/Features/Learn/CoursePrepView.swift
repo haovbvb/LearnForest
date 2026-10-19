@@ -6,6 +6,7 @@ struct CoursePrepView: View {
     let courseId: String
 
     @State private var showCards = false
+    @State private var showPractice = false
     @State private var tracksTime = true
 
     var body: some View {
@@ -50,6 +51,9 @@ struct CoursePrepView: View {
             }
             .navigationDestination(isPresented: $showCards) {
                 CharacterCardLessonView(courseId: courseId, tracksTime: tracksTime)
+            }
+            .navigationDestination(isPresented: $showPractice) {
+                PracticeSessionView(courseId: courseId, tracksTime: true)
             }
         }
     }
@@ -118,6 +122,11 @@ struct CoursePrepView: View {
                     Text("图、录音和练习都齐了，可以开始正式学习。")
                         .font(.body)
                         .foregroundStyle(ForestPalette.ink)
+                    if model.contentPackage?.manifest.demoAssets == true {
+                        Text("图和声音是演示占位，用来把练习跑通。正式插画和普通话以后换上。")
+                            .font(.body)
+                            .foregroundStyle(ForestPalette.inkSoft)
+                    }
                 }
                 if picturesMissing {
                     Text("还有字没有配图。没有图的字卡上会标成占位，不能当成正式学习。")
@@ -157,14 +166,11 @@ struct CoursePrepView: View {
             }
             .buttonStyle(PrepButtonStyle())
         } else if formalReason == nil {
-            PrimaryLearningButton(title: hasProgress ? "继续正式学习" : "开始正式学习", subtitle: "先认这节课的字") {
-                tracksTime = true
-                showCards = true
-            }
+            formalStart
         } else {
             PrimaryLearningButton(
                 title: hasProgress ? "继续认字" : "开始认字",
-                subtitle: "先认字。练习还没做，不会记成掌握"
+                subtitle: "可以先认字。正式练习还不能开始"
             ) {
                 tracksTime = true
                 showCards = true
@@ -179,6 +185,52 @@ struct CoursePrepView: View {
             .background(ForestPalette.card.opacity(0.7), in: RoundedRectangle(cornerRadius: ForestSpacing.cardRadius, style: .continuous))
             .accessibilityLabel("开始正式学习，现在不能点")
         }
+    }
+
+    @ViewBuilder
+    private var formalStart: some View {
+        switch practiceEntry {
+        case .inProgress(let index, let count):
+            PrimaryLearningButton(title: "继续练习", subtitle: "第 \(index + 1) / \(count) 题") {
+                showPractice = true
+            }
+            Button("先看汉字") {
+                tracksTime = true
+                showCards = true
+            }
+            .buttonStyle(PrepButtonStyle())
+        case .finished:
+            PrimaryLearningButton(title: "看练习结果", subtitle: "奖励不会重复发") {
+                showPractice = true
+            }
+            Button("再认一次字") {
+                tracksTime = true
+                showCards = true
+            }
+            .buttonStyle(PrepButtonStyle())
+        case .ready:
+            PrimaryLearningButton(
+                title: hasProgress ? "继续正式学习" : "开始正式学习",
+                subtitle: "先认字，再做三种练习"
+            ) {
+                tracksTime = true
+                showCards = true
+            }
+        }
+    }
+
+    private enum PracticeEntry {
+        case ready
+        case inProgress(Int, Int)
+        case finished
+    }
+
+    private var practiceEntry: PracticeEntry {
+        let count = model.practiceQuestions(for: courseId).count
+        let index = model.savedSession(courseId: courseId)?.practiceIndex ?? 0
+        if count == 0 || index <= 0 { return .ready }
+        if index >= count { return .finished }
+        return .inProgress(index, count)
     }
 
     private var course: Course? {

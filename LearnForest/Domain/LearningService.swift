@@ -1,17 +1,68 @@
 import Foundation
 
 /// 掌握状态只能由这里计算。页面不可以自己改 masteryLevel。
-/// TODO(Sprint 3): 按 PRD §6.1 实现。浏览字卡不等于掌握；一次答对不等于稳定掌握。
+/// 轻量验收规则（对应 PRD 的掌握分级，不是完整复习算法）：
+/// 看字卡最多到「学习中」；一次答对不会变成掌握；
+/// 答对至少 2 次且多于答错，才是初步掌握；
+/// 答对至少 4 次且比答错至少多 3 次，才是稳定掌握；
+/// 稳定掌握后再答错，变成待复习，不扣已有奖励。
 protocol LearningService {
     var skeletonNote: String { get }
     func recordedMastery(of record: LearningRecord) -> MasteryLevel
-    /// 认字只把「未学习」记成「学习中」。不升到初步掌握或稳定掌握，也不降级。
     func masteryAfterCharacterContact(existing: MasteryLevel?) -> MasteryLevel
+    func masteryAfterAnswer(
+        previous: MasteryLevel,
+        correctCount: Int,
+        incorrectCount: Int,
+        lastWasCorrect: Bool
+    ) -> MasteryLevel
 }
 
-struct UnimplementedLearningService: LearningService {
+enum MasteryRules {
+    static func afterCharacterContact(existing: MasteryLevel?) -> MasteryLevel {
+        switch existing {
+        case .some(let level) where level != .notStarted && level != .learning:
+            level
+        default:
+            .learning
+        }
+    }
+
+    static func afterAnswer(
+        previous: MasteryLevel,
+        correctCount: Int,
+        incorrectCount: Int,
+        lastWasCorrect: Bool
+    ) -> MasteryLevel {
+        if !lastWasCorrect {
+            switch previous {
+            case .stable:
+                return .needsReview
+            case .needsReview:
+                return .needsReview
+            case .emerging, .learning, .notStarted:
+                return .learning
+            }
+        }
+        if correctCount >= 4 && correctCount >= incorrectCount + 3 {
+            return .stable
+        }
+        if previous == .stable {
+            return .stable
+        }
+        if correctCount >= 2 && correctCount > incorrectCount {
+            return .emerging
+        }
+        if previous == .emerging {
+            return .emerging
+        }
+        return .learning
+    }
+}
+
+struct ForestLearningService: LearningService {
     var skeletonNote: String {
-        "翻过的字会记成「学习中」，不会记成掌握。换一个档案看不到这些进度。到点只是休息，不扣奖励。"
+        "看字卡只记「学习中」。练习答对两次以上才会初步掌握，稳定掌握要更多次答对。答错不惩罚。"
     }
 
     func recordedMastery(of record: LearningRecord) -> MasteryLevel {
@@ -19,11 +70,20 @@ struct UnimplementedLearningService: LearningService {
     }
 
     func masteryAfterCharacterContact(existing: MasteryLevel?) -> MasteryLevel {
-        switch existing {
-        case .some(let level) where level != .notStarted && level != .learning:
-            level
-        default:
-            .learning
-        }
+        MasteryRules.afterCharacterContact(existing: existing)
+    }
+
+    func masteryAfterAnswer(
+        previous: MasteryLevel,
+        correctCount: Int,
+        incorrectCount: Int,
+        lastWasCorrect: Bool
+    ) -> MasteryLevel {
+        MasteryRules.afterAnswer(
+            previous: previous,
+            correctCount: correctCount,
+            incorrectCount: incorrectCount,
+            lastWasCorrect: lastWasCorrect
+        )
     }
 }

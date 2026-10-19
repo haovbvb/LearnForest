@@ -19,6 +19,29 @@ enum SchemaMigration {
         migrator.registerMigration("v2_study_time") { db in
             try createStudyTime(db)
         }
+        migrator.registerMigration("v3_practice") { db in
+            try db.alter(table: "learningSession") { table in
+                table.add(column: "practiceIndex", .integer).notNull().defaults(to: 0)
+            }
+            try db.alter(table: "answerRecord") { table in
+                table.add(column: "profileId", .text).notNull().defaults(to: "")
+            }
+            try db.execute(
+                sql: """
+                UPDATE answerRecord
+                SET profileId = (
+                    SELECT profileId FROM learningSession
+                    WHERE learningSession.id = answerRecord.sessionId
+                )
+                WHERE profileId = ''
+                """
+            )
+            try db.create(
+                index: "answerRecord_profile",
+                on: "answerRecord",
+                columns: ["profileId"]
+            )
+        }
         return migrator
     }
 

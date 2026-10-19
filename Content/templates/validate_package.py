@@ -43,15 +43,20 @@ def main() -> int:
         errors.append("样例字数量和 manifest.sampleHanziCount 不一致")
     if not 80 <= manifest["plannedHanziCount"] <= 100:
         errors.append("计划字数应在 80～100")
-    if exercises.get("implemented") is not False:
-        errors.append("骨架不应把练习标成已实现")
+    if exercises.get("implemented") is not True:
+        errors.append("三种核心题型应标成已实现")
+    if manifest.get("demoAssets") is not True:
+        errors.append("演示占位资源必须在 manifest.demoAssets 标明")
 
     hanzi_ids = {item["id"] for item in hanzi}
     by_theme: dict[str, int] = {}
     for course in courses:
         by_theme[course["themeId"]] = by_theme.get(course["themeId"], 0) + 1
-        if course["status"] == "published":
-            errors.append(f"{course['id']} 还不能标成 published")
+        published = course["status"] == "published"
+        if published and not course["hanziIds"]:
+            errors.append(f"{course['id']} 没有汉字，不能标成 published")
+        if course["hanziIds"] and not published:
+            errors.append(f"{course['id']} 已经有样例字，演示包应标成 published")
         for hanzi_id in course["hanziIds"]:
             if hanzi_id not in hanzi_ids:
                 errors.append(f"{course['id']} 引用了不存在的 {hanzi_id}")
@@ -69,8 +74,14 @@ def main() -> int:
         for key in required:
             if not item.get(key):
                 errors.append(f"{item.get('id')} 缺少 {key}")
-        if item.get("isPublished") is True:
-            errors.append(f"{item['id']} 还没有真实图和录音，不能 isPublished")
+        image = ROOT / f"{item['imageAssetId']}.png"
+        audio = ROOT / f"{item['audioAssetId']}.wav"
+        if item.get("isPublished") is not True:
+            errors.append(f"{item['id']} 演示包里的样例字应为 isPublished")
+        if not image.exists():
+            errors.append(f"{item['id']} 缺少演示图 {image.name}")
+        if not audio.exists():
+            errors.append(f"{item['id']} 缺少演示音频 {audio.name}")
 
     if errors:
         print("\n".join(errors), file=sys.stderr)

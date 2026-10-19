@@ -15,6 +15,7 @@ struct CharacterCardLessonView: View {
     @State private var sittingSeconds = 0
     @State private var segmentStart: Date?
     @State private var restReason: LessonRestReason?
+    @State private var showPractice = false
     @State private var didRestore = false
 
     var body: some View {
@@ -53,8 +54,19 @@ struct CharacterCardLessonView: View {
             model.rememberLessonIndex(index)
             autoplayIfAllowed()
         }
-        .task(id: tracksTime && restReason == nil) {
-            guard tracksTime, restReason == nil else { return }
+        .navigationDestination(isPresented: $showPractice) {
+            PracticeSessionView(courseId: courseId, tracksTime: tracksTime)
+        }
+        .onChange(of: showPractice) { _, isShowing in
+            if isShowing {
+                player.stop(deactivateSession: true)
+                pauseClock()
+            } else if restReason == nil {
+                resumeClock()
+            }
+        }
+        .task(id: tracksTime && restReason == nil && !showPractice) {
+            guard tracksTime, restReason == nil, !showPractice else { return }
             while !Task.isCancelled {
                 try? await Task.sleep(nanoseconds: 1_000_000_000)
                 if Task.isCancelled { break }
@@ -88,7 +100,7 @@ struct CharacterCardLessonView: View {
                     .background(ForestPalette.card, in: RoundedRectangle(cornerRadius: ForestSpacing.cardRadius, style: .continuous))
                     .foregroundStyle(ForestPalette.ink)
                     .disabled(index == 0)
-                Button(isLast ? "先到这里" : "下一个") { goForward(from: hanzi) }
+                Button(forwardTitle) { goForward(from: hanzi) }
                     .font(.title3.weight(.bold))
                     .frame(maxWidth: .infinity, minHeight: ForestSpacing.heroMinHeight * 0.55)
                     .background(ForestPalette.sun, in: RoundedRectangle(cornerRadius: ForestSpacing.cardRadius, style: .continuous))
@@ -181,6 +193,12 @@ struct CharacterCardLessonView: View {
         !characters.isEmpty && index >= characters.count - 1
     }
 
+    private var forwardTitle: String {
+        if !isLast { return "下一个" }
+        if tracksTime && model.isFormalCourse(courseId) { return "去做练习" }
+        return "先到这里"
+    }
+
     private func restoreIfNeeded() {
         guard !didRestore else { return }
         model.beginCharacterLesson(courseId: courseId)
@@ -225,7 +243,11 @@ struct CharacterCardLessonView: View {
         if isLast {
             player.stop(deactivateSession: true)
             pauseClock()
-            restReason = .charactersSeen
+            if tracksTime && model.isFormalCourse(courseId) {
+                showPractice = true
+            } else {
+                restReason = .charactersSeen
+            }
             return
         }
         index = next
@@ -280,11 +302,12 @@ struct CharacterCardLessonView: View {
 struct HanziPicture: View {
     let assetId: String
     let imageURL: URL?
+    var minHeight: CGFloat = 280
 
     var body: some View {
         RoundedRectangle(cornerRadius: ForestSpacing.cardRadius, style: .continuous)
             .fill(ForestPalette.sky.opacity(0.35))
-            .frame(maxWidth: .infinity, minHeight: 280)
+            .frame(maxWidth: .infinity, minHeight: minHeight)
             .overlay {
                 if let imageURL, let image = UIImage(contentsOfFile: imageURL.path) {
                     Image(uiImage: image)

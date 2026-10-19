@@ -48,6 +48,8 @@
 		634C84EC6B02D3E2006F0748 /* StudyTimeLimit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87E427D345CF664620572DA7 /* StudyTimeLimit.swift */; };
 		8665978D36CCC352ABECD738 /* PinyinStrategy.swift in Sources */ = {isa = PBXBuildFile; fileRef = E91F5EF908F0401A60973F92 /* PinyinStrategy.swift */; };
 		B390B809F4B79BAC5E88B4B3 /* LocalAssetLocator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13C931DD0AC8E1F8A0979928 /* LocalAssetLocator.swift */; };
+		DB9366CC98B77B1AC23B99A8 /* ExerciseBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8717F9DA1FED70BA0535C346 /* ExerciseBuilder.swift */; };
+		62B85884295DB1FD0EE49BE8 /* PracticeSessionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13E825BE23C1CF891CC72ABD /* PracticeSessionView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -94,6 +96,8 @@
 		87E427D345CF664620572DA7 /* StudyTimeLimit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudyTimeLimit.swift; sourceTree = "<group>"; };
 		E91F5EF908F0401A60973F92 /* PinyinStrategy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PinyinStrategy.swift; sourceTree = "<group>"; };
 		13C931DD0AC8E1F8A0979928 /* LocalAssetLocator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalAssetLocator.swift; sourceTree = "<group>"; };
+		8717F9DA1FED70BA0535C346 /* ExerciseBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExerciseBuilder.swift; sourceTree = "<group>"; };
+		13E825BE23C1CF891CC72ABD /* PracticeSessionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PracticeSessionView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -210,6 +214,7 @@
 		51595FC2884BECB1E5967B84 /* Domain */ = {
 			isa = PBXGroup;
 			children = (
+				8717F9DA1FED70BA0535C346 /* ExerciseBuilder.swift */,
 				E91F5EF908F0401A60973F92 /* PinyinStrategy.swift */,
 				87E427D345CF664620572DA7 /* StudyTimeLimit.swift */,
 				8D806BAF86A71F706DFA5BE1 /* ChildProfile.swift */,
@@ -254,6 +259,7 @@
 		B80C70160B1A9AF7A1144462 /* Learn */ = {
 			isa = PBXGroup;
 			children = (
+				13E825BE23C1CF891CC72ABD /* PracticeSessionView.swift */,
 				04128567D65C3B1121F57474 /* LessonRestView.swift */,
 				03AC602A277EEBD64775FA87 /* CharacterCardLessonView.swift */,
 				94494CB3F79C61C6268AFD49 /* CoursePrepView.swift */,
@@ -373,6 +379,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				62B85884295DB1FD0EE49BE8 /* PracticeSessionView.swift in Sources */,
+				DB9366CC98B77B1AC23B99A8 /* ExerciseBuilder.swift in Sources */,
 				B390B809F4B79BAC5E88B4B3 /* LocalAssetLocator.swift in Sources */,
 				8665978D36CCC352ABECD738 /* PinyinStrategy.swift in Sources */,
 				634C84EC6B02D3E2006F0748 /* StudyTimeLimit.swift in Sources */,

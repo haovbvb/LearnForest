@@ -18,7 +18,7 @@
     ],
     "sortOrder": 1,
     "contentVersion": 1,
-    "status": "placeholder",
+    "status": "published",
     "hanziIds": [
       "hanzi_cat",
       "hanzi_dog",
@@ -50,7 +50,7 @@
     ],
     "sortOrder": 2,
     "contentVersion": 1,
-    "status": "placeholder",
+    "status": "published",
     "hanziIds": [
       "hanzi_forest"
     ],
@@ -133,7 +133,7 @@
     ],
     "sortOrder": 1,
     "contentVersion": 1,
-    "status": "placeholder",
+    "status": "published",
     "hanziIds": [
       "hanzi_ba",
       "hanzi_ma",
@@ -164,7 +164,7 @@
     ],
     "sortOrder": 2,
     "contentVersion": 1,
-    "status": "placeholder",
+    "status": "published",
     "hanziIds": [
       "hanzi_meal",
       "hanzi_clothes"
@@ -248,7 +248,7 @@
     ],
     "sortOrder": 1,
     "contentVersion": 1,
-    "status": "placeholder",
+    "status": "published",
     "hanziIds": [
       "hanzi_sun",
       "hanzi_moon",
@@ -280,7 +280,7 @@
     ],
     "sortOrder": 2,
     "contentVersion": 1,
-    "status": "placeholder",
+    "status": "published",
     "hanziIds": [
       "hanzi_wind",
       "hanzi_rain"

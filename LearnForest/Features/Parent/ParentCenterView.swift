@@ -71,7 +71,7 @@ struct ParentCenterView: View {
                     .foregroundStyle(.secondary)
             }
             Section("还没做") {
-                Text("练习引擎、真实录音和插画、掌握结算、贴纸发放、账号、内购、远程更新。")
+                Text("真实插画和标准普通话、账号、内购、远程更新。练习、掌握和星星贴纸已经会记在这台 iPad 上。")
                     .font(.footnote)
                     .foregroundStyle(.secondary)
             }
@@ -259,7 +259,7 @@ private struct DeleteProfileSheet: View {
     var body: some View {
         NavigationStack {
             VStack(alignment: .leading, spacing: 20) {
-                Text("会删掉「\(profile.displayName)」的学习记录、奖励和时长。没有云备份，删了找不回来。课程内容会留下。")
+                Text("会删掉「\(profile.displayName)」的学习记录、答题、奖励和时长。没有云备份，删了找不回来。课程内容会留下。")
                     .font(.title3)
                 Button(acknowledged ? "已了解" : "我已了解，继续") {
                     acknowledged = true
