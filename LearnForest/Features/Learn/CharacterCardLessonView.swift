@@ -49,10 +49,15 @@ struct CharacterCardLessonView: View {
                 resumeClock()
             }
         }
-        .onChange(of: index) { _, _ in
+        .onChange(of: index) { _, newIndex in
             player.stop(deactivateSession: false)
-            model.rememberLessonIndex(index)
-            autoplayIfAllowed()
+            // 先让画面切过去，再写进度、再轻量自动读，避免主线程卡在 SQLite / 音频会话上。
+            Task { @MainActor in
+                model.rememberLessonIndex(newIndex)
+                try? await Task.sleep(nanoseconds: 40_000_000)
+                guard index == newIndex, restReason == nil, !showPractice else { return }
+                autoplayIfAllowed()
+            }
         }
         .navigationDestination(isPresented: $showPractice) {
             PracticeSessionView(courseId: courseId, tracksTime: tracksTime)
@@ -238,11 +243,14 @@ struct CharacterCardLessonView: View {
     }
 
     private func goForward(from hanzi: Hanzi) {
-        let next = min(index + 1, max(characters.count - 1, 0))
-        model.noteCharacterContact(hanziId: hanzi.id, index: next)
+        let currentId = hanzi.id
         if isLast {
             player.stop(deactivateSession: true)
             pauseClock()
+            // 最后一字先切状态，接触记录放到后台任务，按钮不堵。
+            Task { @MainActor in
+                model.noteCharacterContact(hanziId: currentId, index: index)
+            }
             if tracksTime && model.isFormalCourse(courseId) {
                 showPractice = true
             } else {
@@ -250,7 +258,11 @@ struct CharacterCardLessonView: View {
             }
             return
         }
+        let next = min(index + 1, max(characters.count - 1, 0))
         index = next
+        Task { @MainActor in
+            model.noteCharacterContact(hanziId: currentId, index: next)
+        }
     }
 
     private func autoplayIfAllowed() {
@@ -273,7 +285,8 @@ struct CharacterCardLessonView: View {
     private func tick() {
         guard tracksTime, restReason == nil, scenePhase == .active, let start = segmentStart else { return }
         let delta = max(0, Int(Date().timeIntervalSince(start)))
-        guard delta > 0 else { return }
+        // 满 3 秒再落库，减少切字时和写库撞车。
+        guard delta >= 3 else { return }
         segmentStart = Date()
         commit(delta)
         evaluateLimit()
@@ -309,7 +322,7 @@ struct HanziPicture: View {
             .fill(ForestPalette.sky.opacity(0.35))
             .frame(maxWidth: .infinity, minHeight: minHeight)
             .overlay {
-                if let imageURL, let image = UIImage(contentsOfFile: imageURL.path) {
+                if let image = HanziImageCache.image(assetId: assetId, url: imageURL) {
                     Image(uiImage: image)
                         .resizable()
                         .scaledToFit()
@@ -332,5 +345,18 @@ struct HanziPicture: View {
             }
             .accessibilityElement(children: .combine)
             .accessibilityLabel(imageURL == nil ? "插画占位，没有配图，不能开始正式学习" : "汉字配图")
+    }
+}
+
+/// 避免每次切字都同步读盘解码 PNG。
+enum HanziImageCache {
+    private static var store: [String: UIImage] = [:]
+
+    static func image(assetId: String, url: URL?) -> UIImage? {
+        if let cached = store[assetId] { return cached }
+        guard let url, let image = UIImage(contentsOfFile: url.path) else { return nil }
+        if store.count >= 48 { store.removeAll(keepingCapacity: true) }
+        store[assetId] = image
+        return image
     }
 }

@@ -4,6 +4,7 @@ import Observation
 
 /// 本地标准录音。没有文件就说明原因，不用在线语音合成。
 /// 新的一声开始前会停掉上一声。退到后台、切字、离开字卡时由页面调用 stop。
+/// 音频会话只配置一次，短音可缓存，避免每次切字都 setActive（模拟器里会卡）。
 @MainActor
 @Observable
 final class PronunciationPlayer {
@@ -21,10 +22,10 @@ final class PronunciationPlayer {
     }
 
     func stop(deactivateSession: Bool = false) {
-        box.stop()
+        box.stop(keepCachedPlayers: true)
         isPlaying = false
         if deactivateSession {
-            try? AVAudioSession.sharedInstance().setActive(false, options: [.notifyOthersOnDeactivation])
+            box.deactivateSession()
         }
     }
 
@@ -37,7 +38,8 @@ final class PronunciationPlayer {
         if !userInitiated && !PronunciationPolicy.allowsAutomaticPlay(quietMode: quiet, allowSoftAuto: soft) {
             return nil
         }
-        stop(deactivateSession: false)
+        box.stop(keepCachedPlayers: true)
+        isPlaying = false
         guard let url = LocalAssetLocator.audioURL(assetId: assetId) else {
             guard userInitiated else { return nil }
             let message = "录音还没放进课程包（\(assetId)）。"
@@ -49,7 +51,7 @@ final class PronunciationPlayer {
             allowSoftAuto: soft,
             userInitiated: userInitiated
         )
-        switch box.start(url: url, volume: volume) {
+        switch box.start(assetId: assetId, url: url, volume: volume) {
         case .started:
             isPlaying = true
             lastMessage = nil
@@ -64,6 +66,8 @@ final class PronunciationPlayer {
 
 private final class PlayerBox: NSObject, AVAudioPlayerDelegate {
     private var player: AVAudioPlayer?
+    private var cache: [String: AVAudioPlayer] = [:]
+    private var sessionReady = false
     private var interruptionObserver: NSObjectProtocol?
     var onFinish: (() -> Void)?
     var onInterrupted: (() -> Void)?
@@ -88,9 +92,19 @@ private final class PlayerBox: NSObject, AVAudioPlayerDelegate {
         }
     }
 
-    func stop() {
+    func stop(keepCachedPlayers: Bool) {
         player?.stop()
+        player?.currentTime = 0
         player = nil
+        if !keepCachedPlayers {
+            cache.removeAll()
+        }
+    }
+
+    func deactivateSession() {
+        stop(keepCachedPlayers: false)
+        sessionReady = false
+        try? AVAudioSession.sharedInstance().setActive(false, options: [.notifyOthersOnDeactivation])
     }
 
     enum Start {
@@ -98,20 +112,34 @@ private final class PlayerBox: NSObject, AVAudioPlayerDelegate {
         case failed
     }
 
-    func start(url: URL, volume: Float) -> Start {
-        stop()
+    func start(assetId: String, url: URL, volume: Float) -> Start {
         do {
-            let session = AVAudioSession.sharedInstance()
-            try session.setCategory(.playback, mode: .spokenAudio, options: [.mixWithOthers])
-            try session.setActive(true)
-            let audio = try AVAudioPlayer(contentsOf: url)
+            if !sessionReady {
+                let session = AVAudioSession.sharedInstance()
+                try session.setCategory(.playback, mode: .spokenAudio, options: [.mixWithOthers])
+                try session.setActive(true)
+                sessionReady = true
+            }
+            let audio: AVAudioPlayer
+            if let cached = cache[assetId] {
+                audio = cached
+                audio.currentTime = 0
+            } else {
+                audio = try AVAudioPlayer(contentsOf: url)
+                audio.prepareToPlay()
+                // demo 短音很小，缓存十来个够一节课来回切。
+                if cache.count >= 24 {
+                    cache.removeAll(keepingCapacity: true)
+                }
+                cache[assetId] = audio
+            }
             audio.volume = volume
             audio.delegate = self
-            audio.prepareToPlay()
             guard audio.play() else { return .failed }
             player = audio
             return .started
         } catch {
+            sessionReady = false
             return .failed
         }
     }
