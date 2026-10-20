@@ -11,6 +11,7 @@ enum ProductIdentity {
     static let credit = "学习森林出品"
     static let productLineID = "shizi_forest"
     static let marketingVersion = "1.0.0"
+    static let tagline = "在探索世界中 · 自然认识汉字"
 
     static var aboutLine: String {
         "\(credit)。本 App 是\(appName)（\(appNameEN)），工程模块名为 \(familyNameEN)。"

@@ -48,12 +48,12 @@ struct LearnView: View {
         return ForestCard {
             HStack(spacing: 16) {
                 RoundedRectangle(cornerRadius: 18, style: .continuous)
-                    .fill(ForestPalette.leaf.opacity(0.25))
+                    .fill(ForestPalette.themeCardBackground(themeId: theme.id))
                     .frame(width: 84, height: 84)
                     .overlay {
-                        Image(systemName: "photo")
+                        Image(systemName: theme.id == "theme_animals" ? "pawprint.fill" : (theme.id == "theme_family" ? "house.fill" : "mountain.2.fill"))
                             .font(.title2)
-                            .foregroundStyle(ForestPalette.leaf)
+                            .foregroundStyle(ForestPalette.themeAccent(themeId: theme.id))
                     }
                     .accessibilityHidden(true)
                 VStack(alignment: .leading, spacing: 6) {

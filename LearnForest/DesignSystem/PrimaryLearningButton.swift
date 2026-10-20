@@ -4,27 +4,47 @@ import SwiftUI
 struct PrimaryLearningButton: View {
     let title: String
     var subtitle: String?
+    var showsSunIcon: Bool = false
+    var compactPill: Bool = false
     let action: () -> Void
 
     @Environment(\.accessibilityReduceMotion) private var reduceMotion
 
     var body: some View {
         Button(action: action) {
-            VStack(spacing: 8) {
-                Text(title)
-                    .font(ForestType.hero)
-                if let subtitle {
-                    Text(subtitle)
-                        .font(.title3.weight(.medium))
-                        .foregroundStyle(ForestPalette.ink.opacity(0.72))
+            HStack(spacing: 14) {
+                if showsSunIcon {
+                    Image(systemName: "sun.max.fill")
+                        .font(.system(size: compactPill ? 28 : 34, weight: .bold))
+                        .foregroundStyle(ForestPalette.ink.opacity(0.85))
+                        .accessibilityHidden(true)
+                }
+                VStack(alignment: showsSunIcon ? .leading : .center, spacing: 4) {
+                    Text(title)
+                        .font(compactPill ? .system(size: 28, weight: .bold, design: .rounded) : ForestType.hero)
+                    if let subtitle {
+                        Text(subtitle)
+                            .font(.title3.weight(.semibold))
+                            .foregroundStyle(ForestPalette.ink.opacity(0.72))
+                    }
+                }
+                if compactPill {
+                    Image(systemName: "chevron.right")
+                        .font(.title3.weight(.bold))
+                        .foregroundStyle(ForestPalette.ink.opacity(0.55))
+                        .accessibilityHidden(true)
                 }
             }
             .foregroundStyle(ForestPalette.ink)
-            .frame(maxWidth: .infinity)
-            .frame(minHeight: ForestSpacing.heroMinHeight)
-            .padding(.horizontal, ForestSpacing.large)
-            .padding(.vertical, ForestSpacing.small)
-            .background(ForestPalette.sun, in: RoundedRectangle(cornerRadius: ForestSpacing.heroRadius, style: .continuous))
+            .frame(maxWidth: compactPill ? nil : .infinity)
+            .frame(minHeight: compactPill ? 72 : ForestSpacing.heroMinHeight)
+            .padding(.horizontal, compactPill ? 28 : ForestSpacing.large)
+            .padding(.vertical, compactPill ? 14 : ForestSpacing.small)
+            .background(
+                ForestPalette.sun,
+                in: RoundedRectangle(cornerRadius: compactPill ? 40 : ForestSpacing.heroRadius, style: .continuous)
+            )
+            .shadow(color: ForestPalette.sun.opacity(0.45), radius: 12, y: 6)
         }
         .buttonStyle(ForestPressStyle(reduceMotion: reduceMotion))
         .accessibilityLabel(title)
