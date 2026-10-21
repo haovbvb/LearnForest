@@ -91,6 +91,6 @@ struct AdultChallenge: Equatable {
     static func make() -> AdultChallenge {
         let left = Int.random(in: 13...19)
         let right = Int.random(in: 12...19)
-        return AdultChallenge(prompt: "\(left) × \(right) = ？", answer: left * right)
+        return AdultChallenge(prompt: "\(left) + \(right) = ？", answer: left + right)
     }
 }
