@@ -33,8 +33,6 @@ struct HomeView: View {
                     }
                     heroBanner
                     themeSection
-                    cardsShortcut
-                    resultsBar
                     Text("课程在这台 iPad 上，没有网络也能看。")
                         .font(.callout)
                         .foregroundStyle(ForestPalette.inkSoft)
