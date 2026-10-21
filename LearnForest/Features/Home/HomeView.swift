@@ -34,7 +34,6 @@ struct HomeView: View {
                     heroBanner
                     themeSection
                     cardsShortcut
-                    allThemesShortcut
                     resultsBar
                     Text("课程在这台 iPad 上，没有网络也能看。")
                         .font(.callout)
@@ -304,29 +303,6 @@ struct HomeView: View {
         }
     }
 
-    private var allThemesShortcut: some View {
-        Button(action: onSelectLearnTab) {
-            HStack {
-                Image(systemName: "text.book.closed.fill")
-                    .foregroundStyle(ForestPalette.sky)
-                Text("全部主题")
-                    .font(.title3.weight(.semibold))
-                    .foregroundStyle(ForestPalette.ink)
-                Spacer()
-                Text(model.themeLine)
-                    .font(.caption.weight(.medium))
-                    .foregroundStyle(ForestPalette.inkSoft)
-                    .lineLimit(1)
-            }
-            .padding(.horizontal, 18)
-            .padding(.vertical, 14)
-            .background(ForestPalette.sky.opacity(0.22), in: RoundedRectangle(cornerRadius: 20, style: .continuous))
-        }
-        .buttonStyle(.plain)
-        .opacity(navMode == .homeCardsOnly ? 0 : 1)
-        .disabled(navMode == .homeCardsOnly)
-        .accessibilityHidden(navMode == .homeCardsOnly)
-    }
 
     private var cardsShortcutLabel: some View {
         HStack {
