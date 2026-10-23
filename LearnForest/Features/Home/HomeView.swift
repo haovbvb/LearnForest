@@ -84,8 +84,10 @@ struct HomeView: View {
                     subtitle: dailyProgressLine,
                     showsSunIcon: true,
                     compactPill: true,
+                    backgroundImageName: "learnling_bg",
                     action: onStartLearning
                 )
+                .offset(x: 100)
                 Spacer(minLength: 0)
             }
             productRail

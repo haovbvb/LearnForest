@@ -6,9 +6,14 @@ struct PrimaryLearningButton: View {
     var subtitle: String?
     var showsSunIcon: Bool = false
     var compactPill: Bool = false
+    var backgroundImageName: String? = nil
     let action: () -> Void
 
     @Environment(\.accessibilityReduceMotion) private var reduceMotion
+
+    private var cornerRadius: CGFloat {
+        compactPill ? 40 : ForestSpacing.heroRadius
+    }
 
     var body: some View {
         Button(action: action) {
@@ -40,15 +45,26 @@ struct PrimaryLearningButton: View {
             .frame(minHeight: compactPill ? 72 : ForestSpacing.heroMinHeight)
             .padding(.horizontal, compactPill ? 28 : ForestSpacing.large)
             .padding(.vertical, compactPill ? 14 : ForestSpacing.small)
-            .background(
-                ForestPalette.sun,
-                in: RoundedRectangle(cornerRadius: compactPill ? 40 : ForestSpacing.heroRadius, style: .continuous)
-            )
-            .shadow(color: ForestPalette.sun.opacity(0.45), radius: 12, y: 6)
+            .background {
+                buttonBackground
+            }
+            .clipShape(RoundedRectangle(cornerRadius: cornerRadius, style: .continuous))
+            .shadow(color: ForestPalette.sun.opacity(backgroundImageName == nil ? 0.45 : 0.25), radius: 12, y: 6)
         }
         .buttonStyle(ForestPressStyle(reduceMotion: reduceMotion))
         .accessibilityLabel(title)
         .accessibilityHint(subtitle ?? "开始学习")
+    }
+
+    @ViewBuilder
+    private var buttonBackground: some View {
+        if let backgroundImageName {
+            Image(backgroundImageName)
+                .resizable()
+                .scaledToFill()
+        } else {
+            ForestPalette.sun
+        }
     }
 }
 
