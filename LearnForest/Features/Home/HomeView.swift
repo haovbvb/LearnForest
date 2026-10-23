@@ -13,7 +13,11 @@ struct HomeView: View {
 
     var body: some View {
         ZStack {
-            ForestPalette.cream.ignoresSafeArea()
+            Image("home_bg")
+                .resizable()
+                .scaledToFill()
+                .ignoresSafeArea()
+                .accessibilityHidden(true)
             ScrollView {
                 VStack(alignment: .leading, spacing: ForestSpacing.large) {
                     header
