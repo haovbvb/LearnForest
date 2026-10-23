@@ -1,0 +1,24 @@
+{
+  "contentPackageId": "core_chinese_v1",
+  "contentVersion": 1,
+  "schemaVersion": 1,
+  "minimumAppVersion": "1.0.0",
+  "assetsManifestVersion": 3,
+  "locale": "zh-Hans",
+  "title": "识字森林 · 核心汉字包",
+  "productLine": "shizi_forest",
+  "themeIds": [
+    "theme_animals",
+    "theme_family",
+    "theme_nature"
+  ],
+  "plannedCourseCount": 12,
+  "plannedHanziCount": 90,
+  "sampleHanziCount": 90,
+  "notes": "家庭试用包。课里的汉字带演示色块图和短提示音，可以走通认字、练习和复习。这些不是正式插画和标准普通话。正式资源按 imageAssetId / audioAssetId 替换，不要改汉字 id。缺图、缺音或未上架的课仍然不能开始正式学习。远程更新只保留字段，V1.0 不下载。",
+  "remoteUpdate": {
+    "enabled": false,
+    "comment": "V1.3 预留：检查新版本、校验完整性、增量下载、失败保留旧包。V1.0 不访问网络。"
+  },
+  "demoAssets": true
+}

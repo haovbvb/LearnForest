@@ -1,0 +1,15 @@
+{
+  "implemented": true,
+  "todo": "三种核心题型已在 App 里实现。组词、形近字不在 V1.0。图和录音仍是演示占位。",
+  "plannedTypes": [
+    "listen_and_select_image",
+    "character_to_image",
+    "character_image_matching"
+  ],
+  "notInV1": [
+    "word_building",
+    "similar_character",
+    "context",
+    "passage"
+  ]
+}

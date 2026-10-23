@@ -1,0 +1,2 @@
+﻿id,themeId,title,description,stage,minRecommendedAge,maxRecommendedAge,difficulty,learningObjectives,contentTypes,sortOrder,contentVersion,status,hanziIds,exerciseTypes
+course_animals_01,theme_animals,认识常见动物,看看猫、狗、鸟、鱼。,enlightenment,3,6,1,recognize_theme_hanzi,hanzi|image|audio,1,1,placeholder,hanzi_cat|hanzi_dog|hanzi_bird|hanzi_fish,listen_and_select_image|character_to_image|character_image_matching

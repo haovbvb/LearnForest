@@ -1,0 +1,2 @@
+﻿id,character,pinyin,definition,audioAssetId,imageAssetId,difficulty,tags,contentVersion,isPublished,strokeCount,strokeDataId,wordExamples,sentenceExamples,relatedHanziIds
+hanzi_cat,猫,māo,一种常见的小动物，会喵喵叫。,audio_cat,image_cat,1,animal,1,false,11,,小猫|猫咪,小猫在睡觉。,hanzi_dog

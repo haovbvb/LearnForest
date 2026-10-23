@@ -1,0 +1,29 @@
+[
+  {
+    "id": "theme_animals",
+    "title": "动物世界",
+    "coverAssetId": "item1",
+    "sortOrder": 1,
+    "contentVersion": 1,
+    "isAvailable": true,
+    "summary": "认识小动物 · 扩展词汇"
+  },
+  {
+    "id": "theme_family",
+    "title": "家庭生活",
+    "coverAssetId": "item2",
+    "sortOrder": 2,
+    "contentVersion": 1,
+    "isAvailable": true,
+    "summary": "家人 · 物品 · 日常"
+  },
+  {
+    "id": "theme_nature",
+    "title": "自然世界",
+    "coverAssetId": "item3",
+    "sortOrder": 3,
+    "contentVersion": 1,
+    "isAvailable": true,
+    "summary": "天气 · 植物 · 风景"
+  }
+]
