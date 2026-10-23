@@ -191,23 +191,9 @@ struct HomeView: View {
                 .padding(.top, 4)
         }
         .padding(.horizontal, ForestSpacing.screen)
-        .padding(.top, 28)
+        .padding(.top, 12)
         .padding(.bottom, 20)
         .frame(maxWidth: .infinity, alignment: .leading)
-        .background(
-            ForestPalette.card
-                .clipShape(
-                    UnevenRoundedRectangle(
-                        topLeadingRadius: 36,
-                        bottomLeadingRadius: 0,
-                        bottomTrailingRadius: 0,
-                        topTrailingRadius: 36,
-                        style: .continuous
-                    )
-                )
-                .shadow(color: .black.opacity(0.08), radius: 16, y: -4)
-                .ignoresSafeArea(edges: .bottom)
-        )
     }
 
     private func themeCardLink(_ theme: Theme) -> some View {
