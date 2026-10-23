@@ -184,11 +184,6 @@ struct HomeView: View {
                 }
             }
 
-            Text("课程在这台 iPad 上，没有网络也能看。")
-                .font(.callout)
-                .foregroundStyle(ForestPalette.inkSoft)
-                .frame(maxWidth: .infinity, alignment: .center)
-                .padding(.top, 4)
         }
         .padding(.horizontal, ForestSpacing.screen)
         .padding(.top, 12)
