@@ -12,7 +12,7 @@ struct HomeView: View {
     private let dailyCharacterGoal = 8
 
     var body: some View {
-        ZStack {
+        ZStack(alignment: .topTrailing) {
             Image("home_bg")
                 .resizable()
                 .scaledToFill()
@@ -20,7 +20,6 @@ struct HomeView: View {
                 .accessibilityHidden(true)
             ScrollView {
                 VStack(alignment: .leading, spacing: ForestSpacing.large) {
-                    header
                     if let bootstrapError = model.bootstrapError {
                         ForestCard(background: ForestPalette.coral.opacity(0.28)) {
                             Text(bootstrapError)
@@ -47,147 +46,28 @@ struct HomeView: View {
                 .frame(maxWidth: 1100, alignment: .leading)
                 .frame(maxWidth: .infinity)
             }
+            CornerIconButton(systemImage: "gearshape.fill", accessibilityLabel: "设置", action: onOpenParent)
+                .padding(.top, ForestSpacing.screen)
+                .padding(.trailing, ForestSpacing.screen)
         }
         .toolbar(.hidden, for: .navigationBar)
     }
 
-    private var header: some View {
-        HStack(alignment: .center, spacing: 16) {
-            VStack(alignment: .leading, spacing: 6) {
-                HStack(spacing: 8) {
-                    Image(systemName: "leaf.fill")
-                        .font(.title2.weight(.bold))
-                        .foregroundStyle(ForestPalette.leaf)
-                    Text(ProductIdentity.appName)
-                        .font(.title.weight(.bold))
-                        .foregroundStyle(ForestPalette.leaf)
-                }
-                Text("— \(ProductIdentity.tagline)")
-                    .font(.callout.weight(.medium))
-                    .foregroundStyle(ForestPalette.inkSoft)
-            }
-            Spacer(minLength: 12)
-            Button(action: onOpenParent) {
-                HStack(spacing: 10) {
-                    Image(systemName: "person.crop.circle.fill")
-                        .font(.title)
-                        .foregroundStyle(ForestPalette.sky)
-                    Text(model.activeProfile?.displayName ?? "小朋友")
-                        .font(.title3.weight(.semibold))
-                        .foregroundStyle(ForestPalette.ink)
-                    Image(systemName: "chevron.down")
-                        .font(.caption.weight(.bold))
-                        .foregroundStyle(ForestPalette.inkSoft)
-                }
-                .padding(.horizontal, 14)
-                .padding(.vertical, 10)
-                .background(ForestPalette.card, in: Capsule())
-                .shadow(color: .black.opacity(0.06), radius: 6, y: 2)
-            }
-            .accessibilityLabel("家长与档案")
-            CornerIconButton(systemImage: "gearshape.fill", accessibilityLabel: "设置", action: onOpenParent)
-        }
-    }
-
     private var heroBanner: some View {
-        ZStack(alignment: .bottomLeading) {
-            heroBackdrop
-                .clipShape(RoundedRectangle(cornerRadius: 36, style: .continuous))
-            HStack(alignment: .bottom, spacing: 20) {
-                heroMascotPlaceholder
-                    .frame(width: 160, height: 160)
-                    .padding(.leading, 20)
-                    .padding(.bottom, 16)
-                Spacer(minLength: 0)
-                VStack(alignment: .trailing, spacing: 16) {
-                    productRail
-                    PrimaryLearningButton(
-                        title: model.hasInProgressSession ? "继续学习" : "开始学习",
-                        subtitle: dailyProgressLine,
-                        showsSunIcon: true,
-                        compactPill: true,
-                        action: onStartLearning
-                    )
-                }
-                .padding(.trailing, 22)
-                .padding(.bottom, 22)
-            }
+        HStack {
+            Spacer(minLength: 0)
+            PrimaryLearningButton(
+                title: model.hasInProgressSession ? "继续学习" : "开始学习",
+                subtitle: dailyProgressLine,
+                showsSunIcon: true,
+                compactPill: true,
+                action: onStartLearning
+            )
+            Spacer(minLength: 0)
         }
-        .frame(minHeight: 260)
-        .shadow(color: ForestPalette.leaf.opacity(0.18), radius: 16, y: 8)
-    }
-
-    private var heroBackdrop: some View {
-        LinearGradient(
-            colors: [
-                Color(red: 0.55, green: 0.82, blue: 0.95),
-                Color(red: 0.62, green: 0.86, blue: 0.58),
-                Color(red: 0.42, green: 0.70, blue: 0.40)
-            ],
-            startPoint: .topLeading,
-            endPoint: .bottomTrailing
-        )
-        .overlay(alignment: .topTrailing) {
-            Circle()
-                .fill(ForestPalette.sun.opacity(0.85))
-                .frame(width: 72, height: 72)
-                .blur(radius: 0.5)
-                .padding(28)
-                .accessibilityHidden(true)
-        }
-        .overlay(alignment: .bottom) {
-            Ellipse()
-                .fill(Color(red: 0.22, green: 0.55, blue: 0.78).opacity(0.35))
-                .frame(height: 70)
-                .offset(y: 10)
-                .accessibilityHidden(true)
-        }
-    }
-
-    private var heroMascotPlaceholder: some View {
-        ZStack {
-            Circle()
-                .fill(ForestPalette.cream.opacity(0.9))
-                .frame(width: 140, height: 140)
-            VStack(spacing: 8) {
-                Image(systemName: "book.fill")
-                    .font(.system(size: 44))
-                    .foregroundStyle(ForestPalette.sun)
-                Image(systemName: "leaf.fill")
-                    .font(.title)
-                    .foregroundStyle(ForestPalette.leaf)
-            }
-        }
-        .accessibilityLabel("森林插画占位，正式插画稍后替换")
-    }
-
-    private var productRail: some View {
-        VStack(alignment: .trailing, spacing: 8) {
-            productChip(title: "汉字森林", symbol: "leaf.fill", color: ForestPalette.leaf, enabled: true)
-            productChip(title: "英语森林", symbol: "star.fill", color: ForestPalette.sky, enabled: false)
-            productChip(title: "更多精彩", symbol: "heart.fill", color: ForestPalette.coral, enabled: false)
-        }
-        .accessibilityElement(children: .combine)
-        .accessibilityLabel("产品线：汉字森林可用，英语森林与更多精彩即将开放")
-    }
-
-    private func productChip(title: String, symbol: String, color: Color, enabled: Bool) -> some View {
-        HStack(spacing: 8) {
-            Image(systemName: symbol)
-                .foregroundStyle(color)
-            Text(title)
-                .font(.subheadline.weight(.bold))
-                .foregroundStyle(ForestPalette.ink.opacity(enabled ? 1 : 0.55))
-            if !enabled {
-                Text("即将")
-                    .font(.caption2.weight(.bold))
-                    .foregroundStyle(ForestPalette.inkSoft)
-            }
-        }
-        .padding(.horizontal, 12)
-        .padding(.vertical, 8)
-        .background(ForestPalette.card.opacity(enabled ? 0.95 : 0.72), in: Capsule())
-        .shadow(color: .black.opacity(0.06), radius: 4, y: 2)
+        .padding(.top, 72)
+        .padding(.bottom, 40)
+        .frame(maxWidth: .infinity)
     }
 
     private var dailyProgressLine: String {
@@ -285,7 +165,6 @@ struct HomeView: View {
         }
     }
 
-
     @ViewBuilder
     private var cardsShortcut: some View {
         Group {
@@ -304,7 +183,6 @@ struct HomeView: View {
             }
         }
     }
-
 
     private var cardsShortcutLabel: some View {
         HStack {
