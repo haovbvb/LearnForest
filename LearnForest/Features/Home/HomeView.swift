@@ -93,7 +93,7 @@ struct HomeView: View {
                     spacing: 16
                 ) {
                     ForEach(package.themesSorted) { theme in
-                        themeCardLink(theme, package: package)
+                        themeCardLink(theme)
                     }
                 }
             } else {
@@ -105,63 +105,65 @@ struct HomeView: View {
         }
     }
 
-    private func themeCardLink(_ theme: Theme, package: ContentPackage) -> some View {
+    private func themeCardLink(_ theme: Theme) -> some View {
         NavigationLink {
             CourseListView(themeId: theme.id)
         } label: {
-            themeCard(theme, package: package)
+            themeCard(theme)
         }
         .buttonStyle(.plain)
     }
 
-    private func themeCard(_ theme: Theme, package: ContentPackage) -> some View {
+    private func themeCard(_ theme: Theme) -> some View {
         let accent = ForestPalette.themeAccent(themeId: theme.id)
-        return VStack(alignment: .leading, spacing: 12) {
-            HStack {
-                Image(systemName: themeSymbol(theme.id))
-                    .font(.system(size: 36, weight: .semibold))
-                    .foregroundStyle(accent)
-                    .frame(width: 56, height: 56)
-                    .background(ForestPalette.card.opacity(0.65), in: Circle())
-                Spacer()
-                Image(systemName: "chevron.right")
-                    .font(.body.weight(.bold))
-                    .foregroundStyle(ForestPalette.card)
-                    .frame(width: 36, height: 36)
-                    .background(accent, in: Circle())
+        return VStack(alignment: .leading, spacing: 0) {
+            Image(themeCoverName(theme.id))
+                .resizable()
+                .scaledToFill()
+                .frame(maxWidth: .infinity)
+                .frame(height: 150)
+                .clipped()
+                .accessibilityHidden(true)
+
+            VStack(alignment: .leading, spacing: 10) {
+                Text(theme.title)
+                    .font(.title2.weight(.bold))
+                    .foregroundStyle(ForestPalette.ink)
+                Text(theme.summary)
+                    .font(.callout.weight(.medium))
+                    .foregroundStyle(ForestPalette.inkSoft)
+                    .lineLimit(2)
+                HStack {
+                    Spacer(minLength: 0)
+                    Image(systemName: "chevron.right")
+                        .font(.body.weight(.bold))
+                        .foregroundStyle(.white)
+                        .frame(width: 36, height: 36)
+                        .background(accent, in: Circle())
+                }
             }
-            Text(theme.title)
-                .font(.title2.weight(.bold))
-                .foregroundStyle(ForestPalette.ink)
-            Text(theme.summary)
-                .font(.body)
-                .foregroundStyle(ForestPalette.inkSoft)
-                .lineLimit(2)
-            Text("\(package.courses(in: theme.id).count) 节课")
-                .font(.callout.weight(.semibold))
-                .foregroundStyle(accent)
+            .padding(.horizontal, 16)
+            .padding(.top, 14)
+            .padding(.bottom, 16)
         }
-        .padding(18)
-        .frame(maxWidth: .infinity, minHeight: 180, alignment: .topLeading)
-        .background(
-            ForestPalette.themeCardBackground(themeId: theme.id),
-            in: RoundedRectangle(cornerRadius: 28, style: .continuous)
-        )
+        .frame(maxWidth: .infinity, alignment: .topLeading)
+        .background(ForestPalette.themeCardBackground(themeId: theme.id))
+        .clipShape(RoundedRectangle(cornerRadius: 28, style: .continuous))
         .shadow(color: accent.opacity(0.22), radius: 10, y: 5)
         .accessibilityElement(children: .combine)
         .accessibilityLabel("\(theme.title)，\(theme.summary)")
     }
 
-    private func themeSymbol(_ themeId: String) -> String {
+    private func themeCoverName(_ themeId: String) -> String {
         switch themeId {
         case "theme_animals":
-            return "pawprint.fill"
+            return "item1"
         case "theme_family":
-            return "house.fill"
+            return "item2"
         case "theme_nature":
-            return "mountain.2.fill"
+            return "item3"
         default:
-            return "book.fill"
+            return "item1"
         }
     }
 
